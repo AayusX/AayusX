@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://at7.site/sitemap.xml

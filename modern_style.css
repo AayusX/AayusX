@@ -1,0 +1,216 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Playfair+Display:ital,wght@1,400;1,700&display=swap');
+
+:root {
+    --bg-dark: #0a0f0d;
+    --bg-card: rgba(20, 30, 25, 0.6);
+    --text-primary: #e0e6e1;
+    --text-secondary: #a0b0a5;
+    --accent-gold: #d4af37;
+    --accent-green: #2ecc71;
+    --accent-glow: rgba(46, 204, 113, 0.3);
+    --font-heading: 'Playfair Display', serif;
+    --font-body: 'Outfit', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+/* Background Effects */
+.ambient-glow {
+    position: fixed;
+    top: -20%;
+    left: -20%;
+    width: 80vw;
+    height: 80vw;
+    background: radial-gradient(circle, rgba(46, 204, 113, 0.1) 0%, transparent 70%);
+    z-index: -1;
+    filter: blur(80px);
+}
+
+.ambient-glow:nth-child(2) {
+    top: auto;
+    bottom: -20%;
+    right: -20%;
+    left: auto;
+    background: radial-gradient(circle, rgba(212, 175, 55, 0.05) 0%, transparent 70%);
+}
+
+/* Typography */
+h1,
+h2,
+h3 {
+    font-family: var(--font-heading);
+    color: var(--text-primary);
+}
+
+h1 {
+    font-size: 5rem;
+    line-height: 1.1;
+    margin-bottom: 2rem;
+    font-weight: 700;
+}
+
+h1 span {
+    color: var(--accent-green);
+    font-style: italic;
+}
+
+h2 {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    border-left: 3px solid var(--accent-green);
+    padding-left: 1rem;
+}
+
+/* Layout */
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    padding-bottom: 300px;
+    /* Space for the character at bottom */
+    position: relative;
+    z-index: 1;
+}
+
+section {
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 5rem;
+}
+
+/* Hero Section */
+.hero {
+    min-height: 100vh;
+    align-items: flex-start;
+    text-align: left;
+}
+
+.hero p.tagline {
+    font-size: 1.5rem;
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin-bottom: 2rem;
+}
+
+.btn {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background: transparent;
+    border: 1px solid var(--accent-green);
+    color: var(--accent-green);
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border-radius: 5px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.btn:hover {
+    background: var(--accent-green);
+    color: var(--bg-dark);
+    box-shadow: 0 0 20px var(--accent-glow);
+}
+
+/* Glass Cards */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.glass-card {
+    background: var(--bg-card);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 2rem;
+    border-radius: 15px;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.glass-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent-green);
+}
+
+.glass-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--accent-gold);
+}
+
+.skill-list li {
+    list-style: none;
+    margin-bottom: 0.5rem;
+    padding-left: 1.2rem;
+    position: relative;
+}
+
+.skill-list li::before {
+    content: '›';
+    color: var(--accent-green);
+    position: absolute;
+    left: 0;
+    font-weight: bold;
+}
+
+/* Character Fixed Footer */
+.character-footer-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    pointer-events: none;
+    /* Let clicks pass through to content behind mostly */
+    display: flex;
+    justify-content: center;
+    /* Center visuals if needed, or flex-end for corner */
+    align-items: flex-end;
+}
+
+.character-wrapper {
+    position: relative;
+    text-align: center;
+}
+
+.character-img {
+    height: 350px;
+    /* Adjust based on image quality */
+    object-fit: contain;
+    filter: drop-shadow(0 0 20px rgba(0, 0, 0, 0.5));
+    transition: transform 0.3s ease;
+}
+
+.character-wrapper:hover .character-img {
+    transform: scale(1.02);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 3rem;
+    }
+
+    h2 {
+        font-size: 2rem;
+    }
+
+    .character-img {
+        height: 250px;
+    }
+}
