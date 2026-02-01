@@ -161,7 +161,7 @@ function renderProjects(filter = 'all') {
         // Fallback if projects.js isn't loaded
         projectsContainer.innerHTML = `
             <a href="https://github.com/Aayushkin/FailFirst" target="_blank" rel="noopener noreferrer" class="glass-card project-card fade-in-up" style="text-decoration: none;">
-                <div class="project-eye-icon">👁</div>
+                <div class="project-eye-icon"><i class="fas fa-eye"></i></div>
                 <h3>FailFirst App</h3>
                 <p>A gamified C++ learning platform with advanced animations and local persistence.</p>
                 <div class="project-tags">
@@ -171,7 +171,7 @@ function renderProjects(filter = 'all') {
                 </div>
             </a>
             <a href="https://github.com/AayusX/AayushAI-Core" target="_blank" rel="noopener noreferrer" class="glass-card project-card fade-in-up" style="text-decoration: none;">
-                <div class="project-eye-icon">👁</div>
+                <div class="project-eye-icon"><i class="fas fa-eye"></i></div>
                 <h3>AayushAI Core</h3>
                 <p>Advanced AI agent architecture capable of complex reasoning and task execution.</p>
                 <div class="project-tags">
@@ -181,7 +181,7 @@ function renderProjects(filter = 'all') {
                 </div>
             </a>
             <a href="https://github.com/Aayushkin" target="_blank" rel="noopener noreferrer" class="glass-card project-card fade-in-up" style="text-decoration: none;">
-                <div class="project-eye-icon">👁</div>
+                <div class="project-eye-icon"><i class="fas fa-eye"></i></div>
                 <h3>Interactive Web Apps</h3>
                 <p>Collection of 30+ interactive web applications showcasing modern JavaScript and CSS.</p>
                 <div class="project-tags">

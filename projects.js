@@ -16,7 +16,7 @@ const projects = [
         description: "Gamified C++ learning platform with advanced animations, local persistence, and interactive challenges.",
         tags: ["C++", "Raylib", "Education"],
         category: "System",
-        link: "https://github.com/Aayushkin/FailFirst"
+        link: "https://github.com/AayusX-Pro/FailFirst"
     },
     {
         title: "Gesture Solar",
