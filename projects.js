@@ -71,7 +71,7 @@ const projects = [
         title: "Pentesting Tool",
         description: "Security utilities and tooling in Python for ethical penetration testing.",
         tags: ["Python", "Security", "Networking"],
-        category: "System",
+        category: "Pentesting",
         link: "https://github.com/aayusxat7/pentesting-tool"
     },
     {
