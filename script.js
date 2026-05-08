@@ -8,36 +8,35 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 camera.position.z = 5;
 
-// Particle System
-const particleCount = 800;
+// Register GSAP ScrollTrigger
+gsap.registerPlugin(ScrollTrigger);
+
+// Groups for different sections
+const mainGroup = new THREE.Group();
+scene.add(mainGroup);
+
+// Particle System (Improved)
+const particleCount = 1500;
 const particlesGeometry = new THREE.BufferGeometry();
 const positions = new Float32Array(particleCount * 3);
 const colors = new Float32Array(particleCount * 3);
+const sizes = new Float32Array(particleCount);
 
-// Initialize particles with earthy colors
-for (let i = 0; i < particleCount * 3; i += 3) {
-    positions[i] = (Math.random() - 0.5) * 20;
-    positions[i + 1] = (Math.random() - 0.5) * 20;
-    positions[i + 2] = (Math.random() - 0.5) * 10;
+for (let i = 0; i < particleCount; i++) {
+    const i3 = i * 3;
+    positions[i3] = (Math.random() - 0.5) * 25;
+    positions[i3 + 1] = (Math.random() - 0.5) * 25;
+    positions[i3 + 2] = (Math.random() - 0.5) * 20;
 
-    // Earthy color palette: Forest Green and Sage Green
-    const colorChoice = Math.random();
-    if (colorChoice > 0.6) {
-        // Forest Green #445D48
-        colors[i] = 0.27;     // R
-        colors[i + 1] = 0.36; // G
-        colors[i + 2] = 0.28; // B
-    } else if (colorChoice > 0.3) {
-        // Sage Green #D6CC99
-        colors[i] = 0.84;     // R
-        colors[i + 1] = 0.8;  // G
-        colors[i + 2] = 0.6;  // B
-    } else {
-        // Terracotta #5E3023
-        colors[i] = 0.37;     // R
-        colors[i + 1] = 0.19; // G
-        colors[i + 2] = 0.14; // B
-    }
+    // Cinematic palette: Teal, Blue, Purple (or keep earthy if preferred, but let's go cinematic)
+    const mixedColor = new THREE.Color();
+    mixedColor.setHSL(Math.random() * 0.1 + 0.45, 0.7, 0.5); // Teal/Cyan range
+
+    colors[i3] = mixedColor.r;
+    colors[i3 + 1] = mixedColor.g;
+    colors[i3 + 2] = mixedColor.b;
+
+    sizes[i] = Math.random() * 0.1 + 0.02;
 }
 
 particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
@@ -47,52 +46,70 @@ const particlesMaterial = new THREE.PointsMaterial({
     size: 0.05,
     vertexColors: true,
     transparent: true,
-    opacity: 0.6,
-    blending: THREE.AdditiveBlending
+    opacity: 0.4,
+    blending: THREE.AdditiveBlending,
+    sizeAttenuation: true
 });
 
 const particles = new THREE.Points(particlesGeometry, particlesMaterial);
-scene.add(particles);
+mainGroup.add(particles);
+
+// Floating Torus for "Cinematic" look
+const torusGeometry = new THREE.TorusKnotGeometry(10, 3, 100, 16);
+const torusMaterial = new THREE.MeshNormalMaterial({ wireframe: true, transparent: true, opacity: 0.1 });
+const torus = new THREE.Mesh(torusGeometry, torusMaterial);
+torus.position.z = -20;
+mainGroup.add(torus);
 
 // Mouse Interaction
 let mouseX = 0;
 let mouseY = 0;
-let targetX = 0;
-let targetY = 0;
 
 document.addEventListener('mousemove', (e) => {
-    mouseX = (e.clientX / window.innerWidth) * 2 - 1;
-    mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
+    mouseX = (e.clientX / window.innerWidth) - 0.5;
+    mouseY = (e.clientY / window.innerHeight) - 0.5;
+});
+
+// Cinematic Scroll Animation
+gsap.to(mainGroup.rotation, {
+    x: Math.PI * 2,
+    z: Math.PI,
+    scrollTrigger: {
+        trigger: "body",
+        start: "top top",
+        end: "bottom bottom",
+        scrub: 1.5,
+    }
+});
+
+gsap.to(camera.position, {
+    z: 2,
+    y: 1,
+    scrollTrigger: {
+        trigger: "body",
+        start: "top top",
+        end: "bottom bottom",
+        scrub: 2,
+    }
 });
 
 // Animation Loop
+const clock = new THREE.Clock();
+
 function animate() {
-    requestAnimationFrame(animate);
+    const elapsedTime = clock.getElapsedTime();
 
-    // Smooth mouse follow
-    targetX += (mouseX - targetX) * 0.05;
-    targetY += (mouseY - targetY) * 0.05;
+    // Rotation
+    particles.rotation.y = elapsedTime * 0.05;
+    torus.rotation.x = elapsedTime * 0.1;
+    torus.rotation.y = elapsedTime * 0.15;
 
-    // Rotate particles based on mouse
-    particles.rotation.x = targetY * 0.3;
-    particles.rotation.y = targetX * 0.3;
-
-    // Continuous rotation
-    particles.rotation.z += 0.0005;
-
-    // Wave effect on particles
-    const positions = particles.geometry.attributes.position.array;
-    const time = Date.now() * 0.0005;
-
-    for (let i = 0; i < positions.length; i += 3) {
-        const x = positions[i];
-        const y = positions[i + 1];
-        positions[i + 2] = Math.sin(x + time) * 0.5 + Math.cos(y + time) * 0.5;
-    }
-
-    particles.geometry.attributes.position.needsUpdate = true;
+    // Mouse follow
+    mainGroup.position.x += (mouseX * 2 - mainGroup.position.x) * 0.05;
+    mainGroup.position.y += (-mouseY * 2 - mainGroup.position.y) * 0.05;
 
     renderer.render(scene, camera);
+    requestAnimationFrame(animate);
 }
 
 animate();
@@ -104,127 +121,86 @@ window.addEventListener('resize', () => {
     renderer.setSize(window.innerWidth, window.innerHeight);
 });
 
-// Scroll Animations with Intersection Observer
-const observerOptions = {
-    threshold: 0.15,
-    rootMargin: '0px 0px -100px 0px'
-};
-
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-        }
-    });
-}, observerOptions);
-
-// Observe all fade-in-up elements
-document.querySelectorAll('.fade-in-up').forEach(el => {
-    observer.observe(el);
-});
-
-// Navbar scroll effect
-const navbar = document.querySelector('.glass-nav');
-let lastScroll = 0;
-
-window.addEventListener('scroll', () => {
-    const currentScroll = window.pageYOffset;
-
-    if (currentScroll > 100) {
-        navbar.style.boxShadow = '0 4px 20px rgba(99, 102, 241, 0.1)';
-    } else {
-        navbar.style.boxShadow = 'none';
+// Parallax for Background Elements
+gsap.to(".about-image", {
+    y: -50,
+    scrollTrigger: {
+        trigger: ".about-grid",
+        scrub: true
     }
-
-    lastScroll = currentScroll;
 });
 
-// Smooth scroll for navigation links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-    });
-});
-
-// Project Filtering
-const filterButtons = document.querySelectorAll('.filter-btn');
-const projectsContainer = document.getElementById('projects-container');
-
-// Render projects from projects.js with clickable links and eye icon
+// Project Filtering Logic
 function renderProjects(filter = 'all') {
-    if (typeof projects === 'undefined') {
-        // Fallback if projects.js isn't loaded
-        projectsContainer.innerHTML = `
-            <a href="https://github.com/Aayushkin/FailFirst" target="_blank" rel="noopener noreferrer" class="glass-card project-card fade-in-up" style="text-decoration: none;">
-                <div class="project-eye-icon"><i class="fas fa-eye"></i></div>
-                <h3>FailFirst App</h3>
-                <p>A gamified C++ learning platform with advanced animations and local persistence.</p>
-                <div class="project-tags">
-                    <span class="tag">C++</span>
-                    <span class="tag">Raylib</span>
-                    <span class="tag">Education</span>
-                </div>
-            </a>
-            <a href="https://github.com/AayusX/AayushAI-Core" target="_blank" rel="noopener noreferrer" class="glass-card project-card fade-in-up" style="text-decoration: none;">
-                <div class="project-eye-icon"><i class="fas fa-eye"></i></div>
-                <h3>AayushAI Core</h3>
-                <p>Advanced AI agent architecture capable of complex reasoning and task execution.</p>
-                <div class="project-tags">
-                    <span class="tag">Python</span>
-                    <span class="tag">AI</span>
-                    <span class="tag">LLMs</span>
-                </div>
-            </a>
-            <a href="https://github.com/Aayushkin" target="_blank" rel="noopener noreferrer" class="glass-card project-card fade-in-up" style="text-decoration: none;">
-                <div class="project-eye-icon"><i class="fas fa-eye"></i></div>
-                <h3>Interactive Web Apps</h3>
-                <p>Collection of 30+ interactive web applications showcasing modern JavaScript and CSS.</p>
-                <div class="project-tags">
-                    <span class="tag">JavaScript</span>
-                    <span class="tag">CSS</span>
-                    <span class="tag">HTML</span>
-                </div>
-            </a>
-        `;
-        return;
-    }
+    const projectsContainer = document.getElementById('projects-container');
+    if (!projectsContainer || typeof projects === 'undefined') return;
 
     const filteredProjects = filter === 'all'
         ? projects
         : projects.filter(p => p.category.toLowerCase() === filter.toLowerCase());
 
-    projectsContainer.innerHTML = filteredProjects.slice(0, 12).map((project, index) => `
-        <a href="${project.link}" target="_blank" rel="noopener noreferrer" class="glass-card project-card fade-in-up" style="--delay: ${index * 0.1}s; text-decoration: none; color: inherit; display: block;">
-            <div class="project-eye-icon">👁</div>
-            <h3>${project.title}</h3>
-            <p>${project.description}</p>
-            <div class="project-tags">
-                ${project.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+    projectsContainer.innerHTML = filteredProjects.map((project, index) => `
+        <div class="glass-card project-card fade-in-up" style="--delay: ${index * 0.1}s">
+            <div class="project-content">
+                <h3>${project.title}</h3>
+                <p>${project.description}</p>
+                <div class="project-tags">
+                    ${project.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                </div>
+                <a href="${project.link}" target="_blank" class="project-link">View Project <i class="fas fa-arrow-right"></i></a>
             </div>
-        </a>
+        </div>
     `).join('');
 
-    // Re-observe new elements
-    document.querySelectorAll('.project-card').forEach(el => {
-        observer.observe(el);
+    // Re-trigger scroll animations for projects
+    gsap.from(".project-card", {
+        y: 50,
+        opacity: 0,
+        duration: 0.8,
+        stagger: 0.1,
+        ease: "power2.out",
+        scrollTrigger: {
+            trigger: "#projects",
+            start: "top 80%",
+        }
     });
 }
 
-// Initial render
+// Initial Call
 renderProjects();
 
 // Filter button click handlers
-filterButtons.forEach(btn => {
+document.querySelectorAll('.filter-btn').forEach(btn => {
     btn.addEventListener('click', () => {
-        filterButtons.forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
         renderProjects(btn.dataset.filter);
     });
+});
+
+// Reveal Animations with GSAP
+const fadeUps = document.querySelectorAll('.fade-in-up');
+fadeUps.forEach(el => {
+    gsap.from(el, {
+        y: 60,
+        opacity: 0,
+        duration: 1,
+        scrollTrigger: {
+            trigger: el,
+            start: "top 85%",
+            toggleActions: "play none none none"
+        }
+    });
+});
+
+// Navbar active state and background
+window.addEventListener('scroll', () => {
+    const navbar = document.querySelector('.glass-nav');
+    if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+    } else {
+        navbar.classList.remove('scrolled');
+    }
 });
 
 // Mobile menu toggle
@@ -237,27 +213,20 @@ if (mobileToggle) {
     });
 }
 
-// Coder character parallax effect
-const coderCharacter = document.getElementById('coder-character');
-
-window.addEventListener('scroll', () => {
-    const scrolled = window.pageYOffset;
-    const parallaxSpeed = 0.3;
-
-    if (coderCharacter) {
-        const yPos = -(scrolled * parallaxSpeed);
-        coderCharacter.style.transform = `translate(-50%, ${yPos}px)`;
-    }
+// Smooth scroll for anchors
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        if(targetId === '#') return;
+        const target = document.querySelector(targetId);
+        if (target) {
+            window.scrollTo({
+                top: target.offsetTop - 80,
+                behavior: 'smooth'
+            });
+        }
+    });
 });
 
-// Add stagger animation to skills
-document.querySelectorAll('.skill-category').forEach((el, index) => {
-    el.style.setProperty('--delay', `${index * 0.15}s`);
-});
-
-// Add stagger to timeline items
-document.querySelectorAll('.timeline-item').forEach((el, index) => {
-    el.style.setProperty('--delay', `${index * 0.2}s`);
-});
-
-console.log('🚀 Portfolio initialized with Three.js interactive background');
+console.log('✨ Cinematic Portfolio Initialized');
