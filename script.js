@@ -28,9 +28,9 @@ for (let i = 0; i < particleCount; i++) {
     positions[i3 + 1] = (Math.random() - 0.5) * 25;
     positions[i3 + 2] = (Math.random() - 0.5) * 20;
 
-    // Cinematic palette: Teal, Blue, Purple (or keep earthy if preferred, but let's go cinematic)
+    // Soft light-theme palette: blue to violet
     const mixedColor = new THREE.Color();
-    mixedColor.setHSL(Math.random() * 0.1 + 0.45, 0.7, 0.5); // Teal/Cyan range
+    mixedColor.setHSL(0.58 + Math.random() * 0.1, 0.45, 0.6);
 
     colors[i3] = mixedColor.r;
     colors[i3 + 1] = mixedColor.g;
@@ -46,7 +46,7 @@ const particlesMaterial = new THREE.PointsMaterial({
     size: 0.05,
     vertexColors: true,
     transparent: true,
-    opacity: 0.4,
+    opacity: 0.35,
     blending: THREE.AdditiveBlending,
     sizeAttenuation: true
 });
@@ -56,7 +56,7 @@ mainGroup.add(particles);
 
 // Floating Torus for "Cinematic" look
 const torusGeometry = new THREE.TorusKnotGeometry(10, 3, 100, 16);
-const torusMaterial = new THREE.MeshNormalMaterial({ wireframe: true, transparent: true, opacity: 0.1 });
+const torusMaterial = new THREE.MeshBasicMaterial({ color: 0x2563eb, wireframe: true, transparent: true, opacity: 0.08 });
 const torus = new THREE.Mesh(torusGeometry, torusMaterial);
 torus.position.z = -20;
 mainGroup.add(torus);
@@ -228,5 +228,152 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         }
     });
 });
+
+const petGuideMessage = document.getElementById('petGuideMessage');
+const petGuideBubble = document.getElementById('petGuideBubble');
+const petGuideWrapper = document.querySelector('.pet-guide-wrapper');
+const cursorDot = document.getElementById('customCursorDot');
+const cursorRing = document.getElementById('customCursorRing');
+const guideMessages = [
+    'Hello! Please scroll to explore my most exciting projects and skills.',
+    'I design polished websites, intelligent AI systems, and responsive client experiences.',
+    'Need inspiration? Explore the project section to see what I can build for you.',
+];
+let currentGuideIndex = 0;
+let targetPetX = window.innerWidth - 160;
+let targetPetY = window.innerHeight - 160;
+let currentPetX = targetPetX;
+let currentPetY = targetPetY;
+let fadeTimeout = null;
+let lastSection = null;
+let cursorX = window.innerWidth / 2;
+let cursorY = window.innerHeight / 2;
+let ringX = cursorX;
+let ringY = cursorY;
+
+function updateGuideMessage(index, immediate = false) {
+    if (!petGuideMessage) return;
+    const nextIndex = index % guideMessages.length;
+    if (nextIndex === currentGuideIndex && !immediate) return;
+    currentGuideIndex = nextIndex;
+    petGuideMessage.style.opacity = '0';
+    clearTimeout(fadeTimeout);
+    setTimeout(() => {
+        petGuideMessage.textContent = guideMessages[currentGuideIndex];
+        petGuideMessage.style.opacity = '1';
+        fadeTimeout = setTimeout(() => {
+            petGuideMessage.style.opacity = '0';
+        }, 5000);
+    }, 100);
+}
+
+function lerp(start, end, t) {
+    return start + (end - start) * t;
+}
+
+function animatePet() {
+    if (!petGuideWrapper) return;
+    currentPetX = lerp(currentPetX, targetPetX, 0.18);
+    currentPetY = lerp(currentPetY, targetPetY, 0.18);
+    petGuideWrapper.style.transform = `translate3d(${currentPetX}px, ${currentPetY}px, 0)`;
+    requestAnimationFrame(animatePet);
+}
+
+function animateCursor() {
+    if (!cursorDot || !cursorRing) return;
+    cursorDot.style.transform = `translate3d(${cursorX}px, ${cursorY}px, 0)`;
+    ringX = lerp(ringX, cursorX, 0.18);
+    ringY = lerp(ringY, cursorY, 0.18);
+    cursorRing.style.transform = `translate3d(${ringX}px, ${ringY}px, 0)`;
+    requestAnimationFrame(animateCursor);
+}
+
+petGuideBubble?.addEventListener('click', () => {
+    updateGuideMessage(currentGuideIndex + 1, true);
+});
+
+const sections = [
+    { id: 'hero', messageIndex: 0 },
+    { id: 'highlights', messageIndex: 1 },
+    { id: 'skills', messageIndex: 1 },
+    { id: 'projects', messageIndex: 2 },
+    { id: 'services', messageIndex: 2 },
+    { id: 'journey', messageIndex: 1 },
+    { id: 'gallery', messageIndex: 1 },
+    { id: 'contact', messageIndex: 2 },
+];
+
+function getCurrentSection() {
+    let found = null;
+    const scrollY = window.scrollY + window.innerHeight / 2;
+    sections.forEach(section => {
+        const el = document.getElementById(section.id);
+        if (!el) return;
+        const rect = el.getBoundingClientRect();
+        const top = rect.top + window.scrollY;
+        const bottom = top + rect.height;
+        if (scrollY >= top && scrollY < bottom) {
+            found = section;
+        }
+    });
+    return found;
+}
+
+window.addEventListener('scroll', () => {
+    const section = getCurrentSection();
+    if (!section) return;
+    if (lastSection !== section.id) {
+        lastSection = section.id;
+        updateGuideMessage(section.messageIndex, true);
+    }
+});
+
+window.addEventListener('mousemove', (event) => {
+    if (window.innerWidth <= 768 || !petGuideWrapper) return;
+    targetPetX = event.clientX + 28;
+    targetPetY = event.clientY + 28;
+    cursorX = event.clientX;
+    cursorY = event.clientY;
+});
+
+window.addEventListener('mouseover', (event) => {
+    const hoverTarget = event.target.closest('a, button, .project-card, .nav-links a');
+    if (hoverTarget) {
+        document.body.classList.add('custom-cursor-hover');
+    }
+});
+
+window.addEventListener('mouseout', (event) => {
+    const leaveTarget = event.target.closest('a, button, .project-card, .nav-links a');
+    if (leaveTarget) {
+        document.body.classList.remove('custom-cursor-hover');
+    }
+});
+
+window.addEventListener('resize', () => {
+    if (!petGuideWrapper) return;
+    if (window.innerWidth <= 768) {
+        petGuideWrapper.style.left = 'auto';
+        petGuideWrapper.style.right = '2rem';
+        petGuideWrapper.style.top = 'auto';
+        petGuideWrapper.style.bottom = '2rem';
+        petGuideWrapper.style.transform = 'none';
+    } else {
+        petGuideWrapper.style.left = '0';
+        petGuideWrapper.style.top = '0';
+        petGuideWrapper.style.right = 'auto';
+        petGuideWrapper.style.bottom = 'auto';
+    }
+});
+
+if (window.innerWidth > 768 && petGuideWrapper) {
+    petGuideWrapper.style.left = '0';
+    petGuideWrapper.style.top = '0';
+    petGuideWrapper.style.right = 'auto';
+    petGuideWrapper.style.bottom = 'auto';
+    animatePet();
+    animateCursor();
+    updateGuideMessage(0, true);
+}
 
 console.log('✨ Cinematic Portfolio Initialized');

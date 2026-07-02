@@ -44,9 +44,9 @@
     <meta name="twitter:description" content="Explore 35+ innovative projects by AayusX Bhandari. Three.js animations, AI tools, and pentesting solutions at at7.site.">
     <meta name="twitter:image" content="https://at7.site/me.png">
     <meta name="twitter:creator" content="@AayusX">
-    <meta name="theme-color" content="#05080a">
+    <meta name="theme-color" content="#f5f7fb">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="apple-mobile-web-app-title" content="AayusX Bhandari">
     <link rel="apple-touch-icon" href="me.png">
     <script type="application/ld+json">
@@ -98,6 +98,8 @@
 <body>
     <!-- Three.js Background -->
     <canvas id="bg-canvas"></canvas>
+    <div class="custom-cursor-dot" id="customCursorDot"></div>
+    <div class="custom-cursor-ring" id="customCursorRing"></div>
 
     <!-- Navigation -->
     <nav class="glass-nav">
@@ -160,10 +162,39 @@
         </div>
     </section>
 
+    <!-- Highlights Section -->
+    <section id="highlights" class="section-padding">
+        <div class="container">
+            <h2 class="section-title fade-in-up"><span>02.</span>Fast Facts</h2>
+            <div class="highlight-grid">
+                <div class="highlight-card glass-card fade-in-up">
+                    <div class="highlight-icon"><i class="fas fa-rocket"></i></div>
+                    <h3>Fast, polished delivery</h3>
+                    <p>Every project is built with speed, clarity, and a refined user experience that converts visitors into clients.</p>
+                </div>
+                <div class="highlight-card glass-card fade-in-up" style="--delay: 0.1s">
+                    <div class="highlight-icon"><i class="fas fa-heart"></i></div>
+                    <h3>Client-first mindset</h3>
+                    <p>Polite, responsive communication and thoughtful solutions designed around real business goals.</p>
+                </div>
+                <div class="highlight-card glass-card fade-in-up" style="--delay: 0.2s">
+                    <div class="highlight-icon"><i class="fas fa-chart-line"></i></div>
+                    <h3>Growth-focused results</h3>
+                    <p>Infographics, analytics, and performance-driven design help your product stand out and drive action.</p>
+                </div>
+                <div class="highlight-card glass-card fade-in-up" style="--delay: 0.3s">
+                    <div class="highlight-icon"><i class="fas fa-shield-alt"></i></div>
+                    <h3>Reliable quality</h3>
+                    <p>Clean code foundations and polished interactions keep your experience stable and beautiful across devices.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Skills Section -->
     <section id="skills" class="section-padding">
         <div class="container">
-            <h2 class="section-title fade-in-up"><span>02.</span>Technical Arsenal</h2>
+            <h2 class="section-title fade-in-up"><span>03.</span>Technical Arsenal</h2>
             <div class="skills-grid">
                 <div class="skill-category glass-card fade-in-up">
                     <i class="fas fa-paint-brush"></i>
@@ -202,7 +233,7 @@
     <!-- Projects Section -->
     <section id="projects" class="section-padding">
         <div class="container">
-            <h2 class="section-title fade-in-up"><span>03.</span>Selected Work</h2>
+            <h2 class="section-title fade-in-up"><span>04.</span>Selected Work</h2>
 
             <div class="filter-buttons fade-in-up" style="margin-bottom: 3rem;">
                 <button class="filter-btn active" data-filter="all">All</button>
@@ -220,7 +251,7 @@
     <!-- Services Section -->
     <section id="services" class="section-padding">
         <div class="container">
-            <h2 class="section-title fade-in-up"><span>04.</span>What I Deliver</h2>
+            <h2 class="section-title fade-in-up"><span>05.</span>What I Deliver</h2>
             <div class="services-grid">
                 <div class="service-card glass-card fade-in-up">
                     <i class="fas fa-school"></i>
@@ -244,7 +275,7 @@
     <!-- Journey Section -->
     <section id="journey" class="section-padding">
         <div class="container">
-            <h2 class="section-title fade-in-up"><span>05.</span>The Journey</h2>
+            <h2 class="section-title fade-in-up"><span>06.</span>The Journey</h2>
             <div class="timeline">
                 <div class="timeline-item fade-in-up">
                     <div class="timeline-date">2026 - Present</div>
@@ -274,7 +305,7 @@
     <!-- Digital Gallery -->
     <section id="gallery" class="section-padding">
         <div class="container">
-            <h2 class="section-title fade-in-up"><span>06.</span>Digital Artifacts</h2>
+            <h2 class="section-title fade-in-up"><span>07.</span>Digital Artifacts</h2>
             <div class="gallery-grid">
                 <div class="gallery-item glass-card fade-in-up">
                     <div class="code-header"><span></span><span></span><span></span></div>
@@ -311,9 +342,18 @@
     </section>
 
     <!-- Footer -->
-    <footer style="padding: 4rem 0; text-align: center; border-top: 1px solid rgba(255,255,255,0.05);">
+    <footer style="padding: 4rem 0; text-align: center; border-top: 1px solid rgba(15, 23, 42, 0.08);">
         <p style="color: var(--text-dim); font-size: 0.8rem; letter-spacing: 2px;">© 2026 AAYUSH BHANDARI. DESIGNED FOR THE FUTURE.</p>
     </footer>
+
+    <!-- Pet Guide -->
+    <div class="pet-guide-wrapper" aria-live="polite">
+        <div class="pet-avatar">🐾</div>
+        <div class="pet-notification" id="petGuideBubble">
+            <span class="pet-note-label">Based in Nepal</span>
+            <p class="pet-message" id="petGuideMessage">Scroll to discover my best work and modern solutions.</p>
+        </div>
+    </div>
 
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
