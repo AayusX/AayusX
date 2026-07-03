@@ -1,0 +1,24 @@
+/* HUMANS.TXT */
+/* humanstxt.org */
+
+/* TEAM */
+Developer: AayusX Bhandari (Aayush)
+Contact: technology457t@gmail.com
+Phone: +91-9716202704
+Twitter: @AayusX
+GitHub: github.com/AayusX
+Facebook: facebook.com/Aayush457W
+Location: Nepal (Remote)
+Role: Full-Stack Developer & AI Engineer
+
+/* THANKS */
+Thanks to all open-source contributors and the amazing developer community.
+
+/* SITE */
+Standards: HTML5, CSS3, JavaScript (ES6+)
+Components: Three.js, GSAP, React
+IDE: VS Code
+Version: 2026.1
+Last Update: 2026-07-03
+Language: English
+Charset: UTF-8
