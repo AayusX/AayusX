@@ -115,6 +115,34 @@ const projects = [
         tags: ["C++", "Algorithms", "Performance"],
         category: "System",
         link: "https://github.com/AayusX/Smart_Mavi"
+    },
+    {
+        title: "Loan Management System",
+        description: "Professional loan management system that streamlines borrower management, loan processing, EMI calculation, repayment tracking, and financial reporting.",
+        tags: ["Finance", "Full-Stack", "Database"],
+        category: "System",
+        link: "https://github.com/AayusX/loan-management-system"
+    },
+    {
+        title: "Fail-First",
+        description: "Gamified C++ code learning platform where users learn by experimenting and making mistakes in a school project environment.",
+        tags: ["C++", "Education", "Gamification"],
+        category: "System",
+        link: "https://github.com/AayusX/Fail-First---Best-Code-learning-platform-in-gaming-way"
+    },
+    {
+        title: "Apex Trader",
+        description: "Modern trading platform for web, Android, and desktop with real-time market analysis, portfolio management, and financial insights.",
+        tags: ["Trading", "Finance", "Multi-Platform"],
+        category: "Web",
+        link: "https://github.com/AayusX/Apex-Trader--The-trading-demo-app-for-web-android-and-desktop"
+    },
+    {
+        title: "Mother School",
+        description: "Educational platform designed to support learning and school management.",
+        tags: ["Education", "Web", "Full-Stack"],
+        category: "Web",
+        link: "https://github.com/AayusX/Mother-school"
     }
 ];
 
