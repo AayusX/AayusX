@@ -568,6 +568,24 @@
         <p style="color: var(--text-dim); font-size: 0.8rem; letter-spacing: 2px;">© 2026 AAYUSH BHANDARI. DESIGNED FOR THE FUTURE.</p>
     </footer>
 
+    <!-- First-time visitor feedback modal -->
+    <div class="feedback-overlay" id="feedbackOverlay" aria-hidden="true">
+        <div class="feedback-modal" role="dialog" aria-modal="true" aria-labelledby="feedbackTitle">
+            <button class="feedback-close" id="feedbackClose" aria-label="Close request form">×</button>
+            <h2 id="feedbackTitle">A personal request from Aayush</h2>
+            <p>I am preparing to launch a new startup and your insight means a lot to me. If this portfolio resonates, please share your Gmail address below so I can keep you updated quickly and reach out when I have something meaningful to share.</p>
+            <form id="feedbackForm" class="feedback-form">
+                <label for="feedbackEmail">Your Gmail address</label>
+                <input type="email" id="feedbackEmail" name="feedbackEmail" placeholder="yourname@gmail.com" required>
+                <label for="feedbackPhone">Phone number (optional)</label>
+                <input type="tel" id="feedbackPhone" name="feedbackPhone" placeholder="+91 98765 43210">
+                <button type="submit" class="btn btn-primary">Send my contact</button>
+                <button type="button" class="btn btn-secondary" id="feedbackLater">Maybe later</button>
+                <p class="feedback-note">I promise to keep this request simple and respectful. Your contact is only used to notify you about the startup launch.</p>
+            </form>
+        </div>
+    </div>
+
     <!-- Pet Guide -->
     <div class="pet-guide-wrapper" aria-live="polite">
         <div class="pet-avatar"><i class="fas fa-dragon"></i>

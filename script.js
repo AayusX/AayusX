@@ -240,11 +240,99 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-/* ============================================================
-   13. AI-STYLE FLOATING GUIDE
-   Time-aware greetings, section-aware tips, idle behavior,
-   scroll-stop detection, first-visit welcome, contact thank-you.
-   ============================================================ */
+/* First-time visitor feedback prompt */
+function showFeedbackModal() {
+  const overlay = document.getElementById('feedbackOverlay');
+  if (!overlay) return;
+  overlay.classList.add('active');
+  overlay.setAttribute('aria-hidden', 'false');
+}
+
+function hideFeedbackModal() {
+  const overlay = document.getElementById('feedbackOverlay');
+  if (!overlay) return;
+  overlay.classList.remove('active');
+  overlay.setAttribute('aria-hidden', 'true');
+}
+
+function isFirstTimeVisitor() {
+  return !localStorage.getItem('aayusx_first_visit');
+}
+
+function saveVisitorRequest() {
+  localStorage.setItem('aayusx_first_visit', 'true');
+}
+
+function initFeedbackPrompt() {
+  if (!isFirstTimeVisitor()) return;
+
+  const closeButton = document.getElementById('feedbackClose');
+  const laterButton = document.getElementById('feedbackLater');
+  const form = document.getElementById('feedbackForm');
+  const emailInput = document.getElementById('feedbackEmail');
+  const phoneInput = document.getElementById('feedbackPhone');
+
+  showFeedbackModal();
+
+  if (closeButton) {
+    closeButton.addEventListener('click', () => {
+      saveVisitorRequest();
+      hideFeedbackModal();
+    });
+  }
+
+  if (laterButton) {
+    laterButton.addEventListener('click', () => {
+      saveVisitorRequest();
+      hideFeedbackModal();
+    });
+  }
+
+  if (form) {
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const email = emailInput?.value.trim();
+      const phone = phoneInput?.value.trim();
+
+      if (!email) {
+        emailInput?.focus();
+        return;
+      }
+
+      saveVisitorRequest();
+      hideFeedbackModal();
+
+      const subject = encodeURIComponent('Portfolio feedback and startup launch interest');
+      const body = encodeURIComponent([
+        `Visitor Gmail: ${email}`,
+        phone ? `Phone: ${phone}` : 'Phone: not provided',
+        '',
+        'This visitor agreed to receive a startup update notification.'
+      ].join('\n'));
+
+      const mailtoUrl = `mailto:technology457t@gmail.com?subject=${subject}&body=${body}`;
+      const gmailWebUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=technology457t@gmail.com&su=${subject}&body=${body}`;
+
+      const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+      if (typeof window !== 'undefined') {
+        if (isMobile) {
+          // On mobile, let the mail handler open the Gmail app if configured.
+          window.location.href = mailtoUrl;
+        } else {
+          // On desktop, open Gmail web compose directly.
+          window.open(gmailWebUrl, '_blank');
+        }
+      }
+
+      // Optional: store the email locally for later use if needed
+      if (email) localStorage.setItem('aayusx_feedback_email', email);
+      if (phone) localStorage.setItem('aayusx_feedback_phone', phone);
+    });
+  }
+}
+
+document.addEventListener('DOMContentLoaded', initFeedbackPrompt);
 
 const petGuideMessage = document.getElementById('petGuideMessage');
 const petGuideBubble = document.getElementById('petGuideBubble');
