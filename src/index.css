@@ -102,10 +102,61 @@ input { font-family: inherit; background: none; border: none; outline: none; col
 }
 .nav-links button:hover::after { transform: scaleX(1); transform-origin: left; }
 
+/* burger — mobile nav */
+.burger { display: none; flex-direction: column; gap: 5px; padding: 12px 10px; z-index: 1001; position: relative; }
+.burger span { display: block; width: 20px; height: 2px; background: var(--fg); transition: transform 0.3s cubic-bezier(0.2, 0, 0, 1); }
+.burger.open span:nth-child(1) { transform: translateY(3.5px) rotate(45deg); }
+.burger.open span:nth-child(2) { transform: translateY(-3.5px) rotate(-45deg); }
+
+.menu-overlay {
+  position: fixed; inset: 0; z-index: 950;
+  background: rgba(10, 10, 11, 0.96);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 0 28px;
+}
+.menu-link {
+  font-family: var(--font-display); font-weight: 800; text-align: left;
+  font-size: clamp(1.9rem, 8.5vw, 3rem); letter-spacing: -0.02em;
+  color: var(--fg); display: flex; align-items: baseline; gap: 16px;
+  padding: 14px 0; border-bottom: 1px solid var(--border);
+  transition: color 0.2s, padding-left 0.25s ease;
+}
+.menu-link:hover, .menu-link:active { color: var(--accent); padding-left: 10px; }
+.menu-link em { font-family: var(--font-mono); font-style: normal; font-size: 11px; color: var(--accent); letter-spacing: 0.15em; }
+.menu-foot { margin-top: 36px; font-size: 11px; letter-spacing: 0.14em; color: var(--dim); }
+
+/* ============ MOBILE POLISH ============ */
+@media (max-width: 760px) {
+  :root { --nav-h: 58px; }
+  .burger { display: flex; }
+  .hero { min-height: 540px; padding-top: calc(var(--nav-h) + 6px); padding-bottom: 18px; }
+  .hero-title { font-size: clamp(2.7rem, 13.5vw, 4.2rem); max-width: none; }
+  .hero-sub { font-size: 0.95rem; margin-top: 14px; }
+  .hero-cta { gap: 10px; margin-top: 22px; }
+  .hero-cta .btn { flex: 1 1 auto; justify-content: center; padding: 13px 16px; font-size: 11px; }
+  .hero-meta span:first-child { display: none; }
+  .section { padding: 72px 0; }
+  .ghost-num { font-size: clamp(4rem, 24vw, 7rem); top: -40px; right: 0; -webkit-text-stroke-width: 0.75px; }
+  .ev-row { grid-template-columns: 34px 1fr; gap: 14px; padding: 20px 10px; }
+  .ev-title { font-size: 1.15rem; }
+  .ev-desc { font-size: 0.85rem; }
+  .ev-meta { gap: 5px; margin-top: 9px; }
+  .term-out { height: 260px; font-size: 12.5px; }
+  /* prevent iOS auto-zoom on focus */
+  .term-in input, .term-in .p { font-size: 16px; }
+  .toast { max-width: 92vw; white-space: normal; text-align: center; }
+  .archive-overlay { padding: 20px 16px; }
+  .archive-grid { grid-template-columns: 1fr; }
+  .footer-name { -webkit-text-stroke-width: 0.75px; }
+  .footer-meta { flex-direction: column; gap: 6px; }
+}
+
 /* ============ HERO ============ */
 .hero {
   position: relative; z-index: 10;
-  height: 100svh; min-height: 620px;
+  height: 100vh; height: 100svh; min-height: 620px;
   pointer-events: none;
   display: flex; flex-direction: column; justify-content: space-between;
   padding: calc(var(--nav-h) + 16px) 0 26px;
@@ -163,7 +214,7 @@ input { font-family: inherit; background: none; border: none; outline: none; col
   font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.28em;
   text-transform: uppercase; color: var(--dim); padding: 15px 0 15px 44px; white-space: nowrap;
 }
-.marquee-group span::after { content: '◆'; color: var(--accent); margin-left: 44px; font-size: 8px; vertical-align: 2px; }
+.marquee-group span::after { content: '//'; color: var(--accent); margin-left: 44px; font-size: 10px; vertical-align: 1px; opacity: .8; }
 .marquee.reverse .marquee-track { animation-direction: reverse; }
 @keyframes marquee { to { transform: translateX(-50%); } }
 
@@ -245,7 +296,11 @@ input { font-family: inherit; background: none; border: none; outline: none; col
   padding: 14px 22px; border: 1px solid var(--border); border-radius: 999px; color: var(--muted);
   transition: border-color 0.2s, color 0.2s;
 }
-.stack-chip i { font-style: normal; font-size: 15px; }
+.stack-chip .mk {
+  font-family: var(--font-mono); font-style: normal; font-size: 10px; font-weight: 700;
+  letter-spacing: 0.02em; color: var(--accent); background: var(--accent-dim);
+  border-radius: 6px; padding: 4px 7px; line-height: 1;
+}
 .stack-chip:hover { border-color: var(--accent); color: var(--accent); }
 
 /* ============ TERMINAL ============ */

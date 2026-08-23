@@ -186,18 +186,18 @@ export const allProjects: Project[] = [
 ];
 
 export const stackItems = [
-  { icon: '⚡', name: 'JavaScript' },
-  { icon: '🧩', name: 'TypeScript' },
-  { icon: '⚛️', name: 'React' },
-  { icon: '▲', name: 'Next.js' },
-  { icon: '🥉', name: 'Three.js / WebGL' },
-  { icon: '🟩', name: 'Node.js' },
-  { icon: '🐍', name: 'Python' },
-  { icon: '➕', name: 'C / C++' },
-  { icon: '☕', name: 'Java' },
-  { icon: '🗄️', name: 'SQL & Databases' },
-  { icon: '🤖', name: 'LLM Agents' },
-  { icon: '👁️', name: 'Computer Vision' },
+  { mk: 'JS', name: 'JavaScript' },
+  { mk: 'TS', name: 'TypeScript' },
+  { mk: 'Re', name: 'React' },
+  { mk: 'Nx', name: 'Next.js' },
+  { mk: '3D', name: 'Three.js / WebGL' },
+  { mk: 'Nd', name: 'Node.js' },
+  { mk: 'Py', name: 'Python' },
+  { mk: 'C+', name: 'C / C++' },
+  { mk: 'Jv', name: 'Java' },
+  { mk: 'DB', name: 'SQL & Databases' },
+  { mk: 'AI', name: 'LLM Agents' },
+  { mk: 'CV', name: 'Computer Vision' },
 ];
 
 export const marqueeTop = [

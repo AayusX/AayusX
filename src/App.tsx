@@ -80,7 +80,7 @@ function Archive({ onClose }: { onClose: () => void }) {
     >
       <div className="archive-head">
         <h2>THE FULL ARCHIVE.</h2>
-        <button className="archive-close" onClick={onClose} aria-label="Close archive">✕</button>
+        <button className="archive-close" onClick={onClose} aria-label="Close archive">&times;</button>
       </div>
       <div className="archive-grid">
         {allProjects.map((p, idx) => (

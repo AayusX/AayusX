@@ -294,7 +294,7 @@ export default function PhysicsCanvas({ onReady }: { onReady: () => void }) {
     <div className="canvas-layer">
       <Canvas
         shadows
-        dpr={[1, 1.75]}
+        dpr={[1, 1.5]}
         camera={{ position: [0, 0, 10], fov: 50 }}
         onCreated={() => onReady()}
         style={{ touchAction: 'pan-y' }}

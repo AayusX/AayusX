@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import type { ReactNode } from 'react';
-import { motion, useScroll, useSpring, useTransform, useVelocity } from 'framer-motion';
+import { motion, useScroll, useSpring, useTransform, useVelocity, AnimatePresence } from 'framer-motion';
 import { allProjects, marqueeTop, marqueeBottom, stackItems, STATUS_LABELS } from '../projectsData';
 import Terminal from './Terminal';
 
@@ -135,29 +135,98 @@ export function scrollToId(id: string) {
 
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
+  const [open, setOpen] = useState(false);
+
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
+  useEffect(() => {
+    document.body.style.overflow = open ? 'hidden' : '';
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [open]);
+
+  const go = (id: string) => {
+    setOpen(false);
+    /* wait for overlay close before scrolling */
+    setTimeout(() => scrollToId(id), open ? 60 : 0);
+  };
+
+  const items: Array<[string, string, string]> = [
+    ['01', 'manifesto', 'Manifesto'],
+    ['02', 'evidence', 'Evidence'],
+    ['03', 'stack', 'Stack'],
+    ['04', 'terminal', 'Terminal'],
+    ['05', 'contact', 'Contact'],
+  ];
+
   return (
-    <nav className={`nav${scrolled ? ' scrolled' : ''}`}>
-      <div className="nav-inner">
-        <a className="nav-logo" href="#top" onClick={(e) => { e.preventDefault(); scrollToId('top'); }} data-cursor="TOP">
-          <i />
-          AAYUSX<span style={{ color: 'var(--accent)' }}>.DEV</span>
-        </a>
-        <ul className="nav-links">
-          <li><button onClick={() => scrollToId('manifesto')}><Scramble text="Manifesto" /></button></li>
-          <li><button onClick={() => scrollToId('evidence')}><Scramble text="Evidence" /></button></li>
-          <li><button onClick={() => scrollToId('stack')}><Scramble text="Stack" /></button></li>
-          <li><button onClick={() => scrollToId('terminal')}><Scramble text="Terminal" /></button></li>
-          <li><button data-cursor="GO" onClick={() => scrollToId('contact')}><Scramble text="Contact" /></button></li>
-        </ul>
-        <div className="chip-status"><i />OPEN TO WORK</div>
-      </div>
-    </nav>
+    <>
+      <nav className={`nav${scrolled ? ' scrolled' : ''}`}>
+        <div className="nav-inner">
+          <a className="nav-logo" href="#top" onClick={(e) => { e.preventDefault(); go('top'); }} data-cursor="TOP">
+            <i />
+            AAYUSX<span style={{ color: 'var(--accent)' }}>.DEV</span>
+          </a>
+          <ul className="nav-links">
+            {items.map(([, id, label]) => (
+              <li key={id}><button onClick={() => go(id)}><Scramble text={label} /></button></li>
+            ))}
+          </ul>
+          <div className="chip-status"><i />OPEN TO WORK</div>
+          <button
+            className={`burger${open ? ' open' : ''}`}
+            aria-label={open ? 'Close menu' : 'Open menu'}
+            aria-expanded={open}
+            onClick={() => setOpen((o) => !o)}
+          >
+            <span />
+            <span />
+          </button>
+        </div>
+      </nav>
+
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            className="menu-overlay"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.25 }}
+          >
+            {items.map(([n, id, label], i) => (
+              <motion.button
+                key={id}
+                className="menu-link"
+                data-cursor="GO"
+                initial={{ opacity: 0, x: -28 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0 }}
+                transition={{ delay: 0.05 + i * 0.06, duration: 0.4, ease: EASE }}
+                onClick={() => go(id)}
+              >
+                <em>{n}</em>
+                {label}
+              </motion.button>
+            ))}
+            <motion.div
+              className="menu-foot mono"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ delay: 0.4 }}
+            >
+              technology457t@gmail.com — KATHMANDU, NP
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 }
 
@@ -365,7 +434,7 @@ export function StackWall() {
   const row = (items: typeof stackItems) =>
     items.map((s, i) => (
       <span key={i} className="stack-chip">
-        <i aria-hidden="true">{s.icon}</i>
+        <i className="mk" aria-hidden="true">{s.mk}</i>
         {s.name}
       </span>
     ));
