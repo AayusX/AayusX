@@ -117,33 +117,21 @@ function ProceduralEnv() {
    PHYSICS WORLD
    ============================================================ */
 
-function Pointer() {
-  const ref = useRef<any>(null);
-  useFrame(({ mouse, viewport }) => {
-    if (ref.current) {
-      ref.current.setNextKinematicTranslation({
-        x: (mouse.x * viewport.width) / 2,
-        y: (mouse.y * viewport.height) / 2,
-        z: 0,
-      });
-    }
-  });
-  return (
-    <RigidBody position={[0, 0, 0]} type="kinematicPosition" colliders="ball" ref={ref}>
-      <mesh>
-        <sphereGeometry args={[0.38, 32, 32]} />
-        <meshStandardMaterial color="#c6ff3d" emissive="#c6ff3d" emissiveIntensity={1.4} roughness={0.25} />
-      </mesh>
-    </RigidBody>
-  );
-}
-
-function ProjectBlock({ title, color, position, link }: any) {
+function ProjectBlock({ title, color, link, slot }: any) {
   const rb = useRef<any>(null);
   const [hovered, setHover] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
   const dragStartRef = useRef({ x: 0, y: 0 });
   const label = useMemo(() => createLabelTexture(title, color), [title, color]);
+  const { viewport } = useThree();
+
+  /* calm shelf composition: rest on the floor in an even row */
+  const size = THREE.MathUtils.clamp(viewport.width * 0.17, 1.15, 2);
+  const half = size / 2;
+  const floorY = -viewport.height / 2 + FLOOR_TOP_OFFSET;
+  const spacing = Math.min(viewport.width * 0.27, 2.7);
+  const spawnX = (slot - 1) * spacing;
+  const spawnY = floorY + half + 0.02;
 
   useFrame(({ mouse, viewport }) => {
     if (isDragging && rb.current) {
@@ -157,22 +145,22 @@ function ProjectBlock({ title, color, position, link }: any) {
       rb.current.setAngularDamping(5);
       rb.current.setLinearDamping(2);
     } else if (rb.current) {
-      rb.current.setAngularDamping(0.5);
-      rb.current.setLinearDamping(0.5);
+      rb.current.setAngularDamping(0.8);
+      rb.current.setLinearDamping(0.8);
     }
   });
 
   return (
     /* colliders={false} + explicit CuboidCollider so label planes don't spawn extra colliders */
     <RigidBody
-      position={position}
+      position={[spawnX, spawnY, 0]}
       colliders={false}
-      restitution={0.7}
-      friction={0.5}
+      restitution={0.45}
+      friction={0.55}
       ref={rb}
       enabledRotations={[false, false, true]}
     >
-      <CuboidCollider args={[1, 1, 1]} restitution={0.7} friction={0.5} />
+      <CuboidCollider args={[half, half, half]} restitution={0.45} friction={0.55} />
       <mesh
         onPointerOver={() => {
           setHover(true);
@@ -200,7 +188,7 @@ function ProjectBlock({ title, color, position, link }: any) {
         }}
         castShadow
       >
-        <boxGeometry args={[2, 2, 2]} />
+        <boxGeometry args={[size, size, size]} />
         <meshStandardMaterial
           color="#141419"
           roughness={0.28}
@@ -210,12 +198,12 @@ function ProjectBlock({ title, color, position, link }: any) {
       </mesh>
 
       {/* labels on front + back faces */}
-      <mesh position={[0, 0, 1.02]}>
-        <planeGeometry args={[1.82, 1.82]} />
+      <mesh position={[0, 0, half + 0.02]}>
+        <planeGeometry args={[size * 0.91, size * 0.91]} />
         <meshBasicMaterial map={label} transparent />
       </mesh>
-      <mesh position={[0, 0, -1.02]} rotation={[0, Math.PI, 0]}>
-        <planeGeometry args={[1.82, 1.82]} />
+      <mesh position={[0, 0, -(half + 0.02)]} rotation={[0, Math.PI, 0]}>
+        <planeGeometry args={[size * 0.91, size * 0.91]} />
         <meshBasicMaterial map={label} transparent />
       </mesh>
     </RigidBody>
@@ -275,9 +263,8 @@ function Scene() {
       <pointLight position={[-10, -6, -8]} intensity={40} distance={45} decay={2} color="#c6ff3d" />
 
       <Physics gravity={[0, -9.81, 0]}>
-        <Pointer />
-        {featuredProjects.map((p) => (
-          <ProjectBlock key={p.id} {...p} />
+        {featuredProjects.map((p, i) => (
+          <ProjectBlock key={p.id} {...p} slot={i} />
         ))}
         <InvisibleBounds />
       </Physics>
