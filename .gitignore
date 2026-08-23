@@ -1,0 +1,14 @@
+node_modules
+dist
+dist-ssr
+*.local
+.opencode/
+
+logs
+*.log
+npm-debug.log*
+
+.DS_Store
+.vscode/*
+!.vscode/settings.json
+.idea

@@ -1,0 +1,34 @@
+# Aayush Bhandari (AayusX)
+
+> Freelance full-stack developer and AI engineer based in Kathmandu, Nepal. Builds web applications with React, Next.js and Three.js, Android apps, AI products with Python and LLM agents, and school/business management systems. Open to internships and co-founder roles.
+
+Site: https://aayusx.dev/
+GitHub: https://github.com/AayusX
+Contact: technology457t@gmail.com | WhatsApp +977 9746944429
+
+## Identity
+
+- Real name: Aayush Bhandari
+- Online handle: AayusX
+- Location: Kathmandu, Nepal (remote worldwide)
+- Languages: English, Nepali
+
+## Services
+
+- Website & web app development (React, Next.js, Three.js, WebGL)
+- Android app development
+- AI engineering: LLM agents, computer vision, Python automation
+- School & business management systems
+- C++ systems programming and security tooling
+
+## Selected projects
+
+- [AayushAI Core](https://github.com/AayusX/AayushAI-Core): Python AI automation core
+- [FailFirst Engine](https://github.com/AayusX-Pro/FailFirst): C++/Raylib education engine
+- [Apex Trading](https://aayusx.github.io/Apex-Trader--The-trading-demo-app-for-web-android-and-desktop): trading demo for web, Android and desktop
+- [Gesture Solar](https://aayusxat7.github.io/Gesture-Solar): gesture-controlled solar visualization
+- [Face Detector](https://aayusx.github.io/Face-Detector): browser face detection
+- [Loan Management System](https://github.com/AayusX/loan-management-system): finance full-stack system
+- [Mother School](https://github.com/AayusX/Mother-school): school management platform
+
+Full project archive is listed on the site.
