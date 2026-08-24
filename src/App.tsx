@@ -9,6 +9,7 @@ import {
   Marquee,
   Manifesto,
   Evidence,
+  Ventures,
   StackWall,
   TerminalSection,
   Contact,
@@ -224,6 +225,7 @@ export default function App() {
       <Marquee items={marqueeTop} dur="36s" />
       <Manifesto />
       <Evidence onArchive={() => setShowAll(true)} />
+      <Ventures />
       <StackWall />
       <TerminalSection />
       <Contact onToast={showToast} />

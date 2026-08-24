@@ -185,6 +185,25 @@ export const allProjects: Project[] = [
   },
 ];
 
+export const ventures = [
+  {
+    org: 'YUGYA',
+    role: 'Co-Founder',
+    tag: 'STARTUP · YUGYA.COM',
+    link: 'https://yugya.com',
+    cta: 'VISIT YUGYA',
+    desc: 'Hosting, domain management, and website & app development for businesses small to big. Three founders, one mission: give every business a serious online presence.',
+  },
+  {
+    org: 'ICT CLUB',
+    role: 'President',
+    tag: 'LEADERSHIP · TECHNICAL STREAM',
+    link: '',
+    cta: '',
+    desc: 'Leading the ICT Club (Technical Stream) of my college — running events, workshops and building the next generation of Nepali developers.',
+  },
+];
+
 export const stackItems = [
   { mk: 'JS', name: 'JavaScript' },
   { mk: 'TS', name: 'TypeScript' },

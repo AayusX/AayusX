@@ -1,6 +1,6 @@
 # Aayush Bhandari (AayusX)
 
-> Freelance full-stack developer and AI engineer based in Kathmandu, Nepal. Builds web applications with React, Next.js and Three.js, Android apps, AI products with Python and LLM agents, and school/business management systems. Open to internships and co-founder roles.
+> Co-founder of Yugya (yugya.com) and full-stack developer & AI engineer based in Kathmandu, Nepal. Builds web applications with React, Next.js and Three.js, Android apps, AI products with Python and LLM agents, and school/business management systems. Open to internships and co-founder roles.
 
 Site: https://aayusx.dev/
 GitHub: https://github.com/AayusX
@@ -12,6 +12,11 @@ Contact: technology457t@gmail.com | WhatsApp +977 9746944429
 - Online handle: AayusX
 - Location: Kathmandu, Nepal (remote worldwide)
 - Languages: English, Nepali
+
+## Roles
+
+- Co-founder of [Yugya](https://yugya.com): hosting, domain management, website & app development for small-to-large businesses
+- President, ICT Club (Technical Stream), his college in Kathmandu
 
 ## Services
 

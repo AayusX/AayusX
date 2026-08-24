@@ -35,6 +35,7 @@ function buildResponse(raw: string): Line[] {
       return [
         { cls: 'ok', node: 'Aayush Bhandari (AayusX) — full-stack developer & AI engineer.' },
         { cls: 'o', node: 'Kathmandu, Nepal. Self-taught. Ships systems, not screenshots.' },
+        { cls: 'o', node: 'Co-Founder — Yugya (yugya.com) · President — ICT Club, Technical Stream.' },
       ];
     case 'projects':
       return allProjects.map((p, i) => ({

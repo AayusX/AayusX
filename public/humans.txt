@@ -2,12 +2,13 @@
 
 Team:
   Aayush Bhandari (AayusX) -- design, code, everything
+  Roles: Co-founder Yugya (yugya.com) / President ICT Club (Technical Stream)
   Location: Kathmandu, Nepal
   Contact: technology457t@gmail.com
   GitHub: github.com/AayusX
 
 Site:
-  Last update: 2026/08/22
+  Last update: 2026/08/24
   Standards: HTML5, CSS3, TypeScript, WebGL
   Components: React, Three.js, Rapier Physics, Vite
   Hosting: GitHub Pages (aayusx.dev)

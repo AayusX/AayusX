@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import type { ReactNode } from 'react';
 import { motion, useScroll, useSpring, useTransform, useVelocity, AnimatePresence } from 'framer-motion';
-import { allProjects, marqueeTop, marqueeBottom, stackItems, STATUS_LABELS } from '../projectsData';
+import { allProjects, marqueeTop, marqueeBottom, stackItems, ventures, STATUS_LABELS } from '../projectsData';
 import Terminal from './Terminal';
 
 const EASE = [0.2, 0, 0, 1] as const;
@@ -283,10 +283,17 @@ export function Hero() {
             ))}
           </h1>
 
-          <motion.p className="hero-sub" initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.65, duration: 0.7, ease: EASE }}>
-            I build systems that think and pages you can throw across the room.
-            The cubes behind this text are live physics — go ahead, grab one.
-          </motion.p>
+        <motion.p className="hero-sub" initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.65, duration: 0.7, ease: EASE }}>
+          I build systems that think and pages you can throw across the room.
+          The cubes behind this text are live physics — go ahead, grab one.
+        </motion.p>
+
+        <motion.div className="hero-roles" initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.74, duration: 0.6, ease: EASE }}>
+          <span className="tag">PRESIDENT · ICT CLUB</span>
+          <a className="tag tag-link" href="https://yugya.com" target="_blank" rel="noopener noreferrer" data-cursor="VISIT">
+            CO-FOUNDER · YUGYA.COM ↗
+          </a>
+        </motion.div>
 
           <motion.div className="hero-cta interactive" initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.8, duration: 0.7, ease: EASE }}>
             <Magnetic>
@@ -428,6 +435,48 @@ export function Evidence({ onArchive }: { onArchive: () => void }) {
   );
 }
 
+/* ---------- VENTURES ---------- */
+
+export function Ventures() {
+  return (
+    <section id="ventures" className="section">
+      <div className="container">
+        <div className="section-head" style={{ position: 'relative', display: 'block' }}>
+          <GhostNum n="03" />
+          <Reveal><p className="section-code">// 03 — ROLES</p></Reveal>
+          <Reveal delay={0.05}><h2 className="section-title">BEYOND<br />the <span className="ti">solo act.</span></h2></Reveal>
+          <Reveal delay={0.1}><p className="section-note" style={{ marginTop: 14 }}>BUILDING IN PUBLIC, LEADING IN PERSON.</p></Reveal>
+        </div>
+
+        <div className="ventures-grid">
+          {ventures.map((v, i) => (
+            <Reveal key={v.org} delay={0.08 * i} y={26}>
+              <article className="venture-card">
+                <span className="ghost-word" aria-hidden="true">{v.org.split(' ')[0]}</span>
+                <p className="mono venture-tag">{v.tag}</p>
+                <h3 className="venture-org">
+                  {v.org.toLowerCase().replace(' ', '') === 'yugya' ? (
+                    <span>YUGYA<span className="ti">.com</span></span>
+                  ) : (
+                    <span>{v.org}</span>
+                  )}
+                </h3>
+                <p className="venture-role ti">{v.role}</p>
+                <p className="venture-desc">{v.desc}</p>
+                {v.link && (
+                  <a className="btn btn-ghost venture-btn" href={v.link} target="_blank" rel="noopener noreferrer" data-cursor="VISIT">
+                    {v.cta} ↗
+                  </a>
+                )}
+              </article>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 /* ---------- STACK WALL ---------- */
 
 export function StackWall() {
@@ -443,8 +492,8 @@ export function StackWall() {
     <section id="stack" className="section" style={{ overflow: 'hidden' }}>
       <div className="container" style={{ position: 'relative' }}>
         <div className="section-head" style={{ position: 'relative', display: 'block', marginBottom: 44 }}>
-          <GhostNum n="03" />
-          <Reveal><p className="section-code">// 03 — STACK WALL</p></Reveal>
+          <GhostNum n="04" />
+          <Reveal><p className="section-code">// 04 — STACK WALL</p></Reveal>
           <Reveal delay={0.05}><h2 className="section-title">TOOLS OF<br />the <span className="ti">trade.</span></h2></Reveal>
           <Reveal delay={0.1}><p className="section-note" style={{ marginTop: 14 }}>PICKED PER PROBLEM. NEVER PER HYPE CYCLE.</p></Reveal>
         </div>
@@ -474,8 +523,8 @@ export function TerminalSection() {
     <section id="terminal" className="section">
       <div className="container">
         <div className="section-head" style={{ position: 'relative', display: 'block' }}>
-          <GhostNum n="04" />
-          <Reveal><p className="section-code">// 04 — DIRECT ACCESS</p></Reveal>
+          <GhostNum n="05" />
+          <Reveal><p className="section-code">// 05 — DIRECT ACCESS</p></Reveal>
           <Reveal delay={0.05}><h2 className="section-title">TALK TO<br />the <span className="ti">machine.</span></h2></Reveal>
           <Reveal delay={0.1}><p className="section-note" style={{ marginTop: 14 }}>A REAL SHELL. TRY 'WHOAMI', 'PROJECTS', OR 'SUDO HIRE-AAYUSH'.</p></Reveal>
         </div>
@@ -505,8 +554,8 @@ export function Contact({ onToast }: { onToast: (msg: string) => void }) {
   return (
     <section id="contact" className="section">
       <div className="container" style={{ position: 'relative' }}>
-        <GhostNum n="05" />
-        <Reveal><p className="section-code">// 05 — TRANSMISSION</p></Reveal>
+        <GhostNum n="06" />
+        <Reveal><p className="section-code">// 06 — TRANSMISSION</p></Reveal>
         <h2 className="contact-big" style={{ marginTop: 18 }}>
           {[
             ['GOT', 'A', 'HARD'],

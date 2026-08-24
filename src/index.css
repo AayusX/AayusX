@@ -283,6 +283,45 @@ input { font-family: inherit; background: none; border: none; outline: none; col
 .ev-row:hover .ev-title, .ev-row:hover .ev-desc, .ev-row:hover .ev-idx, .ev-row:hover .ev-arrow { color: #0a0a0b; }
 .ev-row:hover .tag { color: #0a0a0b; border-color: rgba(10, 10, 11, 0.45); }
 .ev-row:hover [class^="st-"] { color: #0a0a0b; border-color: rgba(10, 10, 11, 0.5); background: transparent; }
+
+/* hero role chips + ventures */
+.hero-roles { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 16px; pointer-events: auto; }
+.tag-link { transition: border-color 0.2s, color 0.2s; }
+.tag-link:hover { border-color: var(--accent); color: var(--accent); }
+
+.ventures-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));
+  gap: 18px; margin-top: 54px;
+}
+.venture-card {
+  position: relative; overflow: hidden;
+  background: var(--bg2); border: 1px solid var(--border); border-radius: 14px;
+  padding: 34px 30px;
+  transition: transform 0.35s cubic-bezier(0.2, 0, 0, 1), border-color 0.3s;
+}
+.venture-card:hover { transform: translateY(-4px); border-color: rgba(198, 255, 61, 0.45); }
+.venture-tag { font-size: 10px; letter-spacing: 0.16em; color: var(--accent); }
+.venture-org {
+  font-family: var(--font-display); font-weight: 800; letter-spacing: -0.02em;
+  font-size: clamp(1.9rem, 3.4vw, 2.6rem); margin-top: 14px; line-height: 1;
+}
+.venture-role {
+  font-family: var(--font-serif); font-style: italic; font-size: 1.25rem;
+  color: var(--accent); margin-top: 6px;
+}
+.venture-desc { color: var(--muted); font-size: 0.95rem; line-height: 1.6; margin-top: 14px; max-width: 46ch; }
+.venture-btn { margin-top: 20px; display: inline-flex; position: relative; z-index: 1; }
+.ghost-word {
+  position: absolute; right: -8px; bottom: -18px; z-index: 0;
+  font-family: var(--font-display); font-weight: 800;
+  font-size: clamp(4.5rem, 9vw, 7.5rem); line-height: 1;
+  color: transparent; -webkit-text-stroke: 1px rgba(255, 255, 255, 0.05);
+  user-select: none; pointer-events: none; white-space: nowrap;
+}
+@media (max-width: 760px) {
+  .ventures-grid { gap: 14px; margin-top: 40px; }
+  .venture-card { padding: 26px 22px; }
+}
 .ev-row:hover .ev-arrow { transform: translate(6px, -6px); }
 .ev-foot { display: flex; justify-content: center; padding-top: 30px; }
 
