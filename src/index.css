@@ -172,12 +172,16 @@ input { font-family: inherit; background: none; border: none; outline: none; col
 .hero-contact a:hover { color: var(--accent); }
 .hero-title {
   font-family: var(--font-display); font-weight: 800;
-  font-size: clamp(2.4rem, 6.6vw, 5.4rem); line-height: 0.98;
-  letter-spacing: -0.03em; text-transform: uppercase; max-width: 13ch;
+  font-size: clamp(2.6rem, 8.4vw, 6.4rem); line-height: 0.98;
+  letter-spacing: -0.03em; text-transform: uppercase;
 }
 .hero-title em { font-style: normal; color: var(--accent); }
-.hero-sub { color: var(--muted); max-width: 470px; margin-top: 18px; font-size: clamp(0.95rem, 1.4vw, 1.08rem); }
-.hero-cta { display: flex; gap: 14px; margin-top: 28px; flex-wrap: wrap; }
+.hero-mid {
+  display: flex; flex-direction: column; align-items: center; text-align: center;
+  width: 100%; max-width: 1280px; margin: 20px auto; padding: 0 24px;
+}
+.hero-sub { color: var(--muted); max-width: 42ch; margin: 18px auto 0; font-size: clamp(0.95rem, 1.3vw, 1.05rem); }
+.hero-cta { display: flex; gap: 14px; margin-top: 28px; flex-wrap: wrap; justify-content: center; }
 .hero-bot { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; }
 .hero-hint { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; color: var(--dim); }
 .scroll-cue { width: 22px; height: 34px; border: 1px solid var(--border); border-radius: 99px; display: flex; justify-content: center; padding-top: 6px; }
@@ -285,7 +289,7 @@ input { font-family: inherit; background: none; border: none; outline: none; col
 .ev-row:hover [class^="st-"] { color: #0a0a0b; border-color: rgba(10, 10, 11, 0.5); background: transparent; }
 
 /* hero role chips + ventures */
-.hero-roles { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 16px; pointer-events: auto; }
+.hero-roles { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 16px; pointer-events: auto; justify-content: center; }
 .tag-link { transition: border-color 0.2s, color 0.2s; }
 .tag-link:hover { border-color: var(--accent); color: var(--accent); }
 

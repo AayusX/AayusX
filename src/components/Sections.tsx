@@ -284,8 +284,7 @@ export function Hero() {
           </h1>
 
         <motion.p className="hero-sub" initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.65, duration: 0.7, ease: EASE }}>
-          I build systems that think and pages you can throw across the room.
-          The cubes behind this text are live physics — go ahead, grab one.
+          I build things you can throw across the room.
         </motion.p>
 
         <motion.div className="hero-roles" initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.74, duration: 0.6, ease: EASE }}>
