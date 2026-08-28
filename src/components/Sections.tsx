@@ -160,9 +160,10 @@ export function Nav() {
   const items: Array<[string, string, string]> = [
     ['01', 'manifesto', 'Manifesto'],
     ['02', 'evidence', 'Evidence'],
-    ['03', 'stack', 'Stack'],
-    ['04', 'terminal', 'Terminal'],
-    ['05', 'contact', 'Contact'],
+    ['03', 'ventures', 'Ventures'],
+    ['04', 'stack', 'Stack'],
+    ['05', 'terminal', 'Terminal'],
+    ['06', 'contact', 'Contact'],
   ];
 
   return (
