@@ -478,19 +478,6 @@ export function Ventures() {
               </article>
             </Reveal>
           ))}
-
-          <Reveal className="bento-stat" delay={0.24} y={26}>
-            <div className="venture-card stat">
-              <b className="stat-num">18</b>
-              <span className="mono">OPEN-SOURCE<br />PROJECTS</span>
-            </div>
-          </Reveal>
-          <Reveal className="bento-stat" delay={0.3} y={26}>
-            <div className="venture-card stat">
-              <b className="stat-num">3</b>
-              <span className="mono">CO-FOUNDERS<br />AT YUGYA</span>
-            </div>
-          </Reveal>
         </div>
       </div>
     </section>

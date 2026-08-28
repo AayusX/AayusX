@@ -154,7 +154,15 @@ input { font-family: inherit; background: none; border: none; outline: none; col
   .archive-grid { grid-template-columns: 1fr; }
   .footer-name { -webkit-text-stroke-width: 0.75px; }
   .footer-meta { flex-direction: column; gap: 6px; }
+  /* mobile ux polish */
+  .hero { overflow: hidden; min-height: 560px; justify-content: center; gap: 22px; }
+  .hero-bot { display: none; }
+  .canvas-layer { pointer-events: none; }
+  .menu-link { padding: 18px 0; min-height: 56px; align-items: center; }
+  .footer-col a, .footer-col button { padding: 9px 0; width: 100%; }
+  .contact-big { font-size: clamp(1.8rem, 8vw, 3rem); }
 }
+a, button, .ev-row, .venture-card { -webkit-tap-highlight-color: transparent; }
 
 /* ============ HERO ============ */
 .hero {
@@ -317,8 +325,7 @@ input { font-family: inherit; background: none; border: none; outline: none; col
   grid-auto-rows: 1fr; gap: 18px; margin-top: 54px;
 }
 .bento-main { grid-column: span 2; grid-row: span 2; }
-.bento-side { grid-column: span 1; grid-row: span 1; }
-.bento-stat { grid-column: span 1; grid-row: span 1; }
+.bento-side { grid-column: span 1; grid-row: span 2; }
 .venture-card {
   position: relative; overflow: hidden; height: 100%;
   background: var(--bg2); border: 1px solid var(--border); border-radius: 14px;
@@ -340,12 +347,6 @@ input { font-family: inherit; background: none; border: none; outline: none; col
 }
 .venture-desc { color: var(--muted); font-size: 0.95rem; line-height: 1.6; margin-top: 14px; max-width: 46ch; }
 .venture-btn { margin-top: auto; padding-top: 22px; display: inline-flex; position: relative; z-index: 1; align-self: flex-start; }
-.venture-card.stat { align-items: flex-start; justify-content: center; gap: 10px; }
-.stat-num {
-  font-family: var(--font-display); font-weight: 800; font-size: clamp(2.6rem, 5vw, 3.4rem);
-  line-height: 0.9; color: var(--accent); letter-spacing: -0.02em;
-}
-.venture-card.stat .mono { font-size: 10px; letter-spacing: 0.16em; color: var(--muted); line-height: 1.5; }
 .ghost-word {
   position: absolute; right: -8px; bottom: -18px; z-index: 0;
   font-family: var(--font-display); font-weight: 800;
@@ -356,11 +357,11 @@ input { font-family: inherit; background: none; border: none; outline: none; col
 @media (max-width: 900px) {
   .ventures-grid { grid-template-columns: 1fr 1fr; }
   .bento-main { grid-column: span 2; grid-row: auto; }
-  .bento-side, .bento-stat { grid-column: span 1; }
+  .bento-side { grid-column: span 1; grid-row: auto; }
 }
 @media (max-width: 760px) {
   .ventures-grid { grid-template-columns: 1fr; gap: 14px; margin-top: 40px; }
-  .bento-main, .bento-side, .bento-stat { grid-column: span 1; grid-row: auto; }
+  .bento-main, .bento-side { grid-column: span 1; grid-row: auto; }
   .venture-card, .venture-card.is-main { padding: 26px 22px; }
 }
 .ev-row:hover .ev-arrow { transform: translate(6px, -6px); }
