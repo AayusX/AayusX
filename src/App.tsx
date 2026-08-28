@@ -179,6 +179,19 @@ export default function App() {
     return () => window.clearTimeout(to);
   }, [toast]);
 
+  /* pause the physics canvas when the hero scrolls out of view (perf + a11y) */
+  const [heroInView, setHeroInView] = useState(true);
+  useEffect(() => {
+    const el = document.getElementById('top');
+    if (!el) return;
+    const io = new IntersectionObserver(
+      ([e]) => setHeroInView(e.isIntersecting),
+      { threshold: 0 }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, [booted]);
+
   /* konami easter egg — acid mode */
   useEffect(() => {
     let seq: string[] = [];
@@ -208,7 +221,7 @@ export default function App() {
 
       {/* physics playground lives behind everything — lazy chunk */}
       <Suspense fallback={null}>
-        <PhysicsCanvas onReady={() => {}} />
+        <PhysicsCanvas onReady={() => {}} active={heroInView} />
       </Suspense>
 
       {/* boot gate */}

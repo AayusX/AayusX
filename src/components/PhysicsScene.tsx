@@ -276,12 +276,13 @@ function Scene() {
 
 /* ============================================================ */
 
-export default function PhysicsCanvas({ onReady }: { onReady: () => void }) {
+export default function PhysicsCanvas({ onReady, active = true }: { onReady: () => void; active?: boolean }) {
   return (
     <div className="canvas-layer">
       <Canvas
         shadows
         dpr={[1, 1.5]}
+        frameloop={active ? 'always' : 'never'}
         camera={{ position: [0, 0, 10], fov: 50 }}
         onCreated={() => onReady()}
         style={{ touchAction: 'pan-y' }}

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import type { ReactNode } from 'react';
-import { motion, useScroll, useSpring, useTransform, useVelocity, AnimatePresence } from 'framer-motion';
+import { motion, useScroll, useSpring, useTransform, useVelocity, useReducedMotion, AnimatePresence } from 'framer-motion';
 import { allProjects, marqueeTop, marqueeBottom, stackItems, ventures, STATUS_LABELS } from '../projectsData';
 import Terminal from './Terminal';
 
@@ -8,9 +8,10 @@ const EASE = [0.2, 0, 0, 1] as const;
 
 /* ---------- helpers ---------- */
 
-export function Reveal({ children, delay = 0, y = 30 }: { children: ReactNode; delay?: number; y?: number }) {
+export function Reveal({ children, delay = 0, y = 30, className }: { children: ReactNode; delay?: number; y?: number; className?: string }) {
   return (
     <motion.div
+      className={className}
       initial={{ opacity: 0, y }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-60px' }}
@@ -235,15 +236,17 @@ export function Nav() {
 export function Hero() {
   const time = useKathmanduTime();
   const ref = useRef<HTMLElement>(null);
+  const reduce = useReducedMotion();
 
   /* cinematic exit — content lifts, dims and shrinks as you leave */
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] });
-  const y = useTransform(scrollYProgress, [0, 1], [0, -140]);
-  const opacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.95]);
+  const y = useTransform(scrollYProgress, [0, 1], [0, reduce ? 0 : -140]);
+  const opacity = useTransform(scrollYProgress, [0, 0.7], [1, reduce ? 1 : 0]);
+  const scale = useTransform(scrollYProgress, [0, 1], [1, reduce ? 1 : 0.95]);
 
   return (
     <section className="hero" id="top" ref={ref}>
+      <div className="hero-glow" aria-hidden="true" />
       <motion.div style={{ y, opacity, scale }} className="hero-exit">
         <motion.div className="hero-row hero-top" initial={{ opacity: 0, y: -14 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15, duration: 0.6, ease: EASE }}>
           <div className="hero-meta">
@@ -405,18 +408,18 @@ export function Evidence({ onArchive }: { onArchive: () => void }) {
           {allProjects.slice(0, PREVIEW).map((p, i) => (
             <Reveal key={p.title} delay={Math.min(i * 0.04, 0.2)} y={18}>
               <a className="ev-row" href={p.link} target="_blank" rel="noopener noreferrer" data-cursor="VIEW">
-                <span className="ev-idx">{String(i + 1).padStart(2, '0')}</span>
-                <span>
-                  <span className="ev-title">{p.title}</span>
-                  <span className="ev-desc" style={{ display: 'block' }}>{p.desc}</span>
-                  <span className="ev-meta">
-                    {p.tags.map((t) => (
-                      <span key={t} className="tag">{t}</span>
-                    ))}
-                    <span className={`ev-status st-${p.status}`}>{STATUS_LABELS[p.status]}</span>
-                  </span>
+                <span className="ev-top">
+                  <span className="ev-idx">{String(i + 1).padStart(2, '0')}</span>
+                  <span className={`ev-status st-${p.status}`}>{STATUS_LABELS[p.status]}</span>
+                  <span className="ev-arrow">↗</span>
                 </span>
-                <span className="ev-arrow">↗</span>
+                <span className="ev-title">{p.title}</span>
+                <span className="ev-desc">{p.desc}</span>
+                <span className="ev-meta">
+                  {p.tags.map((t) => (
+                    <span key={t} className="tag">{t}</span>
+                  ))}
+                </span>
               </a>
             </Reveal>
           ))}
@@ -449,8 +452,13 @@ export function Ventures() {
 
         <div className="ventures-grid">
           {ventures.map((v, i) => (
-            <Reveal key={v.org} delay={0.08 * i} y={26}>
-              <article className="venture-card">
+            <Reveal
+              key={v.org}
+              delay={0.08 * i}
+              y={26}
+              className={i === 0 ? 'bento-main' : 'bento-side'}
+            >
+              <article className={`venture-card ${i === 0 ? 'is-main' : 'is-side'}`}>
                 <span className="ghost-word" aria-hidden="true">{v.org.split(' ')[0]}</span>
                 <p className="mono venture-tag">{v.tag}</p>
                 <h3 className="venture-org">
@@ -470,6 +478,19 @@ export function Ventures() {
               </article>
             </Reveal>
           ))}
+
+          <Reveal className="bento-stat" delay={0.24} y={26}>
+            <div className="venture-card stat">
+              <b className="stat-num">18</b>
+              <span className="mono">OPEN-SOURCE<br />PROJECTS</span>
+            </div>
+          </Reveal>
+          <Reveal className="bento-stat" delay={0.3} y={26}>
+            <div className="venture-card stat">
+              <b className="stat-num">3</b>
+              <span className="mono">CO-FOUNDERS<br />AT YUGYA</span>
+            </div>
+          </Reveal>
         </div>
       </div>
     </section>
@@ -616,9 +637,20 @@ export function Contact({ onToast }: { onToast: (msg: string) => void }) {
 /* ---------- FOOTER ---------- */
 
 export function Footer() {
+  const year = new Date().getFullYear();
   return (
     <footer className="footer">
       <div className="container">
+        <div className="footer-top">
+          <div>
+            <p className="mono footer-kicker">// END OF LINE</p>
+            <h3 className="footer-cta">GOT A <span className="ti">hard problem?</span><br />LET&rsquo;S BUILD IT.</h3>
+          </div>
+          <a className="btn btn-primary footer-mail" href="mailto:technology457t@gmail.com" data-cursor="MAIL">
+            technology457t@gmail.com ↗
+          </a>
+        </div>
+
         <motion.div
           className="footer-name"
           aria-hidden="true"
@@ -629,11 +661,33 @@ export function Footer() {
         >
           AAYUSX
         </motion.div>
+
+        <div className="footer-cols">
+          <div className="footer-col">
+            <p className="mono footer-h">NAVIGATE</p>
+            <button onClick={() => scrollToId('manifesto')}>Manifesto</button>
+            <button onClick={() => scrollToId('evidence')}>Evidence</button>
+            <button onClick={() => scrollToId('stack')}>Stack</button>
+            <button onClick={() => scrollToId('terminal')}>Terminal</button>
+          </div>
+          <div className="footer-col">
+            <p className="mono footer-h">CONNECT</p>
+            <a href="mailto:technology457t@gmail.com">Email</a>
+            <a href="https://wa.me/9779746944429" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+            <a href="https://github.com/AayusX" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a href="https://yugya.com" target="_blank" rel="noopener noreferrer">Yugya ↗</a>
+          </div>
+          <div className="footer-col">
+            <p className="mono footer-h">ROLES</p>
+            <span>Co-Founder · Yugya</span>
+            <span>President · ICT Club</span>
+          </div>
+        </div>
+
         <div className="footer-meta">
-          <span>© {new Date().getFullYear()} AAYUSH BHANDARI</span>
+          <span>© {year} AAYUSH BHANDARI</span>
           <span>BUILT WITH REACT · THREE.JS · RAPIER PHYSICS</span>
           <span>KATHMANDU, NEPAL — 27.7172° N, 85.3240° E</span>
-          <span>V7.2 // NO TEMPLATES WERE HARMED</span>
         </div>
       </div>
     </footer>
