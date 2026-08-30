@@ -288,7 +288,7 @@ export function Hero() {
           </h1>
 
         <motion.p className="hero-sub" initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.65, duration: 0.7, ease: EASE }}>
-          I build things you can throw across the room.
+          19 shipped projects — every link on this page opens.
         </motion.p>
 
         <motion.div className="hero-roles" initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.74, duration: 0.6, ease: EASE }}>
@@ -344,8 +344,8 @@ export function Marquee({ items, reverse = false, dur = '32s' }: { items: string
 /* ---------- MANIFESTO ---------- */
 
 const RAW =
-  "Most portfolios are templates wearing a suit. I would rather ship experiments that break the grid, drag physics into a resume, wire AI into products people actually run, and let the work do the talking.";
-const HL = new Set(['experiments', 'physics', 'AI', 'work.', 'templates']);
+  "Most portfolios are the same resumé in a different template. This one is 19 projects that run, a physics playground in the hero, and an AI assistant I keep rebuilding. Every link opens — nothing here is a screenshot.";
+const HL = new Set(['physics', 'AI', 'run,', 'screenshot.']);
 const WORDS = RAW.split(' ');
 
 export function Manifesto() {
@@ -381,7 +381,7 @@ export function Manifesto() {
           ))}
         </p>
         <Reveal delay={0.1}>
-          <p className="manifesto-sign">AAYUSX — SELF-TAUGHT IN KATHMANDU, SHIPPING WORLDWIDE</p>
+          <p className="manifesto-sign">AAYUSX — SELF-TAUGHT IN KATHMANDU, WORKING REMOTE</p>
         </Reveal>
       </div>
     </section>
@@ -402,7 +402,7 @@ export function Evidence({ onArchive }: { onArchive: () => void }) {
           <Reveal delay={0.05}>
             <h2 className="section-title">SHIPPED,<br />NOT <span className="ti">shelved.</span></h2>
           </Reveal>
-          <Reveal delay={0.1}><p className="section-note" style={{ marginTop: 14 }}>EVERY ROW IS A LIVE REPO. NO CONCEPT ART. NO VAPORWARE.</p></Reveal>
+          <Reveal delay={0.1}><p className="section-note" style={{ marginTop: 14 }}>ALL 19 ROWS LINK TO LIVE REPOS.</p></Reveal>
         </div>
 
         <div className="ev-list">
@@ -428,7 +428,7 @@ export function Evidence({ onArchive }: { onArchive: () => void }) {
 
         <div className="ev-foot">
           <Magnetic>
-            <button className="btn btn-primary" data-cursor="ALL 18" onClick={onArchive}>
+            <button className="btn btn-primary" data-cursor="ALL 19" onClick={onArchive}>
               OPEN FULL ARCHIVE — {allProjects.length} RECORDS ↗
             </button>
           </Magnetic>
@@ -447,8 +447,8 @@ export function Ventures() {
         <div className="section-head" style={{ position: 'relative', display: 'block' }}>
           <GhostNum n="03" />
           <Reveal><p className="section-code">// 03 — ROLES</p></Reveal>
-          <Reveal delay={0.05}><h2 className="section-title">BEYOND<br />the <span className="ti">solo act.</span></h2></Reveal>
-          <Reveal delay={0.1}><p className="section-note" style={{ marginTop: 14 }}>BUILDING IN PUBLIC, LEADING IN PERSON.</p></Reveal>
+          <Reveal delay={0.05}><h2 className="section-title">CO-FOUNDER &amp;<br /><span className="ti">president.</span></h2></Reveal>
+          <Reveal delay={0.1}><p className="section-note" style={{ marginTop: 14 }}>BOTH ROLES ARE LIVE RIGHT NOW.</p></Reveal>
         </div>
 
         <div className="ventures-grid">
@@ -503,7 +503,7 @@ export function StackWall() {
           <GhostNum n="04" />
           <Reveal><p className="section-code">// 04 — STACK WALL</p></Reveal>
           <Reveal delay={0.05}><h2 className="section-title">TOOLS OF<br />the <span className="ti">trade.</span></h2></Reveal>
-          <Reveal delay={0.1}><p className="section-note" style={{ marginTop: 14 }}>PICKED PER PROBLEM. NEVER PER HYPE CYCLE.</p></Reveal>
+          <Reveal delay={0.1}><p className="section-note" style={{ marginTop: 14 }}>THE TOOLS BEHIND ALL 19 PROJECTS.</p></Reveal>
         </div>
       </div>
       <VelocitySkew>
@@ -566,18 +566,18 @@ export function Contact({ onToast }: { onToast: (msg: string) => void }) {
         <Reveal><p className="section-code">// 06 — TRANSMISSION</p></Reveal>
         <h2 className="contact-big" style={{ marginTop: 18 }}>
           {[
-            ['GOT', 'A', 'HARD'],
-            ['PROBLEM?', 'good.'],
+            ['OPEN', 'TO', 'WORK.'],
+            ['email', 'is', 'fastest.'],
           ].map((line, li) => (
             <span key={li} style={{ display: 'block', overflow: 'hidden' }}>
               {line.map((w, wi) => (
                 <motion.span
                   key={w}
-                  className={w === 'good.' ? 'ti' : undefined}
+                  className={w === 'fastest.' ? 'ti' : undefined}
                   style={{
                     display: 'inline-block',
                     marginRight: '0.28em',
-                    color: w === 'good.' ? 'var(--accent)' : undefined,
+                    color: w === 'fastest.' ? 'var(--accent)' : undefined,
                   }}
                   initial={{ y: '115%' }}
                   whileInView={{ y: 0 }}
@@ -598,7 +598,7 @@ export function Contact({ onToast }: { onToast: (msg: string) => void }) {
         </Reveal>
         <Reveal delay={0.2}>
           <p className="accept-note">
-            <b>ACCEPTING:</b> INTERNSHIPS · CO-FOUNDER ROLES · FREELANCE BUILDS · REMOTE OK
+            <b>LOOKING FOR:</b> INTERNSHIPS · CO-FOUNDER ROLES · FREELANCE BUILDS · REMOTE OK
           </p>
         </Reveal>
         <Reveal delay={0.24}>
@@ -632,7 +632,7 @@ export function Footer() {
         <div className="footer-top">
           <div>
             <p className="mono footer-kicker">// END OF LINE</p>
-            <h3 className="footer-cta">GOT A <span className="ti">hard problem?</span><br />LET&rsquo;S BUILD IT.</h3>
+            <h3 className="footer-cta">OPEN TO <span className="ti">internships &amp;</span><br />co-founder roles.</h3>
           </div>
           <a className="btn btn-primary footer-mail" href="mailto:technology457t@gmail.com" data-cursor="MAIL">
             technology457t@gmail.com ↗

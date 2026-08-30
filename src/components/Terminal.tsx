@@ -24,7 +24,7 @@ function buildResponse(raw: string): Line[] {
       return [
         { node: 'available commands:' },
         { cls: 'o', node: '  whoami          — who is this guy' },
-        { cls: 'o', node: '  projects        — list all 18 experiments' },
+        { cls: 'o', node: '  projects        — list all 19 experiments' },
         { cls: 'o', node: '  stack           — technologies in rotation' },
         { cls: 'o', node: '  contact         — open a channel' },
         { cls: 'o', node: '  uptime          — how long you have been here' },
@@ -34,7 +34,7 @@ function buildResponse(raw: string): Line[] {
     case 'whoami':
       return [
         { cls: 'ok', node: 'Aayush Bhandari (AayusX) — full-stack developer & AI engineer.' },
-        { cls: 'o', node: 'Kathmandu, Nepal. Self-taught. Ships systems, not screenshots.' },
+        { cls: 'o', node: 'Kathmandu, Nepal. Self-taught. 19 public projects, all linked on this page.' },
         { cls: 'o', node: 'Co-Founder — Yugya (yugya.com) · President — ICT Club, Technical Stream.' },
       ];
     case 'projects':
@@ -69,7 +69,7 @@ function buildResponse(raw: string): Line[] {
       return [
         { cls: 'ok', node: 'ACCESS GRANTED.' },
         { node: <>opening secure channel → <a href="mailto:technology457t@gmail.com?subject=Let%27s%20build%20something">technology457t@gmail.com</a></> },
-        { cls: 'o', node: 'available for internships & co-founder roles. bring hard problems.' },
+        { cls: 'o', node: 'available for internships & co-founder roles. email is the fastest way.' },
       ];
     case 'clear':
       return [];

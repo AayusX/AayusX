@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 const LINES = [
   'AAYUSX.SYS v7.2 — initializing',
   'mounting physics playground ......... OK',
-  'loading evidence [18 records] ....... OK',
+  'loading evidence [19 records] ....... OK',
   'calibrating acid levels ............. OK',
 ];
 

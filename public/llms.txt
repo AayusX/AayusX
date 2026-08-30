@@ -29,11 +29,11 @@ Contact: technology457t@gmail.com | WhatsApp +977 9746944429
 ## Selected projects
 
 - [AayushAI Core](https://github.com/AayusX/AayushAI-Core): Python AI automation core
-- [FailFirst Engine](https://github.com/AayusX-Pro/FailFirst): C++/Raylib education engine
-- [Apex Trading](https://aayusx.github.io/Apex-Trader--The-trading-demo-app-for-web-android-and-desktop): trading demo for web, Android and desktop
+- [FailFirst Engine](https://github.com/AayusX/Fail-First---Best-Code-learning-platform-in-gaming-way): gamified bug-fixing app that teaches C, C++ and Java (60+ challenges, portable .exe)
+- [Apex Trading](https://github.com/AayusX/Apex-Trader--The-trading-demo-app-for-web-android-and-desktop): trading demo for web, Android and desktop
 - [Gesture Solar](https://aayusxat7.github.io/Gesture-Solar): gesture-controlled solar visualization
 - [Face Detector](https://aayusx.github.io/Face-Detector): browser face detection
-- [Loan Management System](https://github.com/AayusX/loan-management-system): finance full-stack system
-- [Mother School](https://github.com/AayusX/Mother-school): school management platform
+- [Loan Management System](https://github.com/AayusX/loan-management-system): Python/SQLite loan tracker for a college teachers' saving group
+- [Mother School](https://aama-scl.netlify.app): school platform for Aama Pathshala, Badganga, Kapilvastu
 
 Full project archive is listed on the site.

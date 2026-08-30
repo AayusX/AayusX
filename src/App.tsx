@@ -113,7 +113,7 @@ function NoWebglFallback() {
           AAYUSH<span style={{ color: '#c6ff3d' }}> BHANDARI</span>
         </h1>
         <p style={{ fontSize: 18, maxWidth: 640, lineHeight: 1.7, color: '#9c9c90' }}>
-          Your browser skipped WebGL, so the physics playground stayed home. The evidence still speaks:
+          The physics playground needs WebGL, which this browser skipped. Every project below still opens:
         </p>
         <ul style={{ lineHeight: 2.2, paddingLeft: 20 }}>
           {allProjects.map((proj) => (
