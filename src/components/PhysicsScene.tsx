@@ -1,7 +1,6 @@
 import React, { Suspense, useEffect, useMemo, useRef, useState } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { Physics, RigidBody, CuboidCollider } from '@react-three/rapier';
-import { ContactShadows } from '@react-three/drei';
 import { RoomEnvironment } from 'three/examples/jsm/environments/RoomEnvironment.js';
 import * as THREE from 'three';
 import { featuredProjects } from '../projectsData';
@@ -242,14 +241,12 @@ function InvisibleBounds() {
 function GroundShadows() {
   const { viewport } = useThree();
   return (
-    <ContactShadows
-      position={[0, -viewport.height / 2 + FLOOR_TOP_OFFSET, 0]}
-      opacity={0.6}
-      scale={22}
-      blur={2.4}
-      far={4.5}
-      color="#000000"
-    />
+    <group position={[0, -viewport.height / 2 + FLOOR_TOP_OFFSET + 0.01, 0]}>
+      <mesh receiveShadow rotation={[-Math.PI / 2, 0, 0]}>
+        <planeGeometry args={[viewport.width * 2, viewport.height * 2]} />
+        <shadowMaterial opacity={0.3} />
+      </mesh>
+    </group>
   );
 }
 
