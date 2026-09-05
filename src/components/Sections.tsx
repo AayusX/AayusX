@@ -28,10 +28,11 @@ function Magnetic({ children }: { children: ReactNode }) {
     <div
       ref={ref}
       style={{ display: 'inline-block', transition: 'transform 0.35s cubic-bezier(0.2,0,0,1)' }}
-      onMouseMove={(e) => {
-        const r = ref.current?.getBoundingClientRect();
-        if (!r) return;
-        ref.current.style.transform = `translate(${(e.clientX - (r.left + r.width / 2)) * 0.18}px, ${
+       onMouseMove={(e) => {
+        const el = ref.current;
+        if (!el) return;
+        const r = el.getBoundingClientRect();
+        el.style.transform = `translate(${(e.clientX - (r.left + r.width / 2)) * 0.18}px, ${
           (e.clientY - (r.top + r.height / 2)) * 0.22
         }px)`;
       }}
