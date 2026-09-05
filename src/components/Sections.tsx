@@ -213,7 +213,7 @@ export function Nav() {
           </a>
           <ul className="nav-links">
             {items.map(([, id, label]) => (
-              <li key={id}><button onClick={() => go(id)}><Scramble text={label} /></button></li>
+              <li key={id}><a href={`#${id}`} onClick={(e) => { e.preventDefault(); go(id); }}><Scramble text={label} /></a></li>
             ))}
           </ul>
           <div className="chip-status"><i />OPEN TO WORK</div>
@@ -239,19 +239,20 @@ export function Nav() {
             transition={{ duration: 0.25 }}
           >
             {items.map(([n, id, label], i) => (
-              <motion.button
+              <motion.a
                 key={id}
                 className="menu-link"
+                href={`#${id}`}
                 data-cursor="GO"
                 initial={{ opacity: 0, x: -28 }}
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0 }}
                 transition={{ delay: 0.05 + i * 0.06, duration: 0.4, ease: EASE }}
-                onClick={() => go(id)}
+                onClick={(e) => { e.preventDefault(); go(id); }}
               >
                 <em>{n}</em>
                 {label}
-              </motion.button>
+              </motion.a>
             ))}
             <motion.div
               className="menu-foot mono"
@@ -695,7 +696,7 @@ export function Footer() {
         <div className="footer-top">
           <div>
             <p className="mono footer-kicker">// END OF LINE</p>
-            <h3 className="footer-cta">OPEN TO <span className="ti">internships &amp;</span><br />co-founder roles.</h3>
+            <h2 className="footer-cta">OPEN TO <span className="ti">internships &amp;</span><br />co-founder roles.</h2>
           </div>
           <a className="btn btn-primary footer-mail" href="mailto:technology457t@gmail.com" data-cursor="MAIL">
             technology457t@gmail.com ↗
