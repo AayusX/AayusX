@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import type { ReactNode } from 'react';
 import { motion, useScroll, useSpring, useTransform, useVelocity, useReducedMotion, AnimatePresence } from 'framer-motion';
-import { allProjects, marqueeTop, marqueeBottom, stackItems, ventures, STATUS_LABELS } from '../projectsData';
+import { allProjects, marqueeTop, marqueeBottom, stackItems, venturesDetail, STATUS_LABELS } from '../projectsData';
 import Terminal from './Terminal';
 
 const EASE = [0.2, 0, 0, 1] as const;
@@ -269,7 +269,7 @@ export function Hero() {
             transition={{ delay: 0.3, duration: 0.5 }}
             style={{ fontSize: 11, letterSpacing: '.28em', color: 'var(--dim)', marginBottom: 16 }}
           >
-            {'// FULL-STACK DEVELOPER & AI ENGINEER'}
+            {'// BUILDER · LEADER · FOUNDER · CURIOUS'}
           </motion.p>
 
           <h1 className="hero-title">
@@ -289,7 +289,7 @@ export function Hero() {
           </h1>
 
         <motion.p className="hero-sub" initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.65, duration: 0.7, ease: EASE }}>
-          19 shipped projects — every link on this page opens.
+          19 shipped projects. Every link opens.
         </motion.p>
 
         <motion.div className="hero-roles" initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.74, duration: 0.6, ease: EASE }}>
@@ -345,8 +345,8 @@ export function Marquee({ items, reverse = false, dur = '32s' }: { items: string
 /* ---------- MANIFESTO ---------- */
 
 const RAW =
-  "Most portfolios are the same resumé in a different template. This one is 19 projects that run, a physics playground in the hero, and an AI assistant I keep rebuilding. Every link opens — nothing here is a screenshot.";
-const HL = new Set(['physics', 'AI', 'run,', 'screenshot.']);
+  "Most portfolios are the same resumé in a different template. This one is 19 projects that run, a physics playground in the hero, and code I keep rewriting. Every link opens — nothing here is a screenshot.";
+const HL = new Set(['physics', 'rebuilding.', 'projects', 'run,', 'screenshot.']);
 const WORDS = RAW.split(' ');
 
 export function Manifesto() {
@@ -453,7 +453,7 @@ export function Ventures() {
         </div>
 
         <div className="ventures-grid">
-          {ventures.map((v, i) => (
+          {venturesDetail.map((v, i) => (
             <Reveal
               key={v.org}
               delay={0.08 * i}
@@ -472,6 +472,29 @@ export function Ventures() {
                 </h3>
                 <p className="venture-role ti">{v.role}</p>
                 <p className="venture-desc">{v.desc}</p>
+                {v.metrics && (
+                  <div className="venture-metrics" style={{ display: 'flex', gap: 14, marginTop: 14, flexWrap: 'wrap' }}>
+                    {v.metrics.map((m, mi) => (
+                      <span key={mi} className="mono" style={{ fontSize: 11, letterSpacing: 0, color: 'var(--accent)', background: 'var(--accent-dim)', padding: '3px 8px', borderRadius: 4 }}>
+                        {m.value} {m.label}
+                      </span>
+                    ))}
+                  </div>
+                )}
+                {v.whatIBuilt && (
+                  <ul style={{ marginTop: 14, paddingLeft: 18, fontSize: '.85rem', color: 'var(--muted)', lineHeight: 1.8 }}>
+                    {v.whatIBuilt.slice(0, 3).map((item, ii) => (
+                      <li key={ii}>{item}</li>
+                    ))}
+                  </ul>
+                )}
+                {v.techStack && (
+                  <div style={{ marginTop: 10, display: 'flex', gap: 4, flexWrap: 'wrap' }}>
+                    {v.techStack.map((t, ti) => (
+                      <span key={ti} className="tag" style={{ fontSize: 9, padding: '2px 6px' }}>{t}</span>
+                    ))}
+                  </div>
+                )}
                 {v.link && (
                   <a className="btn btn-ghost venture-btn" href={v.link} target="_blank" rel="noopener noreferrer" data-cursor="VISIT">
                     {v.cta} ↗

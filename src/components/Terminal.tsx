@@ -31,38 +31,43 @@ function buildResponse(raw: string): Line[] {
         { cls: 'o', node: '  hire            — the fast path' },
         { cls: 'o', node: '  clear           — wipe the evidence' },
       ];
-    case 'whoami':
+     case 'whoami':
       return [
-        { cls: 'ok', node: 'Aayush Bhandari (AayusX) — full-stack developer & AI engineer.' },
-        { cls: 'o', node: 'Kathmandu, Nepal. Self-taught. 19 public projects, all linked on this page.' },
-        { cls: 'o', node: 'Co-Founder — Yugya (yugya.com) · President — ICT Club, Technical Stream.' },
+        { cls: 'ok', node: "Aayush Bhandari (AayusX) — builder. 19 shipped projects. President, ICT Club. Co-founder, Yugya. Kathmandu, Nepal." },
       ];
     case 'projects':
-      return allProjects.map((p, i) => ({
-        node: (
-          <>
-            <span className="sys">{String(i + 1).padStart(2, '0')}.</span>{' '}
-            <a href={p.link} target="_blank" rel="noopener noreferrer">
-              {p.title}
-            </a>{' '}
-            <span className="sys">[{p.tags.join(', ')}]</span>
-          </>
-        ),
-      }));
-    case 'stack':
       return [
-        { cls: 'o', node: stackItems.map((s) => s.name).join(' · ') },
+        { cls: 'sys', node: 'PRODUCTION (2)' },
+        ...allProjects.filter(p => p.status === 'production').map((p, i) => ({
+          node: (
+            <>
+              <span className="sys">{String(i + 1).padStart(2, '0')}.</span>{' '}
+              <a href={p.link} target="_blank" rel="noopener noreferrer">{p.title}</a>{' '}
+              <span className="sys">[{p.tags.join(', ')}]</span>
+            </>
+          ),
+        })),
+        { cls: 'sys', node: 'SHIPPED (9)' },
+        ...allProjects.filter(p => p.status === 'shipped').map((p, i) => ({
+          node: (
+            <>
+              <span className="sys">{String(i + 1).padStart(2, '0')}.</span>{' '}
+              <a href={p.link} target="_blank" rel="noopener noreferrer">{p.title}</a>{' '}
+              <span className="sys">[{p.tags.join(', ')}]</span>
+            </>
+          ),
+        })),
+        { cls: 'sys', node: 'ALIVE (1) · ITERATING (1) · ARCHIVED (6) · CLASSIFIED (1)' },
       ];
-    case 'contact':
-      return [
-        { node: <>email → <a href="mailto:technology457t@gmail.com">technology457t@gmail.com</a></> },
-        { node: <>whatsapp → <a href="https://wa.me/9779746944429" target="_blank" rel="noopener noreferrer">+977 9746944429</a></> },
-        { node: <>github → <a href="https://github.com/AayusX" target="_blank" rel="noopener noreferrer">github.com/AayusX</a></> },
-        { cls: 'o', node: 'response time: usually faster than CI.' },
-      ];
-    case 'uptime': {
-      const s = Math.floor((Date.now() - bootTime) / 1000);
-      return [{ cls: 'ok', node: `you have been in the lab for ${s}s. the blocks missed you.` }];
+    case 'sudo rm -rf /':
+      return [{ cls: 'err', node: 'Nice try. The cubes are watching.' }];
+    case 'ls':
+      return [{ cls: 'o', node: 'No files here. Try \'projects\'.' }];
+    case 'pwd':
+      return [{ cls: 'ok', node: '/home/visitor/aayusx.dev' }];
+    case 'date': {
+      const fmt = new Intl.DateTimeFormat('en-GB', { timeZone: 'Asia/Kathmandu', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });
+      return [{ cls: 'o', node: `KTM · ${fmt.format(new Date())}` }];
     }
     case 'hire':
     case 'sudo hire-aayush':
