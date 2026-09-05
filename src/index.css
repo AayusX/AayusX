@@ -282,6 +282,20 @@ a, button, .ev-row, .venture-card { -webkit-tap-highlight-color: transparent; }
   display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 330px), 1fr));
   gap: 16px; margin-top: 8px;
 }
+.flagship-card {
+  grid-column: 1 / -1;
+}
+.flagship-card .ev-row {
+  padding: 0;
+  min-height: auto;
+  background: var(--bg2);
+}
+.flagship-card .flagship-preview img {
+  transition: transform 0.4s cubic-bezier(0.2, 0, 0, 1);
+}
+.flagship-card .ev-row:hover .flagship-preview img {
+  transform: scale(1.03);
+}
 .ev-row {
   position: relative; display: flex; flex-direction: column; gap: 12px;
   padding: 24px 22px; min-height: 172px;

@@ -1,10 +1,46 @@
 import { useEffect, useRef, useState } from 'react';
 import type { ReactNode } from 'react';
 import { motion, useScroll, useSpring, useTransform, useVelocity, useReducedMotion, AnimatePresence } from 'framer-motion';
-import { allProjects, marqueeTop, marqueeBottom, stackItems, venturesDetail, STATUS_LABELS } from '../projectsData';
+import { allProjects, marqueeTop, marqueeBottom, stackItems, venturesDetail, flagshipProjects, STATUS_LABELS } from '../projectsData';
 import Terminal from './Terminal';
 
 const EASE = [0.2, 0, 0, 1] as const;
+
+/* ---------- FlagshipCard ---------- */
+
+function FlagshipCard({ project, index }: { project: typeof flagshipProjects[0]; index: number }) {
+  const previewSrc = `/projects/${project.title.toLowerCase().replace(/\s+/g, '-')}-preview.webp`;
+  return (
+    <Reveal delay={index * 0.15} y={20}>
+      <a className="ev-row flagship-card" href={project.link} target="_blank" rel="noopener noreferrer" data-cursor="VIEW" style={{ display: 'block' }}>
+        <div className="flagship-preview" style={{ position: 'relative', overflow: 'hidden', borderRadius: 14, aspectRatio: '16/9', marginBottom: 18, background: 'var(--bg2)' }}>
+          <img src={previewSrc} alt={project.title} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: 14 }} />
+          <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(transparent 50%, var(--bg) 100%)', borderRadius: 14, pointerEvents: 'none' }} />
+          <span className={`ev-status st-${project.status}`} style={{ position: 'absolute', top: 12, right: 12 }}>{STATUS_LABELS[project.status]}</span>
+        </div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 12 }}>
+          <span className="ev-idx">{String(index + 1).padStart(2, '0')}</span>
+          <span className="ev-title">{project.title}</span>
+        </div>
+        <p style={{ color: 'var(--muted)', fontSize: '.9rem', lineHeight: 1.5, marginBottom: 12 }}>{project.whatItDoes}</p>
+        <p style={{ color: 'var(--dim)', fontSize: '.8rem', fontStyle: 'italic', marginBottom: 12 }}>
+          <strong style={{ color: 'var(--accent)' }}>Why:</strong> {project.whyItExists}
+        </p>
+        <p style={{ color: 'var(--dim)', fontSize: '.8rem', marginBottom: 12 }}>
+          <strong style={{ color: 'var(--accent)' }}>Role:</strong> {project.myRole}
+        </p>
+        <div className="ev-meta" style={{ marginTop: 'auto', paddingTop: 12 }}>
+          {project.techStack?.slice(0, 4).map((t) => <span key={t} className="tag">{t}</span>)}
+          {project.metrics && project.metrics.map((m, mi) => (
+            <span key={mi} className="mono" style={{ fontSize: 10, letterSpacing: 0.1, color: 'var(--accent)', background: 'var(--accent-dim)', padding: '3px 8px', borderRadius: 4 }}>
+              {m.value} {m.label}
+            </span>
+          ))}
+        </div>
+      </a>
+    </Reveal>
+  );
+}
 
 /* ---------- helpers ---------- */
 
@@ -407,6 +443,9 @@ export function Evidence({ onArchive }: { onArchive: () => void }) {
         </div>
 
         <div className="ev-list">
+          {flagshipProjects.map((p, i) => (
+            <FlagshipCard key={p.title} project={p} index={i} />
+          ))}
           {allProjects.slice(0, PREVIEW).map((p, i) => (
             <Reveal key={p.title} delay={Math.min(i * 0.04, 0.2)} y={18}>
               <a className="ev-row" href={p.link} target="_blank" rel="noopener noreferrer" data-cursor="VIEW">
