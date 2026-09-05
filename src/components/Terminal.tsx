@@ -83,10 +83,15 @@ function buildResponse(raw: string): Line[] {
   }
 }
 
+const PALETTE_CMDS = ['whoami', 'projects', 'stack', 'contact', 'hire', 'clear'];
+
 export default function Terminal() {
   const [lines, setLines] = useState<Line[]>(BANNER);
   const [value, setValue] = useState('');
+  const [history, setHistory] = useState<string[]>([]);
+  const [histIdx, setHistIdx] = useState(-1);
   const outRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     outRef.current?.scrollTo({ top: outRef.current.scrollHeight });
@@ -94,6 +99,9 @@ export default function Terminal() {
 
   const run = (raw: string) => {
     const cmd = raw.trim().toLowerCase();
+    if (!cmd) return;
+    setHistory((h) => [...h, raw].slice(-50));
+    setHistIdx(-1);
     if (cmd === 'clear') {
       setLines([]);
       setValue('');
@@ -101,6 +109,27 @@ export default function Terminal() {
     }
     setLines((l) => [...l, { cls: 'cmd', prefix: 'visitor@aayusx.dev:~$', node: raw }, ...buildResponse(raw)]);
     setValue('');
+  };
+
+  const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      if (!history.length) return;
+      const next = histIdx === -1 ? history.length - 1 : Math.max(0, histIdx - 1);
+      setHistIdx(next);
+      setValue(history[next]);
+    } else if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      if (histIdx === -1) return;
+      const next = histIdx + 1;
+      if (next >= history.length) {
+        setHistIdx(-1);
+        setValue('');
+      } else {
+        setHistIdx(next);
+        setValue(history[next]);
+      }
+    }
   };
 
   return (
@@ -113,12 +142,25 @@ export default function Terminal() {
         </div>
         <div className="term-title">visitor@aayusx.dev — zsh</div>
       </div>
-      <div className="term-out" ref={outRef}>
+      <div className="term-out" ref={outRef} aria-live="polite">
         {lines.map((l, i) => (
           <div key={i} className={`tl`}>
             {l.prefix && <span className="p">{l.prefix}</span>}
             <span className={l.cls ?? ''}>{l.node}</span>
           </div>
+        ))}
+      </div>
+      <div className="term-palette" aria-label="Quick commands">
+        {PALETTE_CMDS.map((c) => (
+          <button
+            key={c}
+            type="button"
+            className="mono term-chip"
+            onClick={() => run(c)}
+            aria-label={`Run ${c}`}
+          >
+            {c}
+          </button>
         ))}
       </div>
       <form
@@ -130,8 +172,10 @@ export default function Terminal() {
       >
         <span className="p">visitor@aayusx.dev:~$</span>
         <input
+          ref={inputRef}
           value={value}
           onChange={(e) => setValue(e.target.value)}
+          onKeyDown={onKeyDown}
           placeholder="type 'help'"
           aria-label="terminal input"
           spellCheck={false}

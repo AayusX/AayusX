@@ -19,10 +19,19 @@ export default function Cursor() {
     setEnabled(true);
     document.body.classList.add('has-cursor');
 
-    const move = (e: MouseEvent) => {
-      x.set(e.clientX);
-      y.set(e.clientY);
+    let pending: { x: number; y: number } | null = null;
+    let raf = 0;
+    const flush = () => {
+      raf = 0;
+      if (!pending) return;
+      x.set(pending.x);
+      y.set(pending.y);
       setVisible(true);
+      pending = null;
+    };
+    const move = (e: MouseEvent) => {
+      pending = { x: e.clientX, y: e.clientY };
+      if (!raf) raf = requestAnimationFrame(flush);
     };
     const over = (e: MouseEvent) => {
       const el = e.target as HTMLElement;
@@ -50,6 +59,7 @@ export default function Cursor() {
     document.documentElement.addEventListener('mouseenter', inWin);
 
     return () => {
+      if (raf) cancelAnimationFrame(raf);
       window.removeEventListener('mousemove', move);
       window.removeEventListener('mouseover', over);
       window.removeEventListener('mousedown', down);

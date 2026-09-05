@@ -61,12 +61,27 @@ class ErrorBoundary extends React.Component<{ children: React.ReactNode }, { err
    ARCHIVE MODAL
    ============================================================ */
 
+type ArchiveFilter = 'all' | 'production' | 'shipped' | 'alive' | 'iterating' | 'archived' | 'classified';
+
+const ARCHIVE_FILTERS: { key: ArchiveFilter; label: string }[] = [
+  { key: 'all', label: 'ALL' },
+  { key: 'production', label: 'PRODUCTION' },
+  { key: 'shipped', label: 'SHIPPED' },
+  { key: 'alive', label: 'ALIVE' },
+  { key: 'iterating', label: 'ITERATING' },
+  { key: 'archived', label: 'ARCHIVED' },
+  { key: 'classified', label: 'CLASSIFIED' },
+];
+
 function Archive({ onClose }: { onClose: () => void }) {
+  const [filter, setFilter] = useState<ArchiveFilter>('all');
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => e.key === 'Escape' && onClose();
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
   }, [onClose]);
+
+  const visible = filter === 'all' ? allProjects : allProjects.filter((p) => p.status === filter);
 
   return (
     <motion.div
@@ -83,19 +98,45 @@ function Archive({ onClose }: { onClose: () => void }) {
         <h2>THE FULL ARCHIVE.</h2>
         <button className="archive-close" onClick={onClose} aria-label="Close archive">&times;</button>
       </div>
+      <div className="archive-filters" role="tablist" aria-label="Filter by status" style={{ maxWidth: 1100, margin: '0 auto 24px', display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+        {ARCHIVE_FILTERS.map((f) => {
+          const count = f.key === 'all' ? allProjects.length : allProjects.filter((p) => p.status === f.key).length;
+          const active = filter === f.key;
+          return (
+            <button
+              key={f.key}
+              role="tab"
+              aria-selected={active}
+              onClick={() => setFilter(f.key)}
+              className="mono"
+              style={{
+                fontSize: 10, letterSpacing: '0.12em', padding: '8px 14px', borderRadius: 999,
+                border: `1px solid ${active ? 'var(--accent)' : 'var(--border)'}`,
+                color: active ? 'var(--accent)' : 'var(--muted)',
+                background: active ? 'var(--accent-dim)' : 'transparent',
+              }}
+            >
+              {f.label} ({count})
+            </button>
+          );
+        })}
+      </div>
       <div className="archive-grid">
-        {allProjects.map((p, idx) => (
-          <div key={p.title} className="archive-card">
-            <span className="mono" style={{ fontSize: 11, color: '#63635a' }}>{String(idx + 1).padStart(2, '0')}</span>
-            <h3>{p.title}</h3>
-            <p style={{ color: '#9c9c90', fontSize: '.9rem', margin: '0 0 14px' }}>{p.desc}</p>
-            <div className="tags">
-              {p.tags.map((t) => <span key={t} className="tag">{t}</span>)}
-              <span className={`ev-status st-${p.status}`}>{STATUS_LABELS[p.status]}</span>
+        {visible.map((p) => {
+          const idx = allProjects.indexOf(p);
+          return (
+            <div key={p.title} className="archive-card">
+              <span className="mono" style={{ fontSize: 11, color: 'var(--dim)' }}>{String(idx + 1).padStart(2, '0')}</span>
+              <h3>{p.title}</h3>
+              <p style={{ color: '#9c9c90', fontSize: '.9rem', margin: '0 0 14px' }}>{p.desc}</p>
+              <div className="tags">
+                {p.tags.map((t) => <span key={t} className="tag">{t}</span>)}
+                <span className={`ev-status st-${p.status}`}>{STATUS_LABELS[p.status]}</span>
+              </div>
+              <a href={p.link} target="_blank" rel="noopener noreferrer">OPEN RECORD ↗</a>
             </div>
-            <a href={p.link} target="_blank" rel="noopener noreferrer">OPEN RECORD ↗</a>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </motion.div>
   );

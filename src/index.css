@@ -154,7 +154,6 @@ input { font-family: inherit; background: none; border: none; outline: none; col
   .toast { max-width: 92vw; white-space: normal; text-align: center; }
   .archive-overlay { padding: 20px 16px; }
   .archive-grid { grid-template-columns: 1fr; }
-  .footer-name { -webkit-text-stroke-width: 0.75px; }
   .footer-meta { flex-direction: column; gap: 6px; }
   /* mobile ux polish */
   .hero { overflow: hidden; min-height: 560px; justify-content: center; gap: 22px; }
@@ -424,6 +423,9 @@ a, button, .ev-row, .venture-card { -webkit-tap-highlight-color: transparent; }
 .term-in input::placeholder { color: var(--dim); }
 .term-hint { margin-top: 14px; font-family: var(--font-mono); font-size: 11px; color: var(--dim); text-align: center; }
 .term-hint kbd { border: 1px solid var(--border); padding: 1px 6px; border-radius: 4px; background: var(--bg2); }
+.term-palette { display: flex; gap: 8px; flex-wrap: wrap; padding: 12px 20px; background: var(--bg3); border-top: 1px solid var(--border); }
+.term-chip { font-size: 11px; letter-spacing: 0.1em; color: var(--muted); border: 1px solid var(--border); border-radius: 999px; padding: 8px 14px; background: var(--bg2); transition: border-color 0.2s, color 0.2s; min-height: 44px; }
+.term-chip:hover, .term-chip:active { border-color: var(--accent); color: var(--accent); }
 
 /* ============ CONTACT ============ */
 .contact-big { font-family: var(--font-display); font-weight: 800; font-size: clamp(2.2rem, 6vw, 4.6rem); letter-spacing: -0.02em; line-height: 1.02; max-width: 14ch; }
@@ -453,27 +455,19 @@ a, button, .ev-row, .venture-card { -webkit-tap-highlight-color: transparent; }
 .footer-kicker { font-size: 11px; letter-spacing: 0.18em; color: var(--accent); margin-bottom: 12px; }
 .footer-cta { font-family: var(--font-display); font-weight: 800; letter-spacing: -0.02em; font-size: clamp(1.8rem, 4.4vw, 3.4rem); line-height: 0.98; text-transform: uppercase; }
 .footer-mail { white-space: nowrap; }
-.footer-name {
-  font-family: var(--font-display); font-weight: 800;
-  font-size: clamp(4rem, 15.5vw, 15rem); line-height: 0.86; letter-spacing: -0.02em;
-  color: transparent; -webkit-text-stroke: 1px #33333a; text-stroke: 1px #33333a;
-  text-align: center; user-select: none; margin: 40px 0 28px; transition: -webkit-text-stroke-color 0.4s ease, color 0.4s ease;
-}
-.footer-name:hover { -webkit-text-stroke-color: var(--accent); color: var(--accent-dim); }
-.footer-cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; border-top: 1px solid var(--border); padding-top: 28px; }
+.footer-cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; border-top: 1px solid var(--border); padding-top: 28px; margin-top: 40px; }
 .footer-col { display: flex; flex-direction: column; gap: 9px; }
 .footer-h { font-size: 10px; letter-spacing: 0.18em; color: var(--dim); margin-bottom: 6px; }
-.footer-col a, .footer-col button, .footer-col span {
+.footer-col a, .footer-col span {
   font-family: var(--font-body); font-size: 0.95rem; color: var(--muted); text-align: left;
   transition: color 0.2s ease; width: fit-content;
 }
-.footer-col a:hover, .footer-col button:hover { color: var(--accent); }
+.footer-col a:hover { color: var(--accent); }
 .footer-meta { display: flex; justify-content: space-between; gap: 14px; flex-wrap: wrap; margin-top: 44px; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; color: var(--dim); text-transform: uppercase; }
 
 @media (max-width: 760px) {
   .footer-top { flex-direction: column; align-items: flex-start; }
   .footer-cols { grid-template-columns: 1fr; gap: 18px; }
-  .footer-name { margin: 30px 0 22px; }
 }
 
 /* ============ ARCHIVE MODAL ============ */

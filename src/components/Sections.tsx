@@ -10,11 +10,19 @@ const EASE = [0.2, 0, 0, 1] as const;
 
 function FlagshipCard({ project, index }: { project: typeof flagshipProjects[0]; index: number }) {
   const previewSrc = `/projects/${project.title.toLowerCase().replace(/\s+/g, '-')}-preview.webp`;
+  const [imgOk, setImgOk] = useState(true);
+  const initials = project.title.split(/\s+/).map((w) => w[0]).join('').slice(0, 2).toUpperCase();
   return (
     <Reveal delay={index * 0.15} y={20}>
       <a className="ev-row flagship-card" href={project.link} target="_blank" rel="noopener noreferrer" data-cursor="VIEW" style={{ display: 'block' }}>
         <div className="flagship-preview" style={{ position: 'relative', overflow: 'hidden', borderRadius: 14, aspectRatio: '16/9', marginBottom: 18, background: 'var(--bg2)' }}>
-          <img src={previewSrc} alt={project.title} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: 14 }} />
+          {imgOk ? (
+            <img src={previewSrc} alt={project.title} loading="lazy" onError={() => setImgOk(false)} style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: 14 }} />
+          ) : (
+            <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'linear-gradient(135deg, var(--accent-dim), var(--bg3))', borderRadius: 14 }}>
+              <span style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 'clamp(3rem, 8vw, 5rem)', color: 'var(--accent)', letterSpacing: '-0.02em' }}>{initials}</span>
+            </div>
+          )}
           <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(transparent 50%, var(--bg) 100%)', borderRadius: 14, pointerEvents: 'none' }} />
           <span className={`ev-status st-${project.status}`} style={{ position: 'absolute', top: 12, right: 12 }}>{STATUS_LABELS[project.status]}</span>
         </div>
@@ -362,10 +370,19 @@ export function Hero() {
 /* ---------- MARQUEE ---------- */
 
 export function Marquee({ items, reverse = false, dur = '32s' }: { items: string[]; reverse?: boolean; dur?: string }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(true);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const io = new IntersectionObserver(([e]) => setVisible(e.isIntersecting), { threshold: 0 });
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
   return (
-    <div className={`marquee${reverse ? ' reverse' : ''}`} aria-hidden="true">
+    <div ref={ref} className={`marquee${reverse ? ' reverse' : ''}`} aria-hidden="true">
       <VelocitySkew>
-        <div className="marquee-track" style={{ ['--dur' as string]: dur }}>
+        <div className="marquee-track" style={{ ['--dur' as string]: dur, animationPlayState: visible ? 'running' : 'paused' }}>
           {[0, 1].map((g) => (
             <div key={g} className="marquee-group">
               {items.map((t, i) => (
@@ -703,24 +720,13 @@ export function Footer() {
           </a>
         </div>
 
-        <motion.div
-          className="footer-name"
-          aria-hidden="true"
-          initial={{ opacity: 0, y: 80, scale: 0.92 }}
-          whileInView={{ opacity: 1, y: 0, scale: 1 }}
-          viewport={{ once: true, margin: '-60px' }}
-          transition={{ duration: 1, ease: EASE }}
-        >
-          AAYUSX
-        </motion.div>
-
         <div className="footer-cols">
           <div className="footer-col">
             <p className="mono footer-h">NAVIGATE</p>
-            <button onClick={() => scrollToId('manifesto')}>Manifesto</button>
-            <button onClick={() => scrollToId('evidence')}>Evidence</button>
-            <button onClick={() => scrollToId('stack')}>Stack</button>
-            <button onClick={() => scrollToId('terminal')}>Terminal</button>
+            <a href="#manifesto" onClick={(e) => { e.preventDefault(); scrollToId('manifesto'); }}>Manifesto</a>
+            <a href="#evidence" onClick={(e) => { e.preventDefault(); scrollToId('evidence'); }}>Evidence</a>
+            <a href="#stack" onClick={(e) => { e.preventDefault(); scrollToId('stack'); }}>Stack</a>
+            <a href="#terminal" onClick={(e) => { e.preventDefault(); scrollToId('terminal'); }}>Terminal</a>
           </div>
           <div className="footer-col">
             <p className="mono footer-h">CONNECT</p>
