@@ -19,13 +19,14 @@
   will-change: transform;
 }
 
-.page-wipe__panel::after {
+/* A hairline of wine marks the edge that reveals the page. */
+.page-wipe__panel--plum::after {
   content: '';
   position: absolute;
   inset-block: 0;
   right: 0;
   width: 2px;
-  background: var(--color-inverse);
+  background: var(--color-violet);
   opacity: 0.9;
 }
 
@@ -33,14 +34,6 @@
   background: var(--color-purple-deep);
 }
 
-.page-wipe__panel--clay {
-  background: var(--color-clay);
-}
-
-.page-wipe__flash {
-  position: absolute;
-  inset: 0;
-  display: block;
-  background: var(--color-inverse);
-  pointer-events: none;
+.page-wipe__panel--paper {
+  background: var(--color-paper);
 }

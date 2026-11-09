@@ -17,7 +17,7 @@ This document separates what is verified, what needs owner input, and what is de
 - Rewrote the most visible page titles, labels, and supporting copy in plain language, reducing the “not X” constructions and em-dash density.
 - Tuned Lenis from `lerp: 0.1` to `0.16`; removed the mascot’s permanent animation frame (it now starts on pointer movement and stops when settled) and its idle float/drop-shadow.
 - Reduced the footer top gap and removed the double section padding on About.
-- Added a layered route wipe: an ivory flash fades over clay and deep-plum panels, which sweep left with bright leading edges to reveal the new page. Transform-only, about 0.6s, and reduced-motion users get an instant swap.
+- Added a two-tone route wipe: a warm paper panel and a deep-plum panel sweep left together, with a thin wine edge, to reveal the new page. It uses only the site's Ink & Plum tones, is transform-only, takes about 0.6s, and reduced-motion users get an instant swap.
 - Verified: `npm run build`, 26/26 tests, 0 axe WCAG A/AA violations on Home, About, Journey, Projects, Experiments, Capabilities, Writing, Article, and Contact; no horizontal overflow at 320/390/1440px; headless wheel-scroll sample averaged 11.1ms per frame (p95 11.4ms, max 22.5ms, zero frames over 33ms).
 - This section supersedes the Liquid Atlas visual bullets below; the opening drop/ripple and Changa remain.
 

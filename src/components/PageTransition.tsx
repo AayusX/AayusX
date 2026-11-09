@@ -3,11 +3,12 @@ import { motion, useReducedMotion } from 'framer-motion';
 import { useLocation, useOutlet } from 'react-router-dom';
 
 /**
- * A fast layered wipe between routes.
+ * A two-tone page wipe between routes.
  *
  * The incoming page mounts underneath the overlay, so the scroll reset is
- * hidden. A brief ivory flash fades over a clay panel, then the clay and plum
- * panels sweep left with bright leading edges to reveal the new page.
+ * hidden. A warm paper panel and a deep-plum panel sweep left together, with a
+ * thin wine edge, to reveal the new page. The colors come from the site's core
+ * Ink & Plum palette, so the transition never feels louder than the pages.
  *
  * The overlay is driven by an actual path change, not the first render, so
  * re-renders such as closing the intro never trigger a wipe.
@@ -24,7 +25,7 @@ export function PageTransition() {
     previousPath.current = location.pathname;
 
     setWipePath(location.pathname);
-    const timer = window.setTimeout(() => setWipePath(null), 700);
+    const timer = window.setTimeout(() => setWipePath(null), 720);
     return () => window.clearTimeout(timer);
   }, [location.pathname]);
 
@@ -38,19 +39,13 @@ export function PageTransition() {
             className="page-wipe__panel page-wipe__panel--plum"
             initial={{ x: '0%' }}
             animate={{ x: '-100%' }}
-            transition={{ duration: 0.58, ease: [0.76, 0, 0.24, 1] }}
+            transition={{ duration: 0.62, ease: [0.76, 0, 0.24, 1] }}
           />
           <motion.span
-            className="page-wipe__panel page-wipe__panel--clay"
+            className="page-wipe__panel page-wipe__panel--paper"
             initial={{ x: '0%' }}
             animate={{ x: '-100%' }}
-            transition={{ duration: 0.42, ease: [0.76, 0, 0.24, 1] }}
-          />
-          <motion.span
-            className="page-wipe__flash"
-            initial={{ opacity: 0.85 }}
-            animate={{ opacity: 0 }}
-            transition={{ duration: 0.24, ease: 'easeOut' }}
+            transition={{ duration: 0.46, ease: [0.76, 0, 0.24, 1] }}
           />
         </div>
       ) : null}
