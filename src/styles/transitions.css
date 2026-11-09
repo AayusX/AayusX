@@ -1,0 +1,46 @@
+/* ============ Route wipe ============ */
+
+.page-transition {
+  min-height: 1px;
+}
+
+.page-wipe {
+  position: fixed;
+  inset: 0;
+  z-index: 250;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.page-wipe__panel {
+  position: absolute;
+  inset: 0;
+  display: block;
+  will-change: transform;
+}
+
+.page-wipe__panel::after {
+  content: '';
+  position: absolute;
+  inset-block: 0;
+  right: 0;
+  width: 2px;
+  background: var(--color-inverse);
+  opacity: 0.9;
+}
+
+.page-wipe__panel--plum {
+  background: var(--color-purple-deep);
+}
+
+.page-wipe__panel--clay {
+  background: var(--color-clay);
+}
+
+.page-wipe__flash {
+  position: absolute;
+  inset: 0;
+  display: block;
+  background: var(--color-inverse);
+  pointer-events: none;
+}
