@@ -113,7 +113,7 @@ This document separates what is verified, what needs owner input, and what is de
 | Mobile layout at 390px | No horizontal overflow; menu button visible; desktop nav hidden |
 | Desktop layout at 1440px | Reviewed visually |
 | Language switch | `/projects` → `/ne/projects` → `/projects`, with preserved page and translated content/metadata |
-| Intro | Visible skip control; skip persists; reduced-motion static variant verified |
+| Intro | Visible skip control; replays on every full page load; reduced-motion static variant verified |
 | Reduced motion | Lenis is not created; intro shows all memories statically |
 | Mobile menu | Opens as a dialog, closes on Escape, returns focus to the trigger |
 | Terminal | Runs commands and renders translated output |

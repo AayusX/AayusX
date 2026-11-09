@@ -14,8 +14,6 @@ import { useFocusTrap, useBodyScrollLock } from '../../lib/focus';
 import { ArrowRight, CloseIcon } from '../../components/Icons';
 import { Changa } from '../mascot/Changa';
 
-export const INTRO_SEEN_KEY = 'aayusx.intro.liquid.seen';
-
 interface IntroContextValue {
   replay: () => void;
 }
@@ -114,31 +112,27 @@ export function MemoryIntroProvider({ children }: { children: ReactNode }) {
   const reduceMotion = useReducedMotion();
   const location = useLocation();
   const [open, setOpen] = useState(false);
+  // In-memory only: resets on every full reload, so the intro plays again.
+  // It still prevents replaying when navigating back to the home route.
+  const shownThisLoad = useRef(false);
 
   useEffect(() => {
     const isHome = location.pathname === '/' || location.pathname === '/ne';
-    let seen = false;
-    try {
-      seen = window.localStorage.getItem(INTRO_SEEN_KEY) === '1';
-    } catch {
-      seen = false;
-    }
-    if (!isHome || seen) return;
+    if (!isHome || shownThisLoad.current) return;
 
-    const timer = window.setTimeout(() => setOpen(true), reduceMotion ? 0 : 420);
+    const timer = window.setTimeout(
+      () => {
+        shownThisLoad.current = true;
+        setOpen(true);
+      },
+      reduceMotion ? 0 : 420,
+    );
     return () => window.clearTimeout(timer);
   }, [location.pathname, reduceMotion]);
 
   const replay = useCallback(() => setOpen(true), []);
 
-  const close = useCallback(() => {
-    setOpen(false);
-    try {
-      window.localStorage.setItem(INTRO_SEEN_KEY, '1');
-    } catch {
-      /* The experience still works; it may replay on the next visit. */
-    }
-  }, []);
+  const close = useCallback(() => setOpen(false), []);
 
   return (
     <IntroContext.Provider value={{ replay }}>
