@@ -1,9 +1,294 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset
+  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml"
+>
   <url>
     <loc>https://aayusx.dev/</loc>
-    <lastmod>2026-08-28</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-11-09</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aayusx.dev/" />
+    <xhtml:link rel="alternate" hreflang="ne" href="https://aayusx.dev/ne" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aayusx.dev/" />
+  </url>
+  <url>
+    <loc>https://aayusx.dev/ne</loc>
+    <lastmod>2026-11-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aayusx.dev/" />
+    <xhtml:link rel="alternate" hreflang="ne" href="https://aayusx.dev/ne" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aayusx.dev/" />
+  </url>
+  <url>
+    <loc>https://aayusx.dev/about</loc>
+    <lastmod>2026-11-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aayusx.dev/about" />
+    <xhtml:link rel="alternate" hreflang="ne" href="https://aayusx.dev/ne/about" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aayusx.dev/about" />
+  </url>
+  <url>
+    <loc>https://aayusx.dev/ne/about</loc>
+    <lastmod>2026-11-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aayusx.dev/about" />
+    <xhtml:link rel="alternate" hreflang="ne" href="https://aayusx.dev/ne/about" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aayusx.dev/about" />
+  </url>
+  <url>
+    <loc>https://aayusx.dev/journey</loc>
+    <lastmod>2026-11-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aayusx.dev/journey" />
+    <xhtml:link rel="alternate" hreflang="ne" href="https://aayusx.dev/ne/journey" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aayusx.dev/journey" />
+  </url>
+  <url>
+    <loc>https://aayusx.dev/ne/journey</loc>
+    <lastmod>2026-11-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aayusx.dev/journey" />
+    <xhtml:link rel="alternate" hreflang="ne" href="https://aayusx.dev/ne/journey" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aayusx.dev/journey" />
+  </url>
+  <url>
+    <loc>https://aayusx.dev/projects</loc>
+    <lastmod>2026-11-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aayusx.dev/projects" />
+    <xhtml:link rel="alternate" hreflang="ne" href="https://aayusx.dev/ne/projects" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aayusx.dev/projects" />
+  </url>
+  <url>
+    <loc>https://aayusx.dev/ne/projects</loc>
+    <lastmod>2026-11-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aayusx.dev/projects" />
+    <xhtml:link rel="alternate" hreflang="ne" href="https://aayusx.dev/ne/projects" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aayusx.dev/projects" />
+  </url>
+  <url>
+    <loc>https://aayusx.dev/projects/mother-school</loc>
+    <lastmod>2026-11-09</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aayusx.dev/projects/mother-school" />
+    <xhtml:link rel="alternate" hreflang="ne" href="https://aayusx.dev/ne/projects/mother-school" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aayusx.dev/projects/mother-school" />
+  </url>
+  <url>
+    <loc>https://aayusx.dev/ne/projects/mother-school</loc>
+    <lastmod>2026-11-09</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aayusx.dev/projects/mother-school" />
+    <xhtml:link rel="alternate" hreflang="ne" href="https://aayusx.dev/ne/projects/mother-school" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aayusx.dev/projects/mother-school" />
+  </url>
+  <url>
+    <loc>https://aayusx.dev/projects/loan-management</loc>
+    <lastmod>2026-11-09</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aayusx.dev/projects/loan-management" />
+    <xhtml:link rel="alternate" hreflang="ne" href="https://aayusx.dev/ne/projects/loan-management" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aayusx.dev/projects/loan-management" />
+  </url>
+  <url>
+    <loc>https://aayusx.dev/ne/projects/loan-management</loc>
+    <lastmod>2026-11-09</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aayusx.dev/projects/loan-management" />
+    <xhtml:link rel="alternate" hreflang="ne" href="https://aayusx.dev/ne/projects/loan-management" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aayusx.dev/projects/loan-management" />
+  </url>
+  <url>
+    <loc>https://aayusx.dev/projects/failfirst-engine</loc>
+    <lastmod>2026-11-09</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aayusx.dev/projects/failfirst-engine" />
+    <xhtml:link rel="alternate" hreflang="ne" href="https://aayusx.dev/ne/projects/failfirst-engine" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aayusx.dev/projects/failfirst-engine" />
+  </url>
+  <url>
+    <loc>https://aayusx.dev/ne/projects/failfirst-engine</loc>
+    <lastmod>2026-11-09</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aayusx.dev/projects/failfirst-engine" />
+    <xhtml:link rel="alternate" hreflang="ne" href="https://aayusx.dev/ne/projects/failfirst-engine" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aayusx.dev/projects/failfirst-engine" />
+  </url>
+  <url>
+    <loc>https://aayusx.dev/projects/gesture-solar</loc>
+    <lastmod>2026-11-09</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aayusx.dev/projects/gesture-solar" />
+    <xhtml:link rel="alternate" hreflang="ne" href="https://aayusx.dev/ne/projects/gesture-solar" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aayusx.dev/projects/gesture-solar" />
+  </url>
+  <url>
+    <loc>https://aayusx.dev/ne/projects/gesture-solar</loc>
+    <lastmod>2026-11-09</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aayusx.dev/projects/gesture-solar" />
+    <xhtml:link rel="alternate" hreflang="ne" href="https://aayusx.dev/ne/projects/gesture-solar" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aayusx.dev/projects/gesture-solar" />
+  </url>
+  <url>
+    <loc>https://aayusx.dev/projects/aayushai-core</loc>
+    <lastmod>2026-11-09</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aayusx.dev/projects/aayushai-core" />
+    <xhtml:link rel="alternate" hreflang="ne" href="https://aayusx.dev/ne/projects/aayushai-core" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aayusx.dev/projects/aayushai-core" />
+  </url>
+  <url>
+    <loc>https://aayusx.dev/ne/projects/aayushai-core</loc>
+    <lastmod>2026-11-09</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aayusx.dev/projects/aayushai-core" />
+    <xhtml:link rel="alternate" hreflang="ne" href="https://aayusx.dev/ne/projects/aayushai-core" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aayusx.dev/projects/aayushai-core" />
+  </url>
+  <url>
+    <loc>https://aayusx.dev/experiments</loc>
+    <lastmod>2026-11-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aayusx.dev/experiments" />
+    <xhtml:link rel="alternate" hreflang="ne" href="https://aayusx.dev/ne/experiments" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aayusx.dev/experiments" />
+  </url>
+  <url>
+    <loc>https://aayusx.dev/ne/experiments</loc>
+    <lastmod>2026-11-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aayusx.dev/experiments" />
+    <xhtml:link rel="alternate" hreflang="ne" href="https://aayusx.dev/ne/experiments" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aayusx.dev/experiments" />
+  </url>
+  <url>
+    <loc>https://aayusx.dev/capabilities</loc>
+    <lastmod>2026-11-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aayusx.dev/capabilities" />
+    <xhtml:link rel="alternate" hreflang="ne" href="https://aayusx.dev/ne/capabilities" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aayusx.dev/capabilities" />
+  </url>
+  <url>
+    <loc>https://aayusx.dev/ne/capabilities</loc>
+    <lastmod>2026-11-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aayusx.dev/capabilities" />
+    <xhtml:link rel="alternate" hreflang="ne" href="https://aayusx.dev/ne/capabilities" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aayusx.dev/capabilities" />
+  </url>
+  <url>
+    <loc>https://aayusx.dev/writing</loc>
+    <lastmod>2026-11-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aayusx.dev/writing" />
+    <xhtml:link rel="alternate" hreflang="ne" href="https://aayusx.dev/ne/writing" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aayusx.dev/writing" />
+  </url>
+  <url>
+    <loc>https://aayusx.dev/ne/writing</loc>
+    <lastmod>2026-11-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aayusx.dev/writing" />
+    <xhtml:link rel="alternate" hreflang="ne" href="https://aayusx.dev/ne/writing" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aayusx.dev/writing" />
+  </url>
+  <url>
+    <loc>https://aayusx.dev/writing/the-spreadsheet-was-the-specification</loc>
+    <lastmod>2026-11-01</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aayusx.dev/writing/the-spreadsheet-was-the-specification" />
+    <xhtml:link rel="alternate" hreflang="ne" href="https://aayusx.dev/ne/writing/the-spreadsheet-was-the-specification" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aayusx.dev/writing/the-spreadsheet-was-the-specification" />
+  </url>
+  <url>
+    <loc>https://aayusx.dev/ne/writing/the-spreadsheet-was-the-specification</loc>
+    <lastmod>2026-11-01</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aayusx.dev/writing/the-spreadsheet-was-the-specification" />
+    <xhtml:link rel="alternate" hreflang="ne" href="https://aayusx.dev/ne/writing/the-spreadsheet-was-the-specification" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aayusx.dev/writing/the-spreadsheet-was-the-specification" />
+  </url>
+  <url>
+    <loc>https://aayusx.dev/writing/teach-debugging-not-just-syntax</loc>
+    <lastmod>2026-10-15</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aayusx.dev/writing/teach-debugging-not-just-syntax" />
+    <xhtml:link rel="alternate" hreflang="ne" href="https://aayusx.dev/ne/writing/teach-debugging-not-just-syntax" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aayusx.dev/writing/teach-debugging-not-just-syntax" />
+  </url>
+  <url>
+    <loc>https://aayusx.dev/ne/writing/teach-debugging-not-just-syntax</loc>
+    <lastmod>2026-10-15</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aayusx.dev/writing/teach-debugging-not-just-syntax" />
+    <xhtml:link rel="alternate" hreflang="ne" href="https://aayusx.dev/ne/writing/teach-debugging-not-just-syntax" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aayusx.dev/writing/teach-debugging-not-just-syntax" />
+  </url>
+  <url>
+    <loc>https://aayusx.dev/writing/what-a-school-taught-me-about-boring-software</loc>
+    <lastmod>2026-09-28</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aayusx.dev/writing/what-a-school-taught-me-about-boring-software" />
+    <xhtml:link rel="alternate" hreflang="ne" href="https://aayusx.dev/ne/writing/what-a-school-taught-me-about-boring-software" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aayusx.dev/writing/what-a-school-taught-me-about-boring-software" />
+  </url>
+  <url>
+    <loc>https://aayusx.dev/ne/writing/what-a-school-taught-me-about-boring-software</loc>
+    <lastmod>2026-09-28</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aayusx.dev/writing/what-a-school-taught-me-about-boring-software" />
+    <xhtml:link rel="alternate" hreflang="ne" href="https://aayusx.dev/ne/writing/what-a-school-taught-me-about-boring-software" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aayusx.dev/writing/what-a-school-taught-me-about-boring-software" />
+  </url>
+  <url>
+    <loc>https://aayusx.dev/contact</loc>
+    <lastmod>2026-11-09</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aayusx.dev/contact" />
+    <xhtml:link rel="alternate" hreflang="ne" href="https://aayusx.dev/ne/contact" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aayusx.dev/contact" />
+  </url>
+  <url>
+    <loc>https://aayusx.dev/ne/contact</loc>
+    <lastmod>2026-11-09</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aayusx.dev/contact" />
+    <xhtml:link rel="alternate" hreflang="ne" href="https://aayusx.dev/ne/contact" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aayusx.dev/contact" />
   </url>
 </urlset>

@@ -1,0 +1,10 @@
+# Copy to `.dev.vars` for `npx wrangler pages dev dist`.
+# Never commit real values.
+
+RESEND_API_KEY=
+CONTACT_TO_EMAIL=
+CONTACT_FROM_EMAIL=
+
+# Optional Turnstile
+TURNSTILE_SECRET_KEY=
+VITE_TURNSTILE_SITE_KEY=

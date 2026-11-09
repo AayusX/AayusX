@@ -1,0 +1,356 @@
+﻿.intro-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+}
+
+.intro {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-purple-deep);
+  color: var(--color-lavender-white);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.intro :focus-visible {
+  outline-color: var(--color-lavender-white);
+}
+
+.intro__bar {
+  position: relative;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding: 1.1rem var(--gutter);
+}
+
+.intro__label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: var(--weight-semibold);
+  letter-spacing: 0;
+  color: rgba(246, 239, 231, 0.66);
+}
+
+.intro__label::before {
+  content: '';
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--color-clay);
+}
+
+.skip-intro {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid rgba(246, 239, 231, 0.42);
+  background: transparent;
+  color: var(--color-lavender-white);
+  border-radius: var(--radius-xs);
+  padding: 0.55rem 1rem;
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  letter-spacing: 0;
+  transition: background var(--duration-fast) var(--ease-out), color var(--duration-fast) var(--ease-out);
+}
+
+.skip-intro:hover,
+.skip-intro:focus-visible {
+  background: var(--color-lavender-white);
+  color: var(--color-purple-deep);
+}
+
+.skip-intro svg {
+  width: 0.85rem;
+  height: 0.85rem;
+}
+
+.intro__stage {
+  position: relative;
+  z-index: 2;
+  flex: 1;
+  display: grid;
+  place-items: center;
+  padding: clamp(1.5rem, 1rem + 3vw, 3.5rem) var(--gutter);
+  overflow: hidden;
+  min-height: 0;
+}
+
+.intro__drop {
+  position: absolute;
+  top: -14vh;
+  left: 50%;
+  width: 1rem;
+  height: 1.3rem;
+  border-radius: 50% 50% 55% 55%;
+  background: var(--color-lavender-white);
+  transform: translateX(-50%);
+  animation: intro-drop 1.3s cubic-bezier(0.5, 0, 1, 1) both;
+}
+
+@keyframes intro-drop {
+  from {
+    top: -14vh;
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  to {
+    top: 46%;
+    opacity: 1;
+  }
+}
+
+.intro__ripples {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+}
+
+.intro__ripples span {
+  position: absolute;
+  width: 10rem;
+  aspect-ratio: 1;
+  border: 1px solid rgba(246, 239, 231, 0.45);
+  border-radius: 50%;
+  opacity: 0;
+  animation: intro-ripple 2.6s 0.95s ease-out both;
+}
+
+.intro__ripples span:nth-child(2) {
+  animation-delay: 1.2s;
+}
+
+.intro__ripples span:nth-child(3) {
+  animation-delay: 1.45s;
+}
+
+@keyframes intro-ripple {
+  0% {
+    scale: 0.2;
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.9;
+  }
+  100% {
+    scale: 5.5;
+    opacity: 0;
+  }
+}
+
+.intro__content {
+  position: relative;
+  z-index: 3;
+  width: min(100%, 62rem);
+  text-align: center;
+  animation: intro-content 1.4s 0.75s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes intro-content {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.intro__eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: var(--weight-semibold);
+  letter-spacing: 0;
+  color: var(--color-lavender);
+  margin-bottom: var(--space-5);
+}
+
+.intro__title {
+  font-family: var(--font-display);
+  font-size: clamp(5rem, 13vw, 11rem);
+  font-weight: 800;
+  line-height: 0.9;
+  letter-spacing: -0.08em;
+  color: var(--color-lavender-white);
+}
+
+.intro__wordmark {
+  display: inline-block;
+  letter-spacing: inherit;
+}
+
+.intro__lead {
+  max-width: 42ch;
+  margin: var(--space-6) auto 0;
+  font-size: var(--text-md);
+  line-height: 1.7;
+  color: rgba(246, 239, 231, 0.72);
+}
+
+html[lang='ne'] .intro__lead {
+  line-height: 1.8;
+}
+
+.intro__changa {
+  position: absolute;
+  z-index: 2;
+  top: 16%;
+  right: 7%;
+  width: clamp(5rem, 8vw, 7rem);
+}
+
+.intro__changa .changa {
+  width: 100%;
+  height: auto;
+}
+
+.intro__foot {
+  position: relative;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  padding: 1rem var(--gutter) 1.5rem;
+  border-top: 1px solid rgba(246, 239, 231, 0.12);
+}
+
+.intro__foot-note {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: var(--weight-medium);
+  letter-spacing: 0;
+  color: rgba(246, 239, 231, 0.52);
+}
+
+.intro__enter {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid rgba(246, 239, 231, 0.55);
+  background: var(--color-lavender-white);
+  color: var(--color-purple-deep);
+  border-radius: var(--radius-xs);
+  padding: 0.55rem 1rem;
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  letter-spacing: 0;
+}
+
+.intro__enter:hover,
+.intro__enter:focus-visible {
+  background: var(--color-lavender);
+  border-color: var(--color-lavender);
+}
+
+.intro__enter svg {
+  width: 0.85rem;
+  height: 0.85rem;
+}
+
+.intro__wash {
+  position: absolute;
+  inset: 0;
+  z-index: 6;
+  background: var(--color-lavender-white);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 460ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.intro.is-leaving .intro__wash {
+  opacity: 1;
+}
+
+.intro__reduced-note {
+  position: fixed;
+  left: var(--gutter);
+  bottom: 0.8rem;
+  z-index: 5;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.03em;
+  color: rgba(246, 239, 231, 0.55);
+}
+
+@media (max-width: 900px) {
+  .intro__title {
+    font-size: clamp(4rem, 18vw, 7rem);
+  }
+
+  .intro__changa {
+    top: 11%;
+    right: 5%;
+    width: 4.2rem;
+  }
+
+  .intro__content {
+    text-align: left;
+  }
+
+  .intro__lead {
+    margin-inline: 0;
+  }
+}
+
+@media (max-width: 560px) {
+  .intro__bar {
+    padding-top: 0.8rem;
+  }
+
+  .intro__label {
+    font-size: 0.66rem;
+  }
+
+  .skip-intro,
+  .intro__enter {
+    padding: 0.45rem 0.75rem;
+    font-size: 0.66rem;
+  }
+
+  .intro__title {
+    font-size: clamp(3.4rem, 19vw, 5.4rem);
+  }
+
+  .intro__changa {
+    top: 9%;
+    right: 4%;
+    width: 3.5rem;
+  }
+
+  .intro__foot {
+    padding-bottom: 1.1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .intro__drop,
+  .intro__ripples,
+  .intro__changa {
+    display: none;
+  }
+
+  .intro__content {
+    animation: none;
+  }
+
+  .intro__wash {
+    transition: none;
+  }
+}

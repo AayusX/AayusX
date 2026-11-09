@@ -1,39 +1,43 @@
 # Aayush Bhandari (AayusX)
 
-> Co-founder of Yugya (yugya.com) and full-stack developer & AI engineer based in Kathmandu, Nepal. Builds web applications with React, Next.js and Three.js, Android apps, AI products with Python and LLM agents, and school/business management systems. Open to internships and co-founder roles.
+> Computer Engineering student and technology entrepreneur in Nepal. Builds useful web platforms, desktop tools, and small AI systems for schools and small businesses. Co-founder of Yugya.
 
 Site: https://aayusx.dev/
 GitHub: https://github.com/AayusX
-Contact: technology457t@gmail.com | WhatsApp +977 9746944429
+Contact: technology457t@gmail.com
 
 ## Identity
 
 - Real name: Aayush Bhandari
 - Online handle: AayusX
-- Location: Kathmandu, Nepal (remote worldwide)
+- Location: Nepal · working remotely
 - Languages: English, Nepali
-
-## Roles
-
-- Co-founder of [Yugya](https://yugya.com): hosting, domain management, website & app development for small-to-large businesses
-- President, ICT Club (Technical Stream), his college in Kathmandu
-
-## Services
-
-- Website & web app development (React, Next.js, Three.js, WebGL)
-- Android app development
-- AI engineering: LLM agents, computer vision, Python automation
-- School & business management systems
-- C++ systems programming and security tooling
+- Education: Computer Engineering student
+- Role: Co-founder of Yugya (hosting, domains, VPS infrastructure, web and app development)
 
 ## Selected projects
 
-- [AayushAI Core](https://github.com/AayusX/AayushAI-Core): Python AI automation core
-- [FailFirst Engine](https://github.com/AayusX/Fail-First---Best-Code-learning-platform-in-gaming-way): gamified bug-fixing app that teaches C, C++ and Java (60+ challenges, portable .exe)
-- [Apex Trading](https://github.com/AayusX/Apex-Trader--The-trading-demo-app-for-web-android-and-desktop): trading demo for web, Android and desktop
-- [Gesture Solar](https://aayusxat7.github.io/Gesture-Solar): gesture-controlled solar visualization
-- [Face Detector](https://aayusx.github.io/Face-Detector): browser face detection
-- [Loan Management System](https://github.com/AayusX/loan-management-system): Python/SQLite loan tracker for a college teachers' saving group
-- [Mother School](https://aama-scl.netlify.app): school platform for Aama Pathshala, Badganga, Kapilvastu
+- Mother School — school platform for Aama Pathshala, Badganga, Kapilvastu (admissions, attendance, grades, report cards, parent portal)
+- Loan Management System — Python desktop tool for a college teachers' saving group, in production since 2023
+- FailFirst Engine — debug-first learning tool for C, C++ and Java with a bundled compiler
+- Gesture Solar — browser experiment using webcam gestures to drive a 3D solar system
+- AayushAI Core — local-first assistant experiment (memory, journaling, tool calling)
 
-Full project archive is listed on the site.
+## Writing
+
+- The spreadsheet was the specification
+- Teach debugging, not just syntax
+- What a school taught me about boring software
+
+## Site structure
+
+- / — home
+- /about — background and approach
+- /journey — verified milestones
+- /projects — case studies and archive
+- /experiments — clearly labelled prototypes
+- /capabilities — capabilities and documented tools
+- /writing — essays
+- /contact — contact form and direct email
+
+Nepali versions are available under /ne.

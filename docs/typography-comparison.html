@@ -1,0 +1,1052 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AayusX — Typography Direction Comparison</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400..800&family=DM+Sans:ital,opsz,wght@0,9..40,400..700;1,9..40,400..600&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+Devanagari:wght@400..700&family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..600&family=Instrument+Sans:ital,wght@0,400..700;1,400..600&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --paper: #f7f2e7;
+        --paper-2: #efe7d6;
+        --surface: #fbf7ee;
+        --ink: #1d231e;
+        --ink-2: #56584d;
+        --ink-3: #66675b;
+        --botanical: #2c5a43;
+        --clay: #9f4a29;
+        --border: #d7ccb8;
+        --border-strong: #bfb199;
+        --gutter: clamp(1.25rem, 0.8rem + 2vw, 2.75rem);
+        --container: 78rem;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      html {
+        -webkit-text-size-adjust: 100%;
+        text-size-adjust: 100%;
+      }
+
+      body {
+        margin: 0;
+        background: var(--paper);
+        color: var(--ink);
+        font-family: 'DM Sans', sans-serif;
+        font-size: 17px;
+        line-height: 1.7;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-rendering: optimizeLegibility;
+      }
+
+      a {
+        color: inherit;
+        text-decoration-thickness: 1px;
+        text-underline-offset: 0.18em;
+      }
+
+      h1,
+      h2,
+      h3,
+      p,
+      figure,
+      dl,
+      dd {
+        margin: 0;
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .container {
+        width: 100%;
+        max-width: var(--container);
+        margin-inline: auto;
+        padding-inline: var(--gutter);
+      }
+
+      .lab-head {
+        padding-block: clamp(3rem, 2rem + 5vw, 6rem) clamp(2rem, 1.5rem + 3vw, 4rem);
+        border-bottom: 1px solid var(--border);
+      }
+
+      .lab-kicker {
+        font-family: 'IBM Plex Mono', monospace;
+        font-size: 0.75rem;
+        font-weight: 500;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--ink-3);
+        display: flex;
+        align-items: center;
+        gap: 0.7rem;
+      }
+
+      .lab-kicker::before {
+        content: '';
+        width: 1.75rem;
+        height: 1px;
+        background: var(--clay);
+      }
+
+      .lab-title {
+        font-family: 'Manrope', sans-serif;
+        font-weight: 750;
+        font-size: clamp(2.5rem, 1.8rem + 4vw, 5.5rem);
+        line-height: 1;
+        letter-spacing: -0.045em;
+        max-width: 18ch;
+        margin-top: 1.25rem;
+        text-wrap: balance;
+      }
+
+      .lab-lede {
+        max-width: 62ch;
+        margin-top: 1.25rem;
+        color: var(--ink-2);
+        font-size: 1.0625rem;
+      }
+
+      .lab-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem 1.5rem;
+        margin-top: 2rem;
+        font-family: 'IBM Plex Mono', monospace;
+        font-size: 0.75rem;
+        letter-spacing: 0.04em;
+        color: var(--ink-3);
+      }
+
+      .specimen-nav {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        background: color-mix(in srgb, var(--paper) 92%, transparent);
+        border-bottom: 1px solid var(--border);
+        backdrop-filter: blur(12px);
+      }
+
+      .specimen-nav .container {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        min-height: 3.5rem;
+        overflow-x: auto;
+      }
+
+      .specimen-nav a {
+        font-family: 'DM Sans', sans-serif;
+        font-size: 0.8125rem;
+        font-weight: 600;
+        color: var(--ink-2);
+        text-decoration: none;
+        white-space: nowrap;
+        padding-block: 0.4rem;
+      }
+
+      .specimen-nav a:hover {
+        color: var(--botanical);
+      }
+
+      .combo {
+        padding-block: clamp(3rem, 2.5rem + 4vw, 6rem);
+        border-bottom: 1px solid var(--border);
+      }
+
+      .combo-head {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 0.75rem 2rem;
+        margin-bottom: 2rem;
+      }
+
+      .combo-label {
+        font-family: 'IBM Plex Mono', monospace;
+        font-size: 0.75rem;
+        font-weight: 500;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--clay);
+      }
+
+      .combo-name {
+        font-family: 'Manrope', sans-serif;
+        font-weight: 700;
+        font-size: clamp(1.5rem, 1.2rem + 1vw, 2rem);
+        letter-spacing: -0.025em;
+        line-height: 1.1;
+      }
+
+      .combo-fonts {
+        font-family: 'IBM Plex Mono', monospace;
+        font-size: 0.72rem;
+        color: var(--ink-3);
+        letter-spacing: 0.02em;
+      }
+
+      .specimen {
+        --display: 'Manrope', sans-serif;
+        --body: 'DM Sans', sans-serif;
+        --label: 'IBM Plex Mono', monospace;
+        --display-weight: 700;
+        --heading-weight: 700;
+        --body-weight: 400;
+        --ui-weight: 500;
+        --label-weight: 500;
+        border: 1px solid var(--border);
+        background: var(--surface);
+        overflow: hidden;
+      }
+
+      .specimen--current {
+        --display: 'Fraunces', Georgia, serif;
+        --body: 'Instrument Sans', sans-serif;
+        --label: 'JetBrains Mono', monospace;
+        --display-weight: 430;
+        --heading-weight: 450;
+        --body-weight: 400;
+        --ui-weight: 500;
+        --label-weight: 500;
+      }
+
+      .specimen--a {
+        --display: 'Manrope', 'Noto Sans Devanagari', sans-serif;
+        --body: 'DM Sans', 'Noto Sans Devanagari', sans-serif;
+        --label: 'IBM Plex Mono', monospace;
+      }
+
+      .specimen--b {
+        --display: 'Manrope', 'Noto Sans Devanagari', sans-serif;
+        --body: 'Manrope', 'Noto Sans Devanagari', sans-serif;
+        --label: 'IBM Plex Mono', monospace;
+      }
+
+      .specimen--c {
+        --display: 'DM Sans', 'Noto Sans Devanagari', sans-serif;
+        --body: 'DM Sans', 'Noto Sans Devanagari', sans-serif;
+        --label: 'IBM Plex Mono', monospace;
+      }
+
+      .specimen-header {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+        min-height: 4rem;
+        padding-inline: clamp(1.25rem, 1rem + 2vw, 2.75rem);
+        border-bottom: 1px solid var(--border);
+        background: color-mix(in srgb, var(--paper) 55%, var(--surface));
+      }
+
+      .specimen-wordmark {
+        font-family: var(--display);
+        font-weight: var(--heading-weight);
+        font-size: 1.35rem;
+        letter-spacing: -0.035em;
+        line-height: 1;
+        white-space: nowrap;
+      }
+
+      .specimen-wordmark span {
+        display: inline-block;
+        width: 0.3em;
+        height: 0.3em;
+        border-radius: 50%;
+        background: var(--clay);
+        translate: 0 -0.08em;
+        margin-left: 0.08em;
+      }
+
+      .specimen-links {
+        display: flex;
+        align-items: center;
+        gap: clamp(0.7rem, 0.4rem + 1vw, 1.4rem);
+        margin-left: auto;
+        overflow: hidden;
+      }
+
+      .specimen-links a {
+        font-family: var(--body);
+        font-size: 0.8125rem;
+        font-weight: var(--ui-weight);
+        color: var(--ink-2);
+        text-decoration: none;
+        white-space: nowrap;
+      }
+
+      .specimen-links a:hover {
+        color: var(--ink);
+      }
+
+      .specimen-lang {
+        display: inline-flex;
+        border: 1px solid var(--border-strong);
+        border-radius: 999px;
+        padding: 2px;
+        font-family: var(--body);
+        font-size: 0.7rem;
+        font-weight: 600;
+        flex-shrink: 0;
+      }
+
+      .specimen-lang span {
+        padding: 0.28rem 0.5rem;
+        border-radius: 999px;
+      }
+
+      .specimen-lang span:first-child {
+        background: var(--ink);
+        color: var(--paper);
+      }
+
+      .specimen-body {
+        padding: clamp(1.75rem, 1.2rem + 3vw, 3.5rem) clamp(1.25rem, 1rem + 2vw, 2.75rem);
+      }
+
+      .specimen-eyebrow {
+        display: flex;
+        align-items: center;
+        gap: 0.7rem;
+        font-family: var(--label);
+        font-size: 0.75rem;
+        font-weight: var(--label-weight);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--ink-3);
+      }
+
+      .specimen-eyebrow::before {
+        content: '';
+        width: 2.25rem;
+        height: 1px;
+        background: var(--clay);
+        flex-shrink: 0;
+      }
+
+      .specimen-hero {
+        padding-block: 1.25rem clamp(2rem, 1.5rem + 2vw, 3rem);
+        border-bottom: 1px solid var(--border);
+      }
+
+      .specimen-h1 {
+        font-family: var(--display);
+        font-weight: var(--display-weight);
+        font-size: clamp(2.6rem, 1.8rem + 5.4vw, 5.8rem);
+        line-height: 0.98;
+        letter-spacing: -0.045em;
+        max-width: 15ch;
+        margin-top: 1.25rem;
+        text-wrap: balance;
+      }
+
+      .specimen-h1 em {
+        font-style: normal;
+        color: var(--botanical);
+      }
+
+      .specimen-intro {
+        max-width: 36rem;
+        margin-top: 1.75rem;
+        color: var(--ink-2);
+        font-family: var(--body);
+        font-size: 1.0625rem;
+        font-weight: var(--body-weight);
+        line-height: 1.72;
+      }
+
+      .specimen-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        margin-top: 1.75rem;
+      }
+
+      .specimen-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 2.75rem;
+        padding: 0.65rem 1.15rem;
+        border: 1px solid var(--ink);
+        border-radius: 2px;
+        background: var(--ink);
+        color: var(--paper);
+        font-family: var(--body);
+        font-size: 0.875rem;
+        font-weight: 600;
+        text-decoration: none;
+      }
+
+      .specimen-button--ghost {
+        background: transparent;
+        color: var(--ink);
+      }
+
+      .specimen-section {
+        padding-top: clamp(2rem, 1.5rem + 2vw, 3rem);
+      }
+
+      .specimen-section-head {
+        display: grid;
+        grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.2fr);
+        gap: 1.5rem;
+        align-items: start;
+        margin-bottom: 1.5rem;
+      }
+
+      .specimen-h2 {
+        font-family: var(--display);
+        font-weight: var(--heading-weight);
+        font-size: clamp(1.8rem, 1.4rem + 2.4vw, 3rem);
+        line-height: 1.06;
+        letter-spacing: -0.035em;
+        max-width: 20ch;
+        margin-top: 0.75rem;
+        text-wrap: balance;
+      }
+
+      .specimen-lede {
+        font-family: var(--body);
+        font-size: 1rem;
+        color: var(--ink-2);
+        line-height: 1.7;
+        max-width: 48ch;
+      }
+
+      .project-row {
+        display: grid;
+        grid-template-columns: 3rem minmax(0, 1fr) minmax(12rem, 0.45fr);
+        gap: 1.25rem;
+        align-items: start;
+        padding-block: 1.5rem;
+        border-top: 1px solid var(--border);
+      }
+
+      .project-index {
+        font-family: var(--label);
+        font-size: 0.75rem;
+        font-weight: var(--label-weight);
+        color: var(--ink-3);
+        padding-top: 0.35rem;
+      }
+
+      .project-title {
+        font-family: var(--display);
+        font-weight: var(--heading-weight);
+        font-size: clamp(1.6rem, 1.2rem + 2vw, 2.5rem);
+        line-height: 1.04;
+        letter-spacing: -0.035em;
+        max-width: 20ch;
+      }
+
+      .project-summary {
+        margin-top: 0.65rem;
+        max-width: 54ch;
+        font-family: var(--body);
+        font-size: 0.9375rem;
+        color: var(--ink-2);
+        line-height: 1.65;
+      }
+
+      .project-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+        margin-top: 1rem;
+      }
+
+      .tag {
+        display: inline-flex;
+        align-items: center;
+        padding: 0.22rem 0.55rem;
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        background: var(--paper);
+        font-family: var(--label);
+        font-size: 0.7rem;
+        font-weight: 400;
+        letter-spacing: 0.02em;
+        color: var(--ink-2);
+        white-space: nowrap;
+      }
+
+      .project-aside {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.7rem;
+        padding-top: 0.35rem;
+      }
+
+      .project-meta {
+        font-family: var(--label);
+        font-size: 0.72rem;
+        font-weight: 400;
+        letter-spacing: 0.04em;
+        color: var(--ink-3);
+      }
+
+      .status {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        padding: 0.22rem 0.6rem 0.22rem 0.5rem;
+        border: 1px solid color-mix(in srgb, var(--botanical) 35%, var(--border));
+        border-radius: 999px;
+        background: #dfe7da;
+        color: #1f4231;
+        font-family: var(--label);
+        font-size: 0.68rem;
+        font-weight: var(--label-weight);
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        white-space: nowrap;
+      }
+
+      .status::before {
+        content: '';
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--botanical);
+      }
+
+      .project-link {
+        font-family: var(--body);
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: var(--botanical);
+        text-decoration: none;
+        margin-top: auto;
+      }
+
+      .specimen-nepali {
+        margin-top: 1.5rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid var(--border);
+      }
+
+      .specimen-nepali .label {
+        font-family: var(--label);
+        font-size: 0.7rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--ink-3);
+        margin-bottom: 0.75rem;
+      }
+
+      .specimen-nepali h3 {
+        font-family: 'Noto Sans Devanagari', var(--display);
+        font-weight: 650;
+        font-size: clamp(1.35rem, 1.1rem + 1.4vw, 2rem);
+        line-height: 1.45;
+        letter-spacing: 0;
+        max-width: 26ch;
+        color: var(--ink);
+      }
+
+      .specimen-nepali p {
+        margin-top: 0.75rem;
+        font-family: 'Noto Sans Devanagari', var(--body);
+        font-size: 1rem;
+        line-height: 1.85;
+        color: var(--ink-2);
+        max-width: 62ch;
+      }
+
+      .combo-notes {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0;
+        margin-top: 1.25rem;
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+      }
+
+      .combo-note {
+        padding: 1rem 0;
+        font-family: 'DM Sans', sans-serif;
+        font-size: 0.875rem;
+        color: var(--ink-2);
+      }
+
+      .combo-note + .combo-note {
+        border-left: 1px solid var(--border);
+        padding-left: 1.25rem;
+      }
+
+      .combo-note strong {
+        display: block;
+        font-family: 'IBM Plex Mono', monospace;
+        font-size: 0.7rem;
+        font-weight: 500;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--ink);
+        margin-bottom: 0.35rem;
+      }
+
+      .lab-selected {
+        margin-top: 1.75rem;
+        padding: 1rem 1.15rem;
+        border: 1px solid var(--border);
+        border-left: 3px solid var(--botanical);
+        background: var(--surface);
+        max-width: 72ch;
+        font-size: 0.9rem;
+        color: var(--ink-2);
+      }
+
+      .lab-selected strong {
+        display: block;
+        font-family: 'IBM Plex Mono', monospace;
+        font-size: 0.7rem;
+        font-weight: 500;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--ink);
+        margin-bottom: 0.25rem;
+      }
+
+      .lab-foot {
+        padding-block: 3rem 5rem;
+        color: var(--ink-3);
+        font-size: 0.875rem;
+      }
+
+      .lab-foot p {
+        max-width: 65ch;
+      }
+
+      .lab-foot code {
+        font-family: 'IBM Plex Mono', monospace;
+        font-size: 0.8em;
+      }
+
+      @media (max-width: 900px) {
+        .specimen-links {
+          display: none;
+        }
+
+        .specimen-section-head,
+        .project-row {
+          grid-template-columns: 1fr;
+          gap: 0.75rem;
+        }
+
+        .project-index {
+          padding-top: 0;
+        }
+
+        .project-aside {
+          padding-top: 0;
+        }
+
+        .combo-notes {
+          grid-template-columns: 1fr;
+        }
+
+        .combo-note + .combo-note {
+          border-left: 0;
+          border-top: 1px solid var(--border);
+          padding-left: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="lab-head">
+      <div class="container">
+        <p class="lab-kicker">Type direction · AayusX</p>
+        <h1 class="lab-title">Modern engineering, not fashion editorial.</h1>
+        <p class="lab-lede">
+          The same real homepage content set in four systems: the current direction for reference,
+          then three sans-first combinations. Each specimen uses the same hierarchy, measure and
+          weights so the comparison is about the typefaces, not the styling.
+        </p>
+        <div class="lab-meta">
+          <span>Current: Fraunces / Instrument Sans / JetBrains Mono</span>
+          <span>A: Manrope / DM Sans / IBM Plex Mono</span>
+          <span>B: Manrope / Manrope / IBM Plex Mono</span>
+          <span>C: DM Sans / DM Sans / IBM Plex Mono</span>
+        </div>
+        <p class="lab-selected">
+          <strong>Selected direction</strong>
+          Combination A — Engineering editorial. Manrope gives the headlines a confident,
+          engineered geometry; DM Sans keeps paragraphs comfortable; IBM Plex Mono makes
+          dates, technologies, and project identifiers feel precise. Combination B is cohesive
+          but weaker at paragraph length; Combination C is readable but less distinctive.
+        </p>
+      </div>
+    </header>
+
+    <nav class="specimen-nav" aria-label="Comparison sections">
+      <div class="container">
+        <a href="#current">Current</a>
+        <a href="#combo-a">A · Engineering editorial</a>
+        <a href="#combo-b">B · Single-system Manrope</a>
+        <a href="#combo-c">C · Quiet DM Sans</a>
+      </div>
+    </nav>
+
+    <main>
+      <section class="combo" id="current">
+        <div class="container">
+          <div class="combo-head">
+            <div>
+              <p class="combo-label">Reference</p>
+              <h2 class="combo-name">Current system</h2>
+            </div>
+            <p class="combo-fonts">Fraunces 430 · Instrument Sans 400/500 · JetBrains Mono 500</p>
+          </div>
+          <div class="specimen specimen--current">
+            <div class="specimen-header">
+              <span class="specimen-wordmark">AayusX<span></span></span>
+              <nav class="specimen-links" aria-label="Primary navigation">
+                <a href="#">About</a><a href="#">Journey</a><a href="#">Projects</a>
+                <a href="#">Experiments</a><a href="#">Capabilities</a><a href="#">Writing</a>
+                <a href="#">Contact</a>
+              </nav>
+              <span class="specimen-lang"><span>EN</span><span>ने</span></span>
+            </div>
+            <div class="specimen-body">
+              <div class="specimen-hero">
+                <p class="specimen-eyebrow">Aayush Bhandari · Nepal</p>
+                <h3 class="specimen-h1">
+                  I build software that makes <em>everyday work</em> lighter.
+                </h3>
+                <p class="specimen-intro">
+                  I’m a Computer Engineering student and technology entrepreneur. I design and build
+                  web platforms, desktop tools, and small AI systems — usually for schools, small
+                  businesses, and problems I can’t stop thinking about.
+                </p>
+                <div class="specimen-actions">
+                  <a class="specimen-button" href="#">See selected work →</a>
+                  <a class="specimen-button specimen-button--ghost" href="#">More about me</a>
+                </div>
+              </div>
+              <div class="specimen-section">
+                <div class="specimen-section-head">
+                  <div>
+                    <p class="specimen-eyebrow">01 — Selected work</p>
+                    <h3 class="specimen-h2">Work with a real user on the other side.</h3>
+                  </div>
+                  <p class="specimen-lede">
+                    A school, a savings group, a classroom, a browser experiment. Each one started
+                    with a constraint I could not design around.
+                  </p>
+                </div>
+                <div class="project-row">
+                  <span class="project-index">01</span>
+                  <div>
+                    <h4 class="project-title">Mother School</h4>
+                    <p class="project-summary">
+                      A complete school platform for Aama Pathshala in Badganga, Kapilvastu:
+                      admissions, attendance, grades, report cards, and a parent portal.
+                    </p>
+                    <div class="project-tags">
+                      <span class="tag">React</span><span class="tag">Next.js</span>
+                      <span class="tag">Node.js</span><span class="tag">Express</span>
+                    </div>
+                  </div>
+                  <div class="project-aside">
+                    <span class="project-meta">2024 · Education platform</span>
+                    <span class="status">In production</span>
+                    <a class="project-link" href="#">Read the case study →</a>
+                  </div>
+                </div>
+              </div>
+              <div class="specimen-nepali">
+                <p class="label">Nepali rendering</p>
+                <h3>म यस्तो सफ्टवेयर बनाउँछु जसले दैनिक काम हलुका बनाउँछ।</h3>
+                <p>
+                  म कम्प्युटर इन्जिनियरिङको विद्यार्थी र प्रविधि उद्यमी हुँ। म वेब प्लेटफर्म,
+                  डेस्कटप उपकरण र साना एआई प्रणाली डिजाइन र निर्माण गर्छु।
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="combo-notes">
+            <p class="combo-note"><strong>Strength</strong>Expressive, editorial, immediately distinctive.</p>
+            <p class="combo-note"><strong>Weakness</strong>Thin display weights and high-contrast serif read decorative, not engineering-led. The italic emphasis is doing too much.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="combo" id="combo-a">
+        <div class="container">
+          <div class="combo-head">
+            <div>
+              <p class="combo-label">Combination A</p>
+              <h2 class="combo-name">Engineering editorial</h2>
+            </div>
+            <p class="combo-fonts">Manrope 700 display · DM Sans 400/500 body &amp; UI · IBM Plex Mono 500 labels</p>
+          </div>
+          <div class="specimen specimen--a">
+            <div class="specimen-header">
+              <span class="specimen-wordmark">AayusX<span></span></span>
+              <nav class="specimen-links" aria-label="Primary navigation">
+                <a href="#">About</a><a href="#">Journey</a><a href="#">Projects</a>
+                <a href="#">Experiments</a><a href="#">Capabilities</a><a href="#">Writing</a>
+                <a href="#">Contact</a>
+              </nav>
+              <span class="specimen-lang"><span>EN</span><span>ने</span></span>
+            </div>
+            <div class="specimen-body">
+              <div class="specimen-hero">
+                <p class="specimen-eyebrow">Aayush Bhandari · Nepal</p>
+                <h3 class="specimen-h1">
+                  I build software that makes <em>everyday work</em> lighter.
+                </h3>
+                <p class="specimen-intro">
+                  I’m a Computer Engineering student and technology entrepreneur. I design and build
+                  web platforms, desktop tools, and small AI systems — usually for schools, small
+                  businesses, and problems I can’t stop thinking about.
+                </p>
+                <div class="specimen-actions">
+                  <a class="specimen-button" href="#">See selected work →</a>
+                  <a class="specimen-button specimen-button--ghost" href="#">More about me</a>
+                </div>
+              </div>
+              <div class="specimen-section">
+                <div class="specimen-section-head">
+                  <div>
+                    <p class="specimen-eyebrow">01 — Selected work</p>
+                    <h3 class="specimen-h2">Work with a real user on the other side.</h3>
+                  </div>
+                  <p class="specimen-lede">
+                    A school, a savings group, a classroom, a browser experiment. Each one started
+                    with a constraint I could not design around.
+                  </p>
+                </div>
+                <div class="project-row">
+                  <span class="project-index">01</span>
+                  <div>
+                    <h4 class="project-title">Mother School</h4>
+                    <p class="project-summary">
+                      A complete school platform for Aama Pathshala in Badganga, Kapilvastu:
+                      admissions, attendance, grades, report cards, and a parent portal.
+                    </p>
+                    <div class="project-tags">
+                      <span class="tag">React</span><span class="tag">Next.js</span>
+                      <span class="tag">Node.js</span><span class="tag">Express</span>
+                    </div>
+                  </div>
+                  <div class="project-aside">
+                    <span class="project-meta">2024 · Education platform</span>
+                    <span class="status">In production</span>
+                    <a class="project-link" href="#">Read the case study →</a>
+                  </div>
+                </div>
+              </div>
+              <div class="specimen-nepali">
+                <p class="label">Nepali rendering</p>
+                <h3>म यस्तो सफ्टवेयर बनाउँछु जसले दैनिक काम हलुका बनाउँछ।</h3>
+                <p>
+                  म कम्प्युटर इन्जिनियरिङको विद्यार्थी र प्रविधि उद्यमी हुँ। म वेब प्लेटफर्म,
+                  डेस्कटप उपकरण र साना एआई प्रणाली डिजाइन र निर्माण गर्छु।
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="combo-notes">
+            <p class="combo-note"><strong>Strength</strong>Clear role separation. Manrope gives the headlines a confident, engineered geometry; DM Sans keeps long paragraphs easy; Plex Mono makes metadata feel technical without using uppercase everywhere.</p>
+            <p class="combo-note"><strong>Risk</strong>Three families means three voices. Here each has a distinct job, so the system earns it.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="combo" id="combo-b">
+        <div class="container">
+          <div class="combo-head">
+            <div>
+              <p class="combo-label">Combination B</p>
+              <h2 class="combo-name">Single-system Manrope</h2>
+            </div>
+            <p class="combo-fonts">Manrope 700 display / 400 body / 500 UI · IBM Plex Mono 500 labels</p>
+          </div>
+          <div class="specimen specimen--b">
+            <div class="specimen-header">
+              <span class="specimen-wordmark">AayusX<span></span></span>
+              <nav class="specimen-links" aria-label="Primary navigation">
+                <a href="#">About</a><a href="#">Journey</a><a href="#">Projects</a>
+                <a href="#">Experiments</a><a href="#">Capabilities</a><a href="#">Writing</a>
+                <a href="#">Contact</a>
+              </nav>
+              <span class="specimen-lang"><span>EN</span><span>ने</span></span>
+            </div>
+            <div class="specimen-body">
+              <div class="specimen-hero">
+                <p class="specimen-eyebrow">Aayush Bhandari · Nepal</p>
+                <h3 class="specimen-h1">
+                  I build software that makes <em>everyday work</em> lighter.
+                </h3>
+                <p class="specimen-intro">
+                  I’m a Computer Engineering student and technology entrepreneur. I design and build
+                  web platforms, desktop tools, and small AI systems — usually for schools, small
+                  businesses, and problems I can’t stop thinking about.
+                </p>
+                <div class="specimen-actions">
+                  <a class="specimen-button" href="#">See selected work →</a>
+                  <a class="specimen-button specimen-button--ghost" href="#">More about me</a>
+                </div>
+              </div>
+              <div class="specimen-section">
+                <div class="specimen-section-head">
+                  <div>
+                    <p class="specimen-eyebrow">01 — Selected work</p>
+                    <h3 class="specimen-h2">Work with a real user on the other side.</h3>
+                  </div>
+                  <p class="specimen-lede">
+                    A school, a savings group, a classroom, a browser experiment. Each one started
+                    with a constraint I could not design around.
+                  </p>
+                </div>
+                <div class="project-row">
+                  <span class="project-index">01</span>
+                  <div>
+                    <h4 class="project-title">Mother School</h4>
+                    <p class="project-summary">
+                      A complete school platform for Aama Pathshala in Badganga, Kapilvastu:
+                      admissions, attendance, grades, report cards, and a parent portal.
+                    </p>
+                    <div class="project-tags">
+                      <span class="tag">React</span><span class="tag">Next.js</span>
+                      <span class="tag">Node.js</span><span class="tag">Express</span>
+                    </div>
+                  </div>
+                  <div class="project-aside">
+                    <span class="project-meta">2024 · Education platform</span>
+                    <span class="status">In production</span>
+                    <a class="project-link" href="#">Read the case study →</a>
+                  </div>
+                </div>
+              </div>
+              <div class="specimen-nepali">
+                <p class="label">Nepali rendering</p>
+                <h3>म यस्तो सफ्टवेयर बनाउँछु जसले दैनिक काम हलुका बनाउँछ।</h3>
+                <p>
+                  म कम्प्युटर इन्जिनियरिङको विद्यार्थी र प्रविधि उद्यमी हुँ। म वेब प्लेटफर्म,
+                  डेस्कटप उपकरण र साना एआई प्रणाली डिजाइन र निर्माण गर्छु।
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="combo-notes">
+            <p class="combo-note"><strong>Strength</strong>The most cohesive system: one geometric voice from wordmark to body. Fewer families, fewer decisions.</p>
+            <p class="combo-note"><strong>Risk</strong>Manrope is less comfortable than DM Sans at paragraph length, and the heading/body contrast is weaker because both share the same skeleton.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="combo" id="combo-c">
+        <div class="container">
+          <div class="combo-head">
+            <div>
+              <p class="combo-label">Combination C</p>
+              <h2 class="combo-name">Quiet DM Sans</h2>
+            </div>
+            <p class="combo-fonts">DM Sans 700 display / 400 body / 500 UI · IBM Plex Mono 500 labels</p>
+          </div>
+          <div class="specimen specimen--c">
+            <div class="specimen-header">
+              <span class="specimen-wordmark">AayusX<span></span></span>
+              <nav class="specimen-links" aria-label="Primary navigation">
+                <a href="#">About</a><a href="#">Journey</a><a href="#">Projects</a>
+                <a href="#">Experiments</a><a href="#">Capabilities</a><a href="#">Writing</a>
+                <a href="#">Contact</a>
+              </nav>
+              <span class="specimen-lang"><span>EN</span><span>ने</span></span>
+            </div>
+            <div class="specimen-body">
+              <div class="specimen-hero">
+                <p class="specimen-eyebrow">Aayush Bhandari · Nepal</p>
+                <h3 class="specimen-h1">
+                  I build software that makes <em>everyday work</em> lighter.
+                </h3>
+                <p class="specimen-intro">
+                  I’m a Computer Engineering student and technology entrepreneur. I design and build
+                  web platforms, desktop tools, and small AI systems — usually for schools, small
+                  businesses, and problems I can’t stop thinking about.
+                </p>
+                <div class="specimen-actions">
+                  <a class="specimen-button" href="#">See selected work →</a>
+                  <a class="specimen-button specimen-button--ghost" href="#">More about me</a>
+                </div>
+              </div>
+              <div class="specimen-section">
+                <div class="specimen-section-head">
+                  <div>
+                    <p class="specimen-eyebrow">01 — Selected work</p>
+                    <h3 class="specimen-h2">Work with a real user on the other side.</h3>
+                  </div>
+                  <p class="specimen-lede">
+                    A school, a savings group, a classroom, a browser experiment. Each one started
+                    with a constraint I could not design around.
+                  </p>
+                </div>
+                <div class="project-row">
+                  <span class="project-index">01</span>
+                  <div>
+                    <h4 class="project-title">Mother School</h4>
+                    <p class="project-summary">
+                      A complete school platform for Aama Pathshala in Badganga, Kapilvastu:
+                      admissions, attendance, grades, report cards, and a parent portal.
+                    </p>
+                    <div class="project-tags">
+                      <span class="tag">React</span><span class="tag">Next.js</span>
+                      <span class="tag">Node.js</span><span class="tag">Express</span>
+                    </div>
+                  </div>
+                  <div class="project-aside">
+                    <span class="project-meta">2024 · Education platform</span>
+                    <span class="status">In production</span>
+                    <a class="project-link" href="#">Read the case study →</a>
+                  </div>
+                </div>
+              </div>
+              <div class="specimen-nepali">
+                <p class="label">Nepali rendering</p>
+                <h3>म यस्तो सफ्टवेयर बनाउँछु जसले दैनिक काम हलुका बनाउँछ।</h3>
+                <p>
+                  म कम्प्युटर इन्जिनियरिङको विद्यार्थी र प्रविधि उद्यमी हुँ। म वेब प्लेटफर्म,
+                  डेस्कटप उपकरण र साना एआई प्रणाली डिजाइन र निर्माण गर्छु।
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="combo-notes">
+            <p class="combo-note"><strong>Strength</strong>Readable everywhere, friendly and contemporary. The two-family system is the simplest to maintain.</p>
+            <p class="combo-note"><strong>Risk</strong>DM Sans display is clean but quiet; it does less to signal engineering ambition, and the headline loses authority against the mono labels.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="lab-foot">
+      <div class="container">
+        <p>
+          Same copy, same hierarchy, same measure. The only variables are the families and the
+          weight roles. Font loading uses Google Fonts with <code>display=swap</code>; Noto Sans
+          Devanagari is served from the Devanagari unicode-range so it downloads only when Nepali
+          text is present.
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>

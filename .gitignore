@@ -3,6 +3,11 @@ dist
 dist-ssr
 *.local
 .opencode/
+.commandcode/
+.dev.vars
+.env
+.env.*
+!.env.example
 
 logs
 *.log

@@ -1,6 +1,8 @@
-import { useEffect, useRef, useState } from 'react';
-import type { ReactNode } from 'react';
-import { allProjects, stackItems } from '../projectsData';
+import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
+import { useTranslation } from 'react-i18next';
+import { FEATURED_CASE_STUDIES } from '../content/projects';
+import { SITE, mailtoHref } from '../content/site';
+import { TECH_WALL } from '../content/tech';
 
 interface Line {
   cls?: string;
@@ -8,176 +10,180 @@ interface Line {
   node: ReactNode;
 }
 
-const BANNER: Line[] = [
-  { cls: 'sys', node: 'aayusx-shell v7.2 — interactive evidence terminal' },
-  { cls: 'sys', node: "type 'help' to list commands. no sudo required (mostly)." },
-];
+const QUICK_COMMANDS = ['whoami', 'projects', 'stack', 'contact', 'uptime', 'clear'] as const;
 
-let bootTime = Date.now();
-
-function buildResponse(raw: string): Line[] {
-  const cmd = raw.trim().toLowerCase();
-  if (!cmd) return [];
-
-  switch (cmd) {
-    case 'help':
-      return [
-        { node: 'available commands:' },
-        { cls: 'o', node: '  whoami          — who is this guy' },
-        { cls: 'o', node: '  projects        — list all 19 experiments' },
-        { cls: 'o', node: '  stack           — technologies in rotation' },
-        { cls: 'o', node: '  contact         — open a channel' },
-        { cls: 'o', node: '  uptime          — how long you have been here' },
-        { cls: 'o', node: '  hire            — the fast path' },
-        { cls: 'o', node: '  clear           — wipe the evidence' },
-      ];
-     case 'whoami':
-      return [
-        { cls: 'ok', node: "Aayush Bhandari (AayusX) — builder. 19 shipped projects. President, ICT Club. Co-founder, Yugya. Kathmandu, Nepal." },
-      ];
-    case 'projects':
-      return [
-        { cls: 'sys', node: 'PRODUCTION (2)' },
-        ...allProjects.filter(p => p.status === 'production').map((p, i) => ({
-          node: (
-            <>
-              <span className="sys">{String(i + 1).padStart(2, '0')}.</span>{' '}
-              <a href={p.link} target="_blank" rel="noopener noreferrer">{p.title}</a>{' '}
-              <span className="sys">[{p.tags.join(', ')}]</span>
-            </>
-          ),
-        })),
-        { cls: 'sys', node: 'SHIPPED (9)' },
-        ...allProjects.filter(p => p.status === 'shipped').map((p, i) => ({
-          node: (
-            <>
-              <span className="sys">{String(i + 1).padStart(2, '0')}.</span>{' '}
-              <a href={p.link} target="_blank" rel="noopener noreferrer">{p.title}</a>{' '}
-              <span className="sys">[{p.tags.join(', ')}]</span>
-            </>
-          ),
-        })),
-        { cls: 'sys', node: 'ALIVE (1) · ITERATING (1) · ARCHIVED (6) · CLASSIFIED (1)' },
-      ];
-    case 'sudo rm -rf /':
-      return [{ cls: 'err', node: 'Nice try. The cubes are watching.' }];
-    case 'ls':
-      return [{ cls: 'o', node: 'No files here. Try \'projects\'.' }];
-    case 'pwd':
-      return [{ cls: 'ok', node: '/home/visitor/aayusx.dev' }];
-    case 'date': {
-      const fmt = new Intl.DateTimeFormat('en-GB', { timeZone: 'Asia/Kathmandu', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });
-      return [{ cls: 'o', node: `KTM · ${fmt.format(new Date())}` }];
-    }
-    case 'hire':
-    case 'sudo hire-aayush':
-      return [
-        { cls: 'ok', node: 'ACCESS GRANTED.' },
-        { node: <>opening secure channel → <a href="mailto:technology457t@gmail.com?subject=Let%27s%20build%20something">technology457t@gmail.com</a></> },
-        { cls: 'o', node: 'available for internships & co-founder roles. email is the fastest way.' },
-      ];
-    case 'clear':
-      return [];
-    default:
-      return [{ cls: 'err', node: `command not found: ${cmd} — try 'help'` }];
-  }
-}
-
-const PALETTE_CMDS = ['whoami', 'projects', 'stack', 'contact', 'hire', 'clear'];
+const sessionStart = Date.now();
 
 export default function Terminal() {
-  const [lines, setLines] = useState<Line[]>(BANNER);
+  const { t } = useTranslation();
+  const banner = useMemo<Line[]>(
+    () => [
+      { cls: 'sys', node: t('experiments.terminalBanner') },
+      { cls: 'sys', node: t('experiments.terminalHint') },
+    ],
+    [t],
+  );
+  const [lines, setLines] = useState<Line[]>(banner);
   const [value, setValue] = useState('');
   const [history, setHistory] = useState<string[]>([]);
-  const [histIdx, setHistIdx] = useState(-1);
-  const outRef = useRef<HTMLDivElement>(null);
-  const inputRef = useRef<HTMLInputElement>(null);
+  const [historyIndex, setHistoryIndex] = useState(-1);
+  const outputRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    outRef.current?.scrollTo({ top: outRef.current.scrollHeight });
+    setLines(banner);
+  }, [banner]);
+
+  useEffect(() => {
+    outputRef.current?.scrollTo({ top: outputRef.current.scrollHeight });
   }, [lines]);
 
-  const run = (raw: string) => {
-    const cmd = raw.trim().toLowerCase();
-    if (!cmd) return;
-    setHistory((h) => [...h, raw].slice(-50));
-    setHistIdx(-1);
-    if (cmd === 'clear') {
-      setLines([]);
-      setValue('');
-      return;
+  const respond = (raw: string): Line[] => {
+    const command = raw.trim().toLowerCase();
+
+    switch (command) {
+      case 'help':
+        return [
+          { cls: 'sys', node: t('terminal.helpTitle') },
+          ...(t('terminal.help', { returnObjects: true }) as string[]).map((line) => ({
+            cls: 'o',
+            node: line,
+          })),
+        ];
+      case 'whoami':
+        return [{ cls: 'ok', node: t('terminal.whoami') }];
+      case 'projects':
+        return [
+          { cls: 'sys', node: t('terminal.projectsTitle') },
+          ...FEATURED_CASE_STUDIES.map((project, index) => ({
+            node: (
+              <>
+                <span className="sys">{String(index + 1).padStart(2, '0')}.</span>{' '}
+                <a
+                  href={project.live ?? project.code ?? SITE.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {t(`projects.items.${project.slug}.title`)}
+                </a>{' '}
+                <span className="sys">[{project.tech.slice(0, 3).join(', ')}]</span>
+              </>
+            ),
+          })),
+        ];
+      case 'stack':
+        return [
+          { cls: 'sys', node: t('terminal.stackTitle') },
+          { cls: 'o', node: TECH_WALL.join(' · ') },
+        ];
+      case 'contact':
+        return [
+          { cls: 'sys', node: t('terminal.contactTitle') },
+          { node: t('terminal.contactBody', { email: SITE.email }) },
+          {
+            node: (
+              <a href={mailtoHref()}>
+                {SITE.email}
+              </a>
+            ),
+          },
+        ];
+      case 'uptime': {
+        const seconds = Math.max(1, Math.round((Date.now() - sessionStart) / 1000));
+        return [{ cls: 'o', node: t('terminal.uptimeLabel', { seconds }) }];
+      }
+      default:
+        return [{ cls: 'err', node: t('terminal.notFound', { command }) }];
     }
-    setLines((l) => [...l, { cls: 'cmd', prefix: 'visitor@aayusx.dev:~$', node: raw }, ...buildResponse(raw)]);
-    setValue('');
   };
 
-  const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'ArrowUp') {
-      e.preventDefault();
-      if (!history.length) return;
-      const next = histIdx === -1 ? history.length - 1 : Math.max(0, histIdx - 1);
-      setHistIdx(next);
+  const submit = (raw: string) => {
+    const command = raw.trim().toLowerCase();
+    if (!command) return;
+
+    setHistory((current) => [...current, raw].slice(-50));
+    setHistoryIndex(-1);
+    setValue('');
+
+    if (command === 'clear') {
+      setLines([]);
+      return;
+    }
+
+    setLines((current) => [
+      ...current,
+      { cls: 'cmd', prefix: t('terminal.prompt'), node: raw },
+      ...respond(raw),
+    ]);
+  };
+
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'ArrowUp') {
+      event.preventDefault();
+      if (history.length === 0) return;
+      const next = historyIndex === -1 ? history.length - 1 : Math.max(0, historyIndex - 1);
+      setHistoryIndex(next);
       setValue(history[next]);
-    } else if (e.key === 'ArrowDown') {
-      e.preventDefault();
-      if (histIdx === -1) return;
-      const next = histIdx + 1;
+    } else if (event.key === 'ArrowDown') {
+      event.preventDefault();
+      if (historyIndex === -1) return;
+      const next = historyIndex + 1;
       if (next >= history.length) {
-        setHistIdx(-1);
+        setHistoryIndex(-1);
         setValue('');
       } else {
-        setHistIdx(next);
+        setHistoryIndex(next);
         setValue(history[next]);
       }
     }
   };
 
   return (
-    <div className="term-window" data-cursor="TYPE">
+    <div className="term-window">
       <div className="term-bar">
         <div className="term-dots">
           <span />
           <span />
           <span />
         </div>
-        <div className="term-title">visitor@aayusx.dev — zsh</div>
+        <div className="term-title">{t('experiments.terminalTitle')}</div>
       </div>
-      <div className="term-out" ref={outRef} aria-live="polite">
-        {lines.map((l, i) => (
-          <div key={i} className={`tl`}>
-            {l.prefix && <span className="p">{l.prefix}</span>}
-            <span className={l.cls ?? ''}>{l.node}</span>
+
+      <div className="term-out" ref={outputRef} aria-live="polite">
+        {lines.map((line, index) => (
+          <div className="tl" key={`${index}-${String(line.node).slice(0, 12)}`}>
+            {line.prefix ? <span className="p">{line.prefix}</span> : null}
+            <span className={line.cls ?? ''}>{line.node}</span>
           </div>
         ))}
       </div>
-      <div className="term-palette" aria-label="Quick commands">
-        {PALETTE_CMDS.map((c) => (
+
+      <div className="term-palette" role="group" aria-label={t('experiments.terminalQuick')}>
+        {QUICK_COMMANDS.map((command) => (
           <button
-            key={c}
+            key={command}
             type="button"
             className="mono term-chip"
-            onClick={() => run(c)}
-            aria-label={`Run ${c}`}
+            onClick={() => submit(command)}
           >
-            {c}
+            {command}
           </button>
         ))}
       </div>
+
       <form
         className="term-in"
-        onSubmit={(e) => {
-          e.preventDefault();
-          run(value);
+        onSubmit={(event) => {
+          event.preventDefault();
+          submit(value);
         }}
       >
-        <span className="p">visitor@aayusx.dev:~$</span>
+        <span className="p">{t('terminal.prompt')}</span>
         <input
-          ref={inputRef}
           value={value}
-          onChange={(e) => setValue(e.target.value)}
-          onKeyDown={onKeyDown}
-          placeholder="type 'help'"
-          aria-label="terminal input"
+          onChange={(event) => setValue(event.target.value)}
+          onKeyDown={handleKeyDown}
+          placeholder={t('terminal.helpTitle')}
+          aria-label={t('experiments.terminalInput')}
           spellCheck={false}
           autoComplete="off"
         />

@@ -3,10 +3,11 @@ import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { Physics, RigidBody, CuboidCollider } from '@react-three/rapier';
 import { RoomEnvironment } from 'three/examples/jsm/environments/RoomEnvironment.js';
 import * as THREE from 'three';
-import { featuredProjects } from '../projectsData';
 
-export function setCursorLabel(label: string | null) {
-  window.dispatchEvent(new CustomEvent('cursor-label', { detail: { label } }));
+export interface PhysicsBlock {
+  title: string;
+  color: string;
+  link: string;
 }
 
 /* ============================================================
@@ -63,7 +64,7 @@ function createLabelTexture(title: string, accent: string): THREE.CanvasTexture 
   let fontSize = 76;
   const maxW = size - pad * 2 - 56;
   let lines: string[] = [];
-  const fontFor = (s: number) => `800 ${s}px 'Inter Tight', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif`;
+  const fontFor = (s: number) => `800 ${s}px 'Bricolage Grotesque', 'DM Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif`;
   ctx.font = fontFor(fontSize);
   while (fontSize > 30) {
     lines = wrapLabel(ctx, title.toUpperCase(), maxW);
@@ -81,7 +82,7 @@ function createLabelTexture(title: string, accent: string): THREE.CanvasTexture 
   lines.forEach((l, i) => ctx.fillText(l, size / 2, startY + i * lineHeight));
 
   // corner tag
-  ctx.font = "700 20px 'JetBrains Mono', monospace";
+  ctx.font = "500 20px 'IBM Plex Mono', monospace";
   ctx.fillStyle = 'rgba(10,10,11,0.55)';
   ctx.fillText('· DRAG · THROW ·', size / 2, size - pad - 42);
 
@@ -116,7 +117,7 @@ function ProceduralEnv() {
    PHYSICS WORLD
    ============================================================ */
 
-function ProjectBlock({ title, color, link, slot }: any) {
+function ProjectBlock({ title, color, link, slot }: PhysicsBlock & { slot: number }) {
   const rb = useRef<any>(null);
   const [hovered, setHover] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
@@ -163,27 +164,25 @@ function ProjectBlock({ title, color, link, slot }: any) {
       <mesh
         onPointerOver={() => {
           setHover(true);
-          setCursorLabel(isDragging ? 'THROW' : 'DRAG');
         }}
         onPointerOut={() => {
           setHover(false);
-          setCursorLabel(null);
         }}
         onPointerDown={(e: any) => {
           e.stopPropagation();
           setIsDragging(true);
-          setCursorLabel('THROW');
           e.target.setPointerCapture(e.pointerId);
           dragStartRef.current = { x: e.clientX, y: e.clientY };
         }}
         onPointerUp={(e: any) => {
           e.stopPropagation();
           setIsDragging(false);
-          setCursorLabel(null);
           e.target.releasePointerCapture(e.pointerId);
           const dx = e.clientX - dragStartRef.current.x;
           const dy = e.clientY - dragStartRef.current.y;
-          if (Math.sqrt(dx * dx + dy * dy) < 10) window.open(link, '_blank');
+          if (Math.sqrt(dx * dx + dy * dy) < 10) {
+            window.open(link, '_blank', 'noopener,noreferrer');
+          }
         }}
         castShadow
       >
@@ -250,18 +249,18 @@ function GroundShadows() {
   );
 }
 
-function Scene() {
+function Scene({ blocks }: { blocks: PhysicsBlock[] }) {
   return (
     <>
       <ProceduralEnv />
-      <ambientLight intensity={0.32} />
-      <hemisphereLight args={['#8a93a6', '#0a0a0b', 0.45]} />
-      <directionalLight position={[8, 14, 8]} castShadow intensity={1.5} color="#fff6e8" />
-      <pointLight position={[-10, -6, -8]} intensity={40} distance={45} decay={2} color="#c6ff3d" />
+      <ambientLight intensity={0.4} />
+      <hemisphereLight args={['#e6d3c5', '#1d231e', 0.5]} />
+      <directionalLight position={[8, 14, 8]} castShadow intensity={1.35} color="#fff6e8" />
+      <pointLight position={[-10, -6, -8]} intensity={26} distance={45} decay={2} color="#c98f78" />
 
       <Physics gravity={[0, -9.81, 0]}>
-        {featuredProjects.map((p, i) => (
-          <ProjectBlock key={p.id} {...p} slot={i} />
+        {blocks.map((block, index) => (
+          <ProjectBlock key={block.title} {...block} slot={index} />
         ))}
         <InvisibleBounds />
       </Physics>
@@ -273,7 +272,15 @@ function Scene() {
 
 /* ============================================================ */
 
-export default function PhysicsCanvas({ onReady, active = true }: { onReady: () => void; active?: boolean }) {
+export default function PhysicsCanvas({
+  onReady,
+  active = true,
+  blocks,
+}: {
+  onReady: () => void;
+  active?: boolean;
+  blocks: PhysicsBlock[];
+}) {
   return (
     <div className="canvas-layer">
       <Canvas
@@ -285,7 +292,7 @@ export default function PhysicsCanvas({ onReady, active = true }: { onReady: () 
         style={{ touchAction: 'pan-y' }}
       >
         <Suspense fallback={null}>
-          <Scene />
+          <Scene blocks={blocks} />
         </Suspense>
       </Canvas>
     </div>

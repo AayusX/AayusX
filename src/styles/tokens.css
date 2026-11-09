@@ -1,0 +1,91 @@
+﻿:root {
+  /* Ink & plum â€” warm paper, ink, aubergine, rust */
+  --color-paper: #f2eee6;
+  --color-paper-deep: #e7e0d4;
+  --color-paper-secondary: #eae3d8;
+  --color-surface: #fbf8f2;
+  --color-surface-raised: #fffdf9;
+  --color-ink: #201a1b;
+  --color-ink-secondary: #5d5350;
+  --color-ink-tertiary: #6b5f5a;
+  --color-violet: #6b2d4b;
+  --color-violet-deep: #451f33;
+  --color-violet-soft: #eadfe0;
+  --color-clay: #b45f3c;
+  --color-clay-deep: #843d20;
+  --color-clay-soft: #f0d9cb;
+  --color-border: #d8cec1;
+  --color-border-strong: #b9aa9b;
+  --color-inverse: #f6efe7;
+
+  /* Dark chapters and quiet surfaces */
+  --color-purple-deep: #1f171b;
+  --color-purple: #3a1f2c;
+  --color-lavender: #c3a6ad;
+  --color-lavender-soft: #ddc9cc;
+  --color-lavender-white: #f6efe7;
+  --color-glass: rgba(255, 253, 249, 0.55);
+  --color-tide: rgba(107, 45, 75, 0.14);
+  --color-footer: #171113;
+
+  /* Type â€” editorial display, humanist body, technical mono */
+  --font-display: 'Bricolage Grotesque', 'Noto Sans Devanagari', 'Segoe UI', system-ui, sans-serif;
+  --font-sans: 'DM Sans', 'Noto Sans Devanagari', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --font-mono: 'IBM Plex Mono', 'Cascadia Code', 'SFMono-Regular', Consolas, monospace;
+  --font-nepali: 'Noto Sans Devanagari', 'DM Sans', sans-serif;
+
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1.0625rem;
+  --text-md: 1.125rem;
+  --text-lg: 1.3125rem;
+  --text-xl: clamp(1.35rem, 1.15rem + 0.7vw, 1.65rem);
+  --text-2xl: clamp(1.6rem, 1.35rem + 1.2vw, 2.25rem);
+  --text-3xl: clamp(2rem, 1.5rem + 2.2vw, 3.2rem);
+  --text-4xl: clamp(2.5rem, 1.8rem + 3.2vw, 4.6rem);
+  --text-display: clamp(3rem, 1.4rem + 6.2vw, 6rem);
+
+  /* Space */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+  --space-32: 8rem;
+  --space-section: clamp(4.5rem, 3rem + 6vw, 8.5rem);
+
+  /* Layout */
+  --container: 78rem;
+  --container-narrow: 66rem;
+  --container-text: 42rem;
+  --gutter: clamp(1.25rem, 0.8rem + 2vw, 2.75rem);
+  --header-height: 4.5rem;
+
+  /* Shape & motion */
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-pill: 999px;
+  --border: 1px solid var(--color-border);
+  --border-strong: 1px solid var(--color-ink);
+  --shadow-soft: 0 1px 0 rgba(32, 26, 27, 0.04), 0 18px 40px -32px rgba(69, 31, 51, 0.28);
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --duration-fast: 160ms;
+  --duration-base: 320ms;
+  --duration-slow: 640ms;
+
+  color-scheme: light;
+}
