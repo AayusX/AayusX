@@ -1,7 +1,7 @@
-import { Outlet } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Header } from './Header';
 import { Footer } from './Footer';
+import { PageTransition } from './PageTransition';
 import { SmoothScroll } from './SmoothScroll';
 import { ScrollManager } from './ScrollManager';
 
@@ -18,7 +18,7 @@ export function SiteLayout() {
       <div className="site">
         <Header />
         <main id="main-content" tabIndex={-1}>
-          <Outlet />
+          <PageTransition />
         </main>
         <Footer />
       </div>
