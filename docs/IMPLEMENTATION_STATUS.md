@@ -1,7 +1,7 @@
 # Implementation Status
 
-**Date:** 9 November 2026
-**Scope:** Apply the Ink & Plum refinement of the Liquid Atlas direction, including the section-specific compositions, to the existing AayusX portfolio.
+**Date:** 12 November 2026
+**Scope:** Apply the Ink & Plum refinement of the Liquid Atlas direction, including the section-specific compositions, to the existing AayusX portfolio; use the Changa kite as the pointer cursor and the illustrated AayusX companion in the hero and footer; and highlight the Yugs Bot release.
 
 This document separates what is verified, what needs owner input, and what is deliberately absent. Nothing below is reported as working unless it was built or exercised in this pass.
 
@@ -18,8 +18,32 @@ This document separates what is verified, what needs owner input, and what is de
 - Tuned Lenis from `lerp: 0.1` to `0.16`; removed the mascot’s permanent animation frame (it now starts on pointer movement and stops when settled) and its idle float/drop-shadow.
 - Reduced the footer top gap and removed the double section padding on About.
 - Added a two-tone route wipe: a warm paper panel and a deep-plum panel sweep left together, with a thin wine edge, to reveal the new page. It uses only the site's Ink & Plum tones, is transform-only, takes about 0.6s, and reduced-motion users get an instant swap.
+- Added the illustrated AayusX companion to the hero and footer (`public/mascot.png`, 320×480, transparent, 179.2 KB). The real photograph remains the hero and About portrait, and Changa still opens the site in the intro.
+- Restored the Changa kite as the pointer cursor at the owner's request: spring-follow movement, dotted curved tether, wing/tail hover response, click pop, and the footer off switch. Changa is the owner's identity, so it leads the pointer while the portrait stays in the hero and footer.
+- Verified the cursor renders and follows the pointer, appears only after the first move, hides on pointer leave, and keeps the hover/click states. The off switch persists through `aayusx.mascot`, coarse pointers hide the cursor, and reduced motion hides both cursor layers while keeping the static companions. No horizontal overflow at 320, 390, or 1440px.
 - Verified: `npm run build`, 26/26 tests, 0 axe WCAG A/AA violations on Home, About, Journey, Projects, Experiments, Capabilities, Writing, Article, and Contact; no horizontal overflow at 320/390/1440px; headless wheel-scroll sample averaged 11.1ms per frame (p95 11.4ms, max 22.5ms, zero frames over 33ms).
 - This section supersedes the Liquid Atlas visual bullets below; the opening drop/ripple and Changa remain.
+
+### Yugs Bot release highlight (current)
+
+- Added a dismissible release bar above the header, on every page, with a “New release” flag, the product line, a direct external link, and a labelled close control.
+- Added the homepage “Now live” feature between the hero and selected work: the supplied neon robot logo on a deep-plum field, the verified product description, three capability chips, and one external call to action.
+- Added a compact release card above the Projects filters so the launch is visible in the work index without pretending to be a case study.
+- Added Yugs Bot to the footer/mobile “Elsewhere” links.
+- Copy is limited to the public product metadata: “Yugs Bot”, “built by Yugya Technologies”, “Chat, create artifacts, and get things done faster”, and free sign-up. No version number, user count, testimonial, metric, or screenshot was invented.
+- Trimmed the supplied 1254×1254 PNG to its content bounds and exported `public/media/yugs-logo.png` at 357×400 (203 KB) with transparency preserved.
+- Added English and Nepali copy under the `release` namespace; the release bar, feature, and card all translate.
+- Verified in headless Chrome at 1440, 1024, 900, 760, 600, 390, 360, and 320px in both languages: no document horizontal overflow, no clipped release bar, and the logo loads (`naturalWidth` 357). Dismissal survives a full reload; the sticky header still pins to the top after the bar scrolls away; external links use `target="_blank"` with `rel="noopener noreferrer"`. No console errors. Reduced-motion collapses the pulse/transitions.
+- `npm run build` passes and all 26 tests pass. A fresh axe pass was not run in this pass.
+
+### Evolved Changa kite prototype (awaiting review)
+
+- Rebuilt the original kite as an isolated 2.5D character rig in `src/features/mascot/Kite.tsx`, with layered translucent panels, a visible material edge, eyelids, pupils, mouth shapes, body posture, and two ribbon tails.
+- Added ten reusable states in `src/features/mascot/kiteData.ts`: Welcome, Curious, Happy, Excited, Thoughtful, Surprised, Proud, Playful, Calm, and Goodbye. Each state coordinates eyes, lids, mouth, body, float, and tail behaviour.
+- Added original section dialogue for Home, About, Journey, Projects, Experiments, Capabilities, Writing, Article, Contact, and Not Found.
+- Added `/kite-lab` (`src/pages/KiteLabPage.tsx`, `src/styles/kite.css`, `src/styles/kite-lab.css`) as an unlinked, noindex review page with both surfaces, state browsing, section dialogue, autoplay, pointer gaze, small-size previews, mobile layout, and reduced-motion handling. The lab styles load only on that route.
+- Verified all ten states, all ten section lines, the surface toggle, autoplay, pointer tracking, 390 px layout, reduced motion, and noindex metadata in headless Chrome. No console errors or failed requests.
+- **Not integrated.** The live intro and pointer cursor use the original Changa, while the hero and footer use the portrait companion. The evolved kite is the intended long-term identity, pending owner review of the prototype. See `docs/KITE_MASCOT_SPEC.md`.
 
 ### Liquid Atlas identity (historical)
 
@@ -106,7 +130,9 @@ This document separates what is verified, what needs owner input, and what is de
 |---|---|
 | `npm run build` | Passes; type-check clean |
 | `npm test` | 26 tests across 4 files pass |
-| Translation parity | English/Nepali keys and array lengths match |
+| Translation parity | English/Nepali keys and array lengths match; release copy is translated |
+| Yugs release | Bar, homepage feature, Projects card, and footer link render; dismissal persists across reload; external links are `target="_blank"` with `rel="noopener noreferrer"`; logo loads; no console errors |
+| Release responsive sweep | 320, 360, 390, 600, 760, 900, 1024, and 1440px, both languages: no document horizontal overflow and no clipped release bar |
 | Content integrity | Bilingual case-study copy, valid statuses, https archive links, icon coverage |
 | Article files | Both languages exist and are non-empty |
 | Accessibility (axe, WCAG A/AA) | 0 violations on Home, About, Journey, Projects, Experiments, Capabilities, Writing, Article, and Contact |
@@ -132,7 +158,10 @@ This document separates what is verified, what needs owner input, and what is de
 | Project screenshots | No screenshots supplied; covers are typographic. Genuine demo videos are used, with poster frames extracted from the footage |
 | Social preview image | `public/og.png` is still the previous dark identity |
 | Personal imagery | One portrait (`public/me.png`, 1254×1254) exists; the site uses an optimized 1000px `public/me.jpg` (86 KB). No other photographs were invented |
-| Social profiles | GitHub and Yugya are shown; other profiles were not verified |
+| Social profiles | GitHub and Yugya are shown; Yugs Bot is linked as a product. Other profiles were not verified |
+| Yugs launch copy | Limited to the public product page: name, Yugya Technologies, one-line description, free sign-up. Product screenshots, version number, and outcome metrics were not available and were not invented |
+| Mascot direction | Kite direction is confirmed; Changa is the intro and pointer cursor, while the portrait stays in the hero and footer. The evolved rig at `/kite-lab` needs visual sign-off before integration. |
+| True 3D mascot | The prototype is a 2.5D SVG/CSS rig. A WebGL mesh pass is possible with the existing Three.js dependency but is not implemented |
 
 ## 3. Deliberately not implemented
 
@@ -163,7 +192,9 @@ Key additions:
 
 - `src/app/App.tsx`, `src/app/routes.tsx`
 - `src/pages/ContactPage.tsx`, `src/pages/ArticlePage.tsx`, `src/pages/ExperimentsPage.tsx`
-- `src/features/mascot/Changa.tsx`, `src/features/mascot/MascotContext.tsx`, `src/components/MascotToggle.tsx`
+- `src/features/mascot/Changa.tsx`, `src/features/mascot/Mascot.tsx`, `src/features/mascot/MascotContext.tsx`, `src/components/MascotToggle.tsx`
+- `src/features/mascot/Kite.tsx`, `src/features/mascot/kiteData.ts`, `src/pages/KiteLabPage.tsx`, `src/styles/kite.css`, `src/styles/kite-lab.css`, `docs/KITE_MASCOT_SPEC.md` (isolated prototype, unlinked)
+- `src/content/yugs.ts`, `src/components/ReleaseBar.tsx`, `src/components/YugsRelease.tsx`, `src/styles/release.css`, `public/media/yugs-logo.png`
 - `src/components/LiquidText.tsx` (removed in the Ink & Plum pass)
 - `src/styles/mascot.css`, `src/styles/liquid.css` (liquid styles removed)
 - `functions/api/contact.ts`

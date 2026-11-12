@@ -126,6 +126,8 @@ function CursorMascot() {
     const onLeave = () => {
       mascot.classList.remove('is-visible');
       stringLayer?.classList.remove('is-visible');
+      mascot.dataset.hover = 'false';
+      mascot.dataset.react = 'false';
       hasPointer = false;
       running = false;
       window.cancelAnimationFrame(frame);

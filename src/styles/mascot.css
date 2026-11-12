@@ -1,4 +1,6 @@
-﻿.changa {
+﻿/* Changa (the kite) still opens the site in the intro. */
+
+.changa {
   width: 100%;
   height: auto;
   overflow: visible;
@@ -88,6 +90,18 @@
   opacity: 0.5;
 }
 
+/* The illustrated companion stays in the hero and footer. */
+
+.mascot {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 100%;
+  object-fit: contain;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
 .mascot-cursor {
   position: fixed;
   top: 0;
@@ -157,18 +171,15 @@
   }
 }
 
-.hero-changa {
+.hero-mascot {
   position: absolute;
   z-index: 4;
   top: 1.5%;
   right: 0;
-  width: clamp(5rem, 8vw, 7rem);
-  transform: rotate(8deg);
+  width: clamp(5.5rem, 8vw, 7.5rem);
+  transform: rotate(3deg);
   pointer-events: none;
-}
-
-.hero-changa .changa {
-  width: 100%;
+  filter: drop-shadow(0 14px 26px rgba(24, 18, 32, 0.22));
 }
 
 .hero-mascot-note {
@@ -190,10 +201,10 @@
 }
 
 @media (max-width: 900px) {
-  .hero-changa {
+  .hero-mascot {
     top: 0;
     right: 0.5rem;
-    width: 4.4rem;
+    width: 4.6rem;
   }
 
   .hero-mascot-note {
@@ -211,7 +222,7 @@
   }
 
   .mascot-cursor .changa,
-  .hero-changa {
+  .hero-mascot {
     animation: none !important;
   }
 }

@@ -297,10 +297,21 @@ html[lang='ne'] .mobile-menu__link {
   margin-bottom: var(--space-5);
 }
 
-.footer-changa {
-  width: clamp(3.4rem, 5vw, 4.6rem);
+.footer-mascot {
+  width: clamp(3.6rem, 5vw, 4.6rem);
+  aspect-ratio: 2 / 3;
   flex-shrink: 0;
   margin-top: 0.2rem;
+  padding: 0.3rem;
+  border-radius: 0.7rem;
+  background: var(--color-paper);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.32);
+  transform: rotate(3deg);
+}
+
+.footer-mascot .mascot {
+  height: 100%;
+  border-radius: 0.45rem;
 }
 
 .footer-brand > p {
@@ -664,7 +675,7 @@ html[lang='ne'] .mobile-menu__link {
     width: 100%;
   }
 
-  .footer-changa {
-    width: 3.2rem;
+  .footer-mascot {
+    width: 3.4rem;
   }
 }

@@ -5,6 +5,7 @@ import { Seo } from '../components/Seo';
 import { PageHero } from '../components/PageHero';
 import { ProjectCover } from '../components/ProjectCover';
 import { StatusBadge } from '../components/StatusBadge';
+import { YugsReleaseCard } from '../components/YugsRelease';
 import { ArrowUpRight } from '../components/Icons';
 import {
   ARCHIVE_PROJECTS,
@@ -49,6 +50,8 @@ export function ProjectsPage() {
 
       <section className="section">
         <div className="container">
+          <YugsReleaseCard />
+
           <div className="filters" role="group" aria-label={t('projects.filterLabel')}>
             {(['all', ...PROJECT_STATUSES] as Filter[]).map((status) => (
               <button

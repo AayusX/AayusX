@@ -1,0 +1,299 @@
+/* The evolved Changa character. Kept separate from the intro until approved. */
+.kite {
+  width: 100%;
+  perspective: 900px;
+  user-select: none;
+}
+
+.kite__look {
+  transform-style: preserve-3d;
+  transform: rotateX(var(--body-rx, 0deg)) rotateY(var(--body-ry, 0deg));
+  transition: transform 480ms var(--ease-out);
+  will-change: transform;
+}
+
+.kite__pose {
+  transform: rotateZ(var(--pose-rotate, 0deg)) rotateX(var(--pose-tilt, 0deg))
+    translateY(var(--pose-lift, 0px));
+  transition: transform 560ms var(--ease-out);
+}
+
+.kite__float {
+  transform-style: preserve-3d;
+  animation: kite-float var(--float-duration, 6s) ease-in-out infinite;
+}
+
+.kite__svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+  filter: drop-shadow(0 20px 22px rgba(23, 17, 19, 0.2))
+    drop-shadow(0 4px 6px rgba(23, 17, 19, 0.12));
+}
+
+.kite__panel {
+  stroke: rgba(246, 239, 231, 0.14);
+  stroke-width: 1;
+}
+
+.kite__outline {
+  fill: none;
+  stroke: rgba(246, 239, 231, 0.52);
+  stroke-width: 1.6;
+  stroke-linejoin: round;
+}
+
+.kite__seam {
+  fill: none;
+  stroke: rgba(246, 239, 231, 0.2);
+  stroke-width: 1;
+}
+
+.kite__edge-highlight {
+  fill: none;
+  stroke-width: 1.4;
+  stroke-linecap: round;
+}
+
+.kite__sheen {
+  opacity: 0.6;
+}
+
+.kite__glass {
+  opacity: 0.35;
+}
+
+.kite__face-glow {
+  opacity: 0.8;
+}
+
+.kite__tail {
+  transform-box: fill-box;
+  transform-origin: 50% 0%;
+  animation: kite-tail var(--tail-duration, 4.6s) ease-in-out infinite;
+}
+
+.kite__tail--right {
+  animation-delay: -1.5s;
+}
+
+.kite__tail-underlay {
+  fill: none;
+  stroke-width: 10;
+  stroke-linecap: round;
+  opacity: 0.3;
+}
+
+.kite__tail-core {
+  fill: none;
+  stroke-width: 5.2;
+  stroke-linecap: round;
+  opacity: 0.88;
+}
+
+.kite__tail-fold {
+  fill: none;
+  stroke: rgba(246, 239, 231, 0.38);
+  stroke-width: 1.1;
+  stroke-linecap: round;
+}
+
+.kite__tail-knot {
+  fill: #3a1f2c;
+  stroke: rgba(246, 239, 231, 0.5);
+  stroke-width: 1;
+}
+
+.kite__eye-socket {
+  fill: rgba(22, 13, 19, 0.24);
+  stroke: rgba(246, 239, 231, 0.14);
+  stroke-width: 0.9;
+}
+
+.kite__eye-open {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.kite__eye-inner {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: kite-blink 6.8s infinite;
+}
+
+.kite__eye--closed .kite__eye-inner {
+  animation: none;
+}
+
+.kite__eye-arc {
+  fill: none;
+  stroke: #2a1524;
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+.kite__pupil {
+  transform: translate(
+    calc(var(--pupil-x, 0px) + var(--look-x, 0px)),
+    calc(var(--pupil-y, 0px) + var(--look-y, 0px))
+  );
+  transition: transform 420ms var(--ease-out);
+}
+
+.kite__lid {
+  transform: translateY(var(--lid-y, 0px));
+  transition: transform 420ms var(--ease-out);
+}
+
+.kite__lash {
+  fill: none;
+  stroke: rgba(246, 239, 231, 0.4);
+  stroke-width: 1;
+  transform: translateY(var(--lid-y, 0px));
+  transition: transform 420ms var(--ease-out);
+}
+
+/* Expression posture, float speed, and tail energy. */
+
+.kite[data-expression='welcome'] {
+  --pose-rotate: -1deg;
+  --pose-tilt: -1deg;
+  --pose-lift: 0px;
+  --float-duration: 6.4s;
+  --float-lift: -8px;
+  --float-rotate: 1.4deg;
+  --tail-duration: 4.4s;
+  --tail-amp: 5deg;
+}
+
+.kite[data-expression='curious'] {
+  --pose-rotate: 5deg;
+  --pose-tilt: 3deg;
+  --pose-lift: -1px;
+  --float-duration: 5.2s;
+  --float-lift: -9px;
+  --float-rotate: 2.4deg;
+  --tail-duration: 3.4s;
+  --tail-amp: 7deg;
+}
+
+.kite[data-expression='happy'] {
+  --pose-rotate: -2deg;
+  --pose-tilt: -2deg;
+  --pose-lift: -2px;
+  --float-duration: 4.2s;
+  --float-lift: -12px;
+  --float-rotate: 2deg;
+  --tail-duration: 2.8s;
+  --tail-amp: 9deg;
+}
+
+.kite[data-expression='excited'] {
+  --pose-rotate: 3deg;
+  --pose-tilt: 4deg;
+  --pose-lift: -3px;
+  --float-duration: 2.8s;
+  --float-lift: -16px;
+  --float-rotate: 3deg;
+  --tail-duration: 2.1s;
+  --tail-amp: 12deg;
+}
+
+.kite[data-expression='thoughtful'] {
+  --pose-rotate: -5deg;
+  --pose-tilt: -3deg;
+  --pose-lift: 1px;
+  --float-duration: 7.2s;
+  --float-lift: -6px;
+  --float-rotate: 1deg;
+  --tail-duration: 6.2s;
+  --tail-amp: 4deg;
+}
+
+.kite[data-expression='surprised'] {
+  --pose-rotate: 0deg;
+  --pose-tilt: -6deg;
+  --pose-lift: -4px;
+  --float-duration: 3.6s;
+  --float-lift: -13px;
+  --float-rotate: 1.6deg;
+  --tail-duration: 3.2s;
+  --tail-amp: 8deg;
+}
+
+.kite[data-expression='proud'] {
+  --pose-rotate: 0deg;
+  --pose-tilt: 2deg;
+  --pose-lift: -3px;
+  --float-duration: 6.6s;
+  --float-lift: -10px;
+  --float-rotate: 1.2deg;
+  --tail-duration: 4.8s;
+  --tail-amp: 5deg;
+}
+
+.kite[data-expression='playful'] {
+  --pose-rotate: 6deg;
+  --pose-tilt: 4deg;
+  --pose-lift: -1px;
+  --float-duration: 3.8s;
+  --float-lift: -11px;
+  --float-rotate: 3deg;
+  --tail-duration: 2.5s;
+  --tail-amp: 11deg;
+}
+
+.kite[data-expression='calm'] {
+  --pose-rotate: -1deg;
+  --pose-tilt: 0deg;
+  --pose-lift: 1px;
+  --float-duration: 8.5s;
+  --float-lift: -5px;
+  --float-rotate: 0.8deg;
+  --tail-duration: 7.5s;
+  --tail-amp: 3deg;
+}
+
+.kite[data-expression='goodbye'] {
+  --pose-rotate: -7deg;
+  --pose-tilt: 2deg;
+  --pose-lift: 1px;
+  --float-duration: 7.4s;
+  --float-lift: -6px;
+  --float-rotate: 1deg;
+  --tail-duration: 6.4s;
+  --tail-amp: 4deg;
+}
+
+@keyframes kite-float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotateZ(calc(var(--float-rotate, 1.5deg) * -1));
+  }
+  50% {
+    transform: translate3d(0, var(--float-lift, -8px), 0) rotateZ(var(--float-rotate, 1.5deg));
+  }
+}
+
+@keyframes kite-tail {
+  0%,
+  100% {
+    transform: rotate(calc(var(--tail-amp, 5deg) * -1)) translateX(-1.5px);
+  }
+  50% {
+    transform: rotate(var(--tail-amp, 5deg)) translateX(1.5px);
+  }
+}
+
+@keyframes kite-blink {
+  0%,
+  92%,
+  96%,
+  100% {
+    transform: scaleY(1);
+  }
+  94% {
+    transform: scaleY(0.08);
+  }
+}

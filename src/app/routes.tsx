@@ -25,6 +25,9 @@ const ExperimentsPage = lazy(() =>
 const JourneyPage = lazy(() =>
   import('../pages/JourneyPage').then((module) => ({ default: module.JourneyPage })),
 );
+const KiteLabPage = lazy(() =>
+  import('../pages/KiteLabPage').then((module) => ({ default: module.KiteLabPage })),
+);
 const NotFoundPage = lazy(() =>
   import('../pages/NotFoundPage').then((module) => ({ default: module.NotFoundPage })),
 );
@@ -77,6 +80,14 @@ function localizedTree(prefix: '' | '/ne') {
 export function AppRoutes() {
   return (
     <Routes>
+      <Route
+        path="/kite-lab"
+        element={
+          <RouteFallback>
+            <KiteLabPage />
+          </RouteFallback>
+        }
+      />
       {localizedTree('')}
       {localizedTree('/ne')}
     </Routes>

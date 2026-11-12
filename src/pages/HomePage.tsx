@@ -3,8 +3,9 @@ import { useTranslation } from 'react-i18next';
 import { Seo } from '../components/Seo';
 import { SectionHead } from '../components/SectionHead';
 import { ArticleRow } from '../components/ArticleRow';
-import { Changa } from '../features/mascot/Changa';
+import { Mascot } from '../features/mascot/Mascot';
 import { StatusBadge } from '../components/StatusBadge';
+import { YugsFeature } from '../components/YugsRelease';
 import { ArrowUpRight } from '../components/Icons';
 import { FEATURED_CASE_STUDIES, type CaseStudy } from '../content/projects';
 import { ARTICLE_SLUGS } from '../content/articles';
@@ -96,8 +97,8 @@ export function HomePage() {
               </figcaption>
             </figure>
 
-            <div className="hero-changa" aria-hidden="true">
-              <Changa />
+            <div className="hero-mascot" aria-hidden="true">
+              <Mascot />
             </div>
 
             <p className="hero-mascot-note">
@@ -108,6 +109,8 @@ export function HomePage() {
         </div>
         <div className="hero-tide" aria-hidden="true" />
       </section>
+
+      <YugsFeature />
 
       <section className="section" id="selected-work">
         <div className="container">

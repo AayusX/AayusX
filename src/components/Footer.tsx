@@ -6,7 +6,7 @@ import { useIntro } from '../features/memory-intro/MemoryIntro';
 import { scrollToTop } from '../lib/scroll';
 import { ArrowUpRight } from './Icons';
 import { MascotToggle } from './MascotToggle';
-import { Changa } from '../features/mascot/Changa';
+import { Mascot } from '../features/mascot/Mascot';
 
 export function Footer() {
   const { t } = useTranslation();
@@ -23,8 +23,8 @@ export function Footer() {
               <p className="footer-wordmark" aria-hidden="true">
                 AayusX<span className="wordmark-dot" />
               </p>
-              <div className="footer-changa" aria-hidden="true">
-                <Changa tone="dark" />
+              <div className="footer-mascot" aria-hidden="true">
+                <Mascot />
               </div>
             </div>
             <p>{t('footer.statement')}</p>

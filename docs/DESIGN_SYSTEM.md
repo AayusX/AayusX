@@ -86,7 +86,7 @@ The primary website uses a **warm bone, ink, aubergine, and rust design language
 
 ### 3.2 Signature Systems
 
-- **Changa** — an original Nepali kite mascot. A lightweight SVG follows the cursor with a dotted tether, reacts to interactive elements, and has an explicit off switch. It is replaced by a static mascot for coarse pointers and reduced motion.
+- **Changa** — an original Nepali kite mascot. Changa opens the site in the intro and is the pointer cursor, where it follows the pointer on a dotted tether, reacts to interactive elements, and has an explicit off switch. The hero and footer use the **illustrated AayusX companion**, a transparent portrait (`public/mascot.png`). Both are replaced by static or hidden fallbacks for coarse pointers and reduced motion.
 - **LiquidText (retired)** — the SVG-filtered gradient display material was removed in the Ink & Plum refinement. The opening and homepage now use solid display type. The solid text layer remains the accessibility baseline.
 - **Liquid Atlas opening** — a dark violet drop/ripple chapter that resolves into the light site. Skip and enter controls are always present.
 
@@ -1101,6 +1101,8 @@ This section supersedes the Liquid Atlas palette, glass-lens portrait, liquid di
 - Reduced the footer’s top gap and removed double section padding on About.
 - Lenis `lerp` moved from 0.1 to 0.16 for a more responsive wheel feel.
 - The Changa cursor no longer runs a permanent animation frame. It starts on pointer movement and stops when settled; its idle float and drop-shadow were removed.
+- The cursor, hero, and footer now use the illustrated AayusX companion instead of Changa. The companion is a 320×480 transparent PNG at `public/mascot.png`, follows the pointer with the same start-on-move frame loop, and keeps the off switch, coarse-pointer fallback, and reduced-motion hiding. Changa remains in the intro.
+- Restored the Changa kite as the pointer cursor at the owner's request, with its dotted curved tether, hover wing/tail response, and click pop. The hero and footer keep the illustrated companion; the off switch, coarse-pointer fallback, and reduced-motion hiding are unchanged.
 
 ### 24.3 Verification
 

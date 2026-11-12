@@ -100,8 +100,8 @@ export const en = {
     portraitAlt: 'Portrait of Aayush Bhandari',
     portraitCaption: 'Aayush Bhandari / AayusX',
     portraitNote: 'Nepal · building remotely',
-    mascotLabel: 'Changa / cursor companion',
-    mascotNote: 'A Nepali kite tethered to the pointer. It follows, loops, and dips.',
+    mascotLabel: 'The AayusX companion',
+    mascotNote: 'An illustrated portrait that keeps you company at the pointer. The kite still opens the site.',
     currentlyLabel: 'Currently',
     currentlyText:
       'Co-founding Yugya, studying Computer Engineering, and maintaining a school platform that runs every day.',
@@ -130,6 +130,27 @@ export const en = {
     contactCta: 'Start a conversation',
     indexLabel: 'Index',
     index: ['Selected work', 'About', 'Capabilities', 'Writing', 'Contact'],
+  },
+
+  release: {
+    barLabel: 'Yugs Bot release announcement',
+    badge: 'New release',
+    barTitle: 'Yugs Bot is live.',
+    barBody: 'Chat, create artifacts, and get things done faster.',
+    barCta: 'Try it free',
+    dismiss: 'Dismiss the Yugs Bot announcement',
+    nowLive: 'Now live',
+    eyebrow: 'Now live · By Yugya Technologies',
+    title: 'Meet Yugs Bot.',
+    lede: 'A new AI assistant from Yugya Technologies. Chat, create artifacts, and get things done faster.',
+    points: ['Chat', 'Create artifacts', 'Get things done faster'],
+    primaryCta: 'Try Yugs free',
+    meta: 'Free to start · By Yugya Technologies',
+    projectsLabel: 'Latest release',
+    projectsTitle: 'Yugs Bot is now live.',
+    projectsBody:
+      'The AI assistant from Yugya Technologies: chat, create artifacts, and get things done faster.',
+    projectsCta: 'Open Yugs Bot',
   },
 
   about: {

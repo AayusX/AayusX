@@ -7,6 +7,7 @@ export const SITE = {
   socials: [
     { label: 'GitHub', href: 'https://github.com/AayusX' },
     { label: 'Yugya', href: 'https://yugya.com' },
+    { label: 'Yugs Bot', href: 'https://yugs.yugya.com/' },
   ],
 } as const;
 
